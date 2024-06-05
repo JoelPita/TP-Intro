@@ -12,17 +12,17 @@ COPY Pipfile Pipfile.lock /app/
 # Instalar las dependencias del Pipfile
 RUN pipenv install --deploy --ignore-pipfile
 
-# Instalar Flask y otras dependencias manualmente
-# RUN pipenv run pip install flask flask_sqlalchemy pymysql
-
 # Listar los paquetes instalados para verificar que Flask está instalado
 RUN pipenv run pip list
 
 # Copiar el contenido del proyecto
 COPY . .
 
+# Establecer la variable de entorno FLASK_APP
+ENV FLASK_APP=app/app.py
+
 # Exponer el puerto en el que correrá la aplicación
 EXPOSE 5000
 
 # Definir el comando por defecto
-CMD ["pipenv", "run", "python", "app/app.py"]
+CMD ["pipenv", "run", "flask", "run", "--host=0.0.0.0", "--port=5000"]
