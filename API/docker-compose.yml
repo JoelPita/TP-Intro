@@ -19,8 +19,11 @@ services:
       MYSQL_DATABASE: flaskdb
       MYSQL_USER: app_user
       MYSQL_PASSWORD: appMate123
+    ports:
+      - "3307:3306" 
     volumes:
       - mysql-data:/var/lib/mysql
+      - ./db_init:/docker-entrypoint-initdb.d
 
 volumes:
   mysql-data:
