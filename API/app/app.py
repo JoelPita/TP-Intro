@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from sqlalchemy import text
@@ -37,7 +37,12 @@ def delete_user(id):
 
 @app.route('/')
 def home():
-    return jsonify({"message": "Hello, Docker!"})
+    return render_template('index.html')
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'),404
+
 
 if __name__ == "__main__":
     app.run(host='127.0.0.0.0', port=5000, debug=True) 
