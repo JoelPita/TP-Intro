@@ -11,6 +11,10 @@ engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
 def home():
     return render_template('index.html')
 
+@app.route('/servicios.html')
+def servicios():
+    return render_template('servicios.html')
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'),404
