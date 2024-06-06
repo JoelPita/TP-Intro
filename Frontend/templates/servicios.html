@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with FoodHut landing page.">
+    <title>Hotel Mate Amargo</title>
+    <link rel="shortcut icon" href="{{url_for('static', filename='imgs/favicon.png')}}">
+    <!-- font icons -->
+    <link rel="stylesheet" href="{{url_for('static', filename='vendors/themify-icons/css/themify-icons.css')}}">
+    
+    <link rel="stylesheet" href="{{url_for('static', filename='vendors/animate/animate.css')}}">
+
+    <!-- Bootstrap + main styles -->
+	<link rel="stylesheet" href="{{url_for('static', filename='css/mate_amargo.css')}}">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    
+    <!-- Navbar -->
+    <nav class="custom-navbar navbar navbar-expand-lg navbar-dark fixed-top" data-spy="affix" data-offset-top="10">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'index.html'}}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'servicios.html'}}">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'habitaciones.html'}}">Habitaciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'reserva.html'}}">Reserva</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'blog.html'}}">Blog<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'reviews.html'}}">Reseñas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{'contacto.html'}}">Contactenos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{'admin.html'}}" class="btn btn-primary ml-xl-4">Administracion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- header -->
+    <header id="home" class="header">
+        <div class="overlay text-white text-center">
+            <h1 class="display-2 font-weight-bold my-3">Hotel Mate Amargo</h1>
+            <h2 class="display-4 mb-5">Descubre la calidez de tu hogar en nuestro hotel</h2>
+            <a class="btn btn-lg btn-primary" href="{{'habitaciones.html'}}">Vea nuestras habitaciones</a>
+        </div>
+    </header>
+    <!-- Servicios  -->
+    <div id="blog" class="container-fluid bg-dark text-light py-5 text-center wow fadeIn">
+        <h2 class="section-title py-5">Nuestros servicios e instalaciones</h2>
+        <div class="row justify-content-center">
+            <div class="col-sm-7 col-md-4 mb-5">
+                <ul class="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#foods" role="tab" aria-controls="pills-home" aria-selected="true">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#juices" role="tab" aria-controls="pills-profile" aria-selected="false">Instalaciones</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="foods" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card bg-transparent border my-3 my-md-0">
+                            <img src="{{url_for('static', filename='imgs/servicio-1.jpg')}}"  class="rounded-0 card-img-top mg-responsive">
+                            <div class="card-body">
+                                <h1 class="text-center mb-4"><a href="#" class="badge badge-primary">SERVICIO DE LIMPIEZA</a></h1>
+                                <h4 class="pt20 pb20">Servicio de limpieza</h4>
+                                <p class="text-white">Nuestro equipo de limpieza se dedica a mantener cada rincón del hotel impecable, asegurando una estancia cómoda y placentera. Disfrute de habitaciones siempre limpias durante toda su estancia. </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-transparent border my-3 my-md-0">
+                            <img src="{{url_for('static', filename='imgs/servicio-2.jpg')}}" class="rounded-0 card-img-top mg-responsive">
+                            <div class="card-body">
+                                <h1 class="text-center mb-4"><a href="#" class="badge badge-primary">SERVICIO DE CUARTO</a></h1>
+                                <h4 class="pt20 pb20">Nuestro servicio de cuarto</h4>
+                                <p class="text-white">Disfrute de nuestro servicio a la habitación las 24 horas, ofreciendo una amplia selección de comidas y bebidas directamente a su puerta. Estamos aquí para satisfacer sus antojos en cualquier momento del día. </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-transparent border my-3 my-md-0">
+                            <img src="{{url_for('static', filename='imgs/servicio-3.jpg')}}"  class="rounded-0 card-img-top mg-responsive">
+                            <div class="card-body">
+                                <h1 class="text-center mb-4"><a href="#" class="badge badge-primary">BUFFET</a></h1>
+                                <h4 class="pt20 pb20">Nuestro buffet</h4>
+                                <p class="text-white">Disfruta de nuestra variedad gastronómica en el buffet. Desde platos locales hasta cocina internacional. Disfrute de una experiencia culinaria inigualable</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="juices" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <div class="row">
+                    <div class="col-md-4 my-3 my-md-0">
+                        <div class="card bg-transparent border">
+                            <img src="{{url_for('static', filename='imgs/servicio-4.jpg')}}" class="rounded-0 card-img-top mg-responsive">
+                            <div class="card-body">
+                                <h1 class="text-center mb-4"><a href="#" class="badge badge-primary">PISCINA</a></h1>
+                                <h4 class="pt20 pb20">Nuestra Piscina</h4>
+                                <p class="text-white">Disfrute de nuestra espectacular piscina. Es el lugar perfecto para darse un refrescante baño. Ofrecemos servicio de toallas y un bar cercano para que pueda disfrutar de bebidas y aperitivos mientras se relaja.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 my-3 my-md-0">
+                        <div class="card bg-transparent border">
+                            <img src="{{url_for('static', filename='imgs/servicio-5.jpg')}}" class="rounded-0 card-img-top mg-responsive">
+                            <div class="card-body">
+                                <h1 class="text-center mb-4"><a href="#" class="badge badge-primary">SAUNA</a></h1>
+                                <h4 class="pt20 pb20">Nuestro Sauna</h4>
+                                <p class="text-white">Relájese en nuestro exclusivo sauna, diseñado para ofrecerle una experiencia rejuvenecedora. Con cómodas instalaciones y un ambiente tranquilo, es el lugar perfecto para revitalizar cuerpo y mente.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 my-3 my-md-0">
+                        <div class="card bg-transparent border">
+                            <img src="{{url_for('static', filename='imgs/servicio-6.jpg')}}" class="rounded-0 card-img-top mg-responsive">
+                            <div class="card-body">
+                                <h1 class="text-center mb-4"><a href="#" class="badge badge-primary">GIMNASIO</a></h1>
+                                <h4 class="pt20 pb20">Nuestro Gimnasio</h4>
+                                <p class="text-white">Mantenganse en forma en nuestro gimnasio, equipado con máquinas modernas. Un ambiente limpio y espacioso ideal para su rutina de ejercicios.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CONTACT Section  -->
+    <div id="contact" class="container-fluid bg-dark text-light border-top wow fadeIn">
+        <div class="row">
+            <div class="col-md-6 px-0">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3159.7969278958913!2d-68.30631245553846!3d-54.80134068703548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbc4c22d8d4389867%3A0xcdc7caafee4d115a!2sUshuaia%20Sur!5e0!3m2!1ses!2sar!4v1717715324577!5m2!1ses!2sar" id="map" style="width: 100%; height: 100%; min-height: 400px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="col-md-6 px-5 has-height-lg middle-items">
+                <h3>ENCUENTRANOS</h3>
+                <p>La ubicacion es centrica</p>
+                <div class="text-muted">
+                    <p><span class="ti-location-pin pr-3"></span> 12345 Fake ST NoWhere, AB Country</p>
+                    <p><span class="ti-support pr-3"></span> (123) 456-7890</p>
+                    <p><span class="ti-email pr-3"></span>mate_amargo@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- page footer  -->
+    <div class="container-fluid bg-dark text-light has-height-md middle-items border-top text-center wow fadeIn">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3>ESCRIBENOS</h3>
+                <P class="text-muted">mate_amargo@gmail.com</P>
+            </div>
+            <div class="col-sm-4">
+                <h3>LLAMANOS</h3>
+                <P class="text-muted">(123) 456-7890</P>
+            </div>
+            <div class="col-sm-4">
+                <h3>ENCUENTRANOS</h3>
+                <P class="text-muted">12345 Fake ST NoWhere AB Country</P>
+            </div>
+        </div>
+    </div>
+    
+    <!-- end of page footer -->
+
+	<!-- core  -->
+    <script src="{{url_for('static', filename='vendors/jquery/jquery-3.4.1.js')}}"></script>
+    <script src="static/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- bootstrap affix -->
+    <script src="{{url_for('static', filename='vendors/bootstrap/bootstrap.affix.js')}}"></script>
+
+    <!-- wow.js -->
+    <script src="{{url_for('static', filename='vendors/wow/wow.js')}}"></script>
+    
+    <!-- google maps -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
+
+    <!-- FoodHut js -->
+    <script src="{{url_for('static', filename='js/mate_amargo.js')}}"></script>
+
+</body>
+</html>
