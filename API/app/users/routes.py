@@ -6,7 +6,7 @@ from sqlalchemy.exc import SQLAlchemyError
 users_bp = Blueprint('users', __name__)
 
 # ---Crer rutas para users ---
-@users_bp.route('/users/<id>', methods=['DELETE'])
+@users_bp.route('/<id>', methods=['DELETE'])
 def delete_user(id):
     query = text("DELETE FROM Users WHERE id = :id")
     validation_query = text("SELECT * FROM Users WHERE id = :id")
