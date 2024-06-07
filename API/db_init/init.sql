@@ -36,5 +36,7 @@ CREATE TABLE IF NOT EXISTS Reviews (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre_autor VARCHAR(80) NOT NULL,
     texto VARCHAR(150) NOT NULL,
-    visible BOOLEAN NOT NULL
+    visible BOOLEAN DEFAULT false,
+    estado VARCHAR(50) DEFAULT 'nueva'
+
 );
