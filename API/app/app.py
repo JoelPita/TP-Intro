@@ -9,7 +9,7 @@ engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
 
 # def set_connection():
 #     try:
-#         engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db//flaskdb')
+#         engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
 #         connection = engine.connect()
 #         return connection
 #     except SQLAlchemyError as e:
@@ -28,7 +28,7 @@ def delete_user(id):
             return jsonify({"message": "Usuario no encontrado"}), 404
         conn.execute(query, {'id': id})
         conn.commit()
-        conn.close() 
+        conn.close()
         return jsonify({"message": "Usuario eliminado correctamente"}), 200
     except SQLAlchemyError as e:
         error = str(e.__cause__)
