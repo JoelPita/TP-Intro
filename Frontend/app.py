@@ -11,9 +11,33 @@ engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
 def home():
     return render_template('index.html')
 
-@app.route('/servicios.html')
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+
+@app.route('/habitaciones')
+def habitaciones():
+    return render_template('habitaciones.html')
+
+@app.route('/habitaciones/<id>', methods = ['GET'])
+def habitaciones_id(id):
+    return
+
+@app.route('/servicios')
 def servicios():
     return render_template('servicios.html')
+
+@app.route('/contacto')
+def contacto():
+    return render_template('contacto.html')
+
+@app.route('/reserva')
+def reserva():
+    return render_template('reserva.html')
+
+@app.route('/reviews')
+def reviews():
+    return render_template('reviews.html')
 
 @app.errorhandler(404)
 def page_not_found(e):
