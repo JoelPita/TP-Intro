@@ -13,11 +13,10 @@ body {
 }
 
 #widget {
-    width: 100%;
+    width: 25vw;
     background: linear-gradient(135deg, #00feba, #5b548a);
     border-radius: 20px;
     max-width: 350px;
-    min-width: 300px;
     color: #fff;
     text-align: center;
     overflow: hidden;
@@ -30,6 +29,8 @@ body {
 #widget.colapsado {
     overflow: hidden;
     padding: 5px 30px;
+    max-width: 250px;
+    min-width: 200px;
 }
 
 #widget.colapsado .climaActual {
@@ -53,6 +54,12 @@ body {
 #widget.expandido {
     padding: 15px 10px;
     z-index: 1000;
+    min-width: 300px;
+}
+
+#widget.expandido #clima_actual_icon, #widget.expandido #temperatura {
+    min-width: 3vw;
+    font-size: 55px;
 }
 
 .header-dia {

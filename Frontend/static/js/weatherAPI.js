@@ -1,3 +1,5 @@
+
+// Funcion que aplica el icono correspondiente al estado del clima.
 function cambiar_Icono(elemento, estado_clima) {
     switch (estado_clima) {
         case 'clouds':
@@ -18,6 +20,7 @@ function cambiar_Icono(elemento, estado_clima) {
     };
 };
 
+// Captura los datos del back-end de app.py y los muestra en el html.
 fetch('/clima_actual')
     .then(response => response.json())
     .then(data => {
