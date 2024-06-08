@@ -27,8 +27,10 @@ def habitaciones_id(id):
 def servicios():
     return render_template('servicios.html')
 
-@app.route('/contacto')
+@app.route('/contacto', methods=["GET", "POST"])
 def contacto():
+    if request.method == "POST":
+        return "Es tremendo que funcione"
     return render_template('contacto.html')
 
 @app.route('/reserva')
