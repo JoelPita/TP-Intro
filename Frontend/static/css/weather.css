@@ -19,11 +19,40 @@ body {
     max-width: 350px;
     min-width: 300px;
     color: #fff;
-    padding: 15px 10px;
     text-align: center;
     overflow: hidden;
     cursor: pointer;
-    
+    transition: all 0.33s ease;
+    transition: all 0.3s ease-in-out;
+    position: fixed;
+}
+
+#widget.colapsado {
+    overflow: hidden;
+    padding: 5px 30px;
+}
+
+#widget.colapsado .climaActual {
+    max-height: 40px;
+    overflow: hidden;
+}
+
+#widget.colapsado h1 {
+    font-size: 30px;
+    margin: 0px;
+}
+
+#widget.colapsado img {
+    width: 30px;
+}
+
+#widget.colapsado .header-dia, #widget.colapsado .detalles, #widget.colapsado .forecast-container {
+    display: none;
+}
+
+#widget.expandido {
+    padding: 15px 10px;
+    z-index: 1000;
 }
 
 .header-dia {
