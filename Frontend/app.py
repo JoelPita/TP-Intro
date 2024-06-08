@@ -18,7 +18,7 @@ app.register_blueprint(reviewsBp, url_prefix="/reviews")
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('home.html')
 
 @app.route('/admin')
 def admin():
