@@ -11,7 +11,7 @@ def delete_user(id):
     query = text("DELETE FROM Users WHERE id = :id")
     validation_query = text("SELECT * FROM Users WHERE id = :id")
     try:
-        engine = current_app.config('engine')
+        engine = current_app.config['engine']
         conn = engine.connect()
         val_result = conn.execute(validation_query, {'id': id})
         if val_result.rowcount == 0:
