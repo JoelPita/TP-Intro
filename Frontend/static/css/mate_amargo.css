@@ -2242,6 +2242,43 @@ pre code {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.form-group i {
+	visibility: hidden;
+	position: absolute;
+	top: 10px;
+	right: 25px;
+}
+
+.form-group small {
+  font-size: 15px;
+  visibility: hidden;
+
+}
+
+.form-group.success input {
+  border-color: #16d32f;
+}
+
+.form-group.error input{
+  border-color: #ff214f;
+}
+
+.form-group.success i.fa-check-circle-o {
+  visibility: visible;
+  color: #16d32f;
+}
+
+.form-group.error i.fa-times-circle-o {
+  visibility: visible;
+  color: #ff214f;
+}
+
+.form-group.error small {
+  visibility: visible;
+  color: #ff214f;
+}
+
+
 @media (prefers-reduced-motion: reduce) {
   .form-control {
     -webkit-transition: none;
@@ -2257,9 +2294,9 @@ pre code {
 .form-control:focus {
   color: #dee2e6;
   background-color: #495057;
-  border-color: #ff214f;
+  border-color: #1c19e0;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(255, 33, 79, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(19, 179, 207, 0.25);
 }
 
 .form-control::-webkit-input-placeholder {
