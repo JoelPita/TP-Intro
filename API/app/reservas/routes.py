@@ -17,7 +17,7 @@ def create_reserva():
         """)
     
     try:
-        engine = current_app.config('engine')
+        engine = current_app.config['engine']
         conn = engine.connect()
         conn.execute(query, {
             'email_cliente': data['email_cliente'],
@@ -51,7 +51,7 @@ def get_reservas():
         params = {}
 
     try:
-        engine = current_app.config('engine')
+        engine = current_app.config['engine']
         conn = engine.connect()
         result = conn.execute(query, params)
         reservas = []
@@ -97,7 +97,7 @@ def confirm_reserva(id):
         """)
         
     try:
-        engine = current_app.config('engine')
+        engine = current_app.config['engine']
         conn = engine.connect()
         conn.execute(query, {
             'estado': estado,
