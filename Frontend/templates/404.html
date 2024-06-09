@@ -7,12 +7,12 @@
     <title>Hotel Mate Amargo</title>
    
     <!-- font icons -->
-    <link rel="stylesheet" href="static/vendors/themify-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendors/themify-icons/css/themify-icons.css')}}">
+    
+    <link rel="stylesheet" href="{{url_for('static', filename='vendors/animate/animate.css')}}">
 
-    <link rel="stylesheet" href="static/vendors/animate/animate.css">
-
-    <!-- Bootstrap + FoodHut main styles -->
-	<link rel="stylesheet" href="static/css/mate_amargo.css">
+    <!-- Bootstrap + main styles -->
+	<link rel="stylesheet" href="{{url_for('static', filename='css/mate_amargo.css')}}">
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
     
@@ -24,34 +24,27 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#home">Inicio</a>
+                    <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#about">Servicios</a>
+                    <a class="nav-link" href="{{url_for('servicios')}}">Servicios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#gallary">Habitaciones</a>
+                    <a class="nav-link" href="{{url_for('habitaciones')}}">Habitaciones</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#book-table">Reserva</a>
+                    <a class="nav-link" href="{{url_for('reserva')}}">Reserva</a>
                 </li>
             </ul>
-            <a class="navbar-brand m-auto" href="#">
-                <img src="static/imgs/logo.svg" class="brand-img" alt="">
-                <span class="brand-txt">Hotel Mate Amargo</span>
-            </a>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#blog">Blog<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{url_for('reviews')}}">Reviews</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#testmonial">Reseñas</a>
+                    <a class="nav-link" href="{{url_for('contacto')}}">Contactenos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contactenos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="components.html" class="btn btn-primary ml-xl-4">Administracion</a>
+                    <a href="{{url_for('admin')}}" class="btn btn-primary ml-xl-4">Administracion</a>
                 </li>
             </ul>
         </div>
@@ -59,146 +52,10 @@
     <!-- header -->
     <header id="home" class="header">
         <div class="overlay text-white text-center">
-            <h1 class="display-2 font-weight-bold my-3">Hotel Mate Amargo</h1>
-            <h2 class="display-4 mb-5">Descubre la calidez de tu hogar en nuestro hotel</h2>
-            <a class="btn btn-lg btn-primary" href="#gallary">Vea nuestras habitaciones</a>
+            <h1 class="display-2 font-weight-bold my-3">Error 404</h1>
+            <h2 class="display-4 mb-5">Page not found</h2>
+            
         </div>
     </header>
-
-    <!--  About Section  -->
-    <div id="about" class="container-fluid wow fadeIn" id="about"data-wow-duration="1.5s">
-        <div class="row">
-            <div class="col-lg-6 has-img-bg"><a href="assets/imgs/about-section.jpg"></a></div>
-            <div class="col-lg-6">
-                <div class="row justify-content-center">
-                    <div class="col-sm-8 py-5 my-5">
-                        <h2 class="mb-4">Sobre nuestro hotel</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, quisquam accusantium nostrum modi, nemo, officia veritatis ipsum facere maxime assumenda voluptatum enim! Labore maiores placeat impedit, vero sed est voluptas!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita alias dicta autem, maiores doloremque quo perferendis, ut obcaecati harum, <br><br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum necessitatibus iste,
-                        nulla recusandae porro minus nemo eaque cum repudiandae quidem voluptate magnam voluptatum? <br>Nobis, saepe sapiente omnis qui eligendi pariatur. quis voluptas. Assumenda facere adipisci quaerat. Illum doloremque quae omnis vitae.</p>
-                        <p><b>Lonsectetur adipisicing elit. Blanditiis aspernatur, ratione dolore vero asperiores explicabo.</b></p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos ab itaque modi, reprehenderit fugit soluta, molestias optio repellat incidunt iure sed deserunt nemo magnam rem explicabo vitae. Cum, nostrum, quidem.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--  gallary Section  -->
-    <div id="gallary" class="text-center bg-dark text-light has-height-md middle-items wow fadeIn">
-        <h2 class="section-title">Nuestras Habitaciones</h2>
-    </div>
-    <div class="gallary row">
-        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-            <img src="static/imgs/habitacion-1.jpg"  class="gallary-img">
-            <a href="#" class="gallary-overlay">
-                <i class="gallary-icon ti-plus"></i>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-            <img src="static/imgs/habitacion-2.jpg"  class="gallary-img">
-            <a href="#" class="gallary-overlay">
-                <i class="gallary-icon ti-plus"></i>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-            <img src="static/imgs/habitacion-3.jpg"  class="gallary-img">
-            <a href="#" class="gallary-overlay">
-                <i class="gallary-icon ti-plus"></i>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-            <img src="static/imgs/habitacion-4.jpg"  class="gallary-img">
-            <a href="#" class="gallary-overlay">
-                <i class="gallary-icon ti-plus"></i>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-            <img src="static/imgs/habitacion-5.jpg"  class="gallary-img">
-            <a href="#" class="gallary-overlay">
-                <i class="gallary-icon ti-plus"></i>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-            <img src="static/imgs/habitacion-6.jpg" class="gallary-img">
-            <a href="#" class="gallary-overlay">
-                <i class="gallary-icon ti-plus"></i>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-            <img src="static/imgs/habitacion-7.jpg"  class="gallary-img">
-            <a href="#" class="gallary-overlay">
-                <i class="gallary-icon ti-plus"></i>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-            <img src="static/imgs/habitacion-8.jpg" class="gallary-img">
-            <a href="#" class="gallary-overlay">
-                <i class="gallary-icon ti-plus"></i>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-            <img src="static/imgs/habitacion-9.jpg"  class="gallary-img">
-            <a href="#" class="gallary-overlay">
-                <i class="gallary-icon ti-plus"></i>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-            <img src="static/imgs/habitacion-10.jpg"  class="gallary-img">
-            <a href="#" class="gallary-overlay">
-                <i class="gallary-icon ti-plus"></i>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-            <img src="static/imgs/habitacion-11.jpg" class="gallary-img">
-            <a href="#" class="gallary-overlay">
-                <i class="gallary-icon ti-plus"></i>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-            <img src="static/imgs/habitacion-12.jpg" class="gallary-img">
-            <a href="#" class="gallary-overlay">
-                <i class="gallary-icon ti-plus"></i>
-            </a>
-        </div>
-    </div>
-
-    <!-- book a table Section  -->
-    <div class="container-fluid has-bg-overlay text-center text-light has-height-lg middle-items" id="book-table">
-        <div class="">
-            <h2 class="section-title mb-5">HACER RESERVA</h2>
-            <div class="row mb-5">
-                <div class="col-sm-6 col-md-3 col-xs-12 my-2">
-                    <input type="email" id="booktable" class="form-control form-control-lg custom-form-control" placeholder="EMAIL">
-                </div>
-                <div class="col-sm-6 col-md-3 col-xs-12 my-2">
-                    <input type="number" id="booktable" class="form-control form-control-lg custom-form-control" placeholder="HABITACION">
-                </div>
-                <div class="col-sm-6 col-md-3 col-xs-12 my-2">
-                    <input type="date" id="booktable" class="form-control form-control-lg custom-form-control" placeholder="12/12/12">
-                </div>
-                <div class="col-sm-6 col-md-3 col-xs-12 my-2">
-                    <input type="date" id="booktable" class="form-control form-control-lg custom-form-control" placeholder="12/12/12">
-                </div>
-            </div>
-            <a href="#" class="btn btn-lg btn-primary" id="rounded-btn">RESERVAR</a>
-        </div>
-    </div>
-
-  
-	<!-- core  -->
-    <script src="static/vendors/jquery/jquery-3.4.1.js"></script>
-    <script src="static/vendors/bootstrap/bootstrap.bundle.js"></script>
-
-    <!-- bootstrap affix -->
-    <script src="static/vendors/bootstrap/bootstrap.affix.js"></script>
-
-    <!-- wow.js -->
-    <script src="static/vendors/wow/wow.js"></script>
-    
-    
-
-    <!-- FoodHut js -->
-    <script src="static/js/mate_amargo.js"></script>
-
 </body>
 </html>
