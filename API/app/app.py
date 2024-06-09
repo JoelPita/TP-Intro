@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from .reviews.routes import reviews_bp
 from .reservas.routes import reservas_bp
 from .users.routes import users_bp
-from .gestion_precios.routes import gestion_precios_bp
+
 
 app = Flask(__name__)
 
@@ -15,7 +15,6 @@ app.config['engine'] = engine
 app.register_blueprint(reviews_bp, url_prefix='/reviews')
 app.register_blueprint(reservas_bp, url_prefix='/reservas')
 app.register_blueprint(users_bp, url_prefix='/users')
-app.register_blueprint(gestion_precios_bp, url_prefix='/gestion_precios')
 
 #Esta podria estar en un archivo route
 @app.route('/')
