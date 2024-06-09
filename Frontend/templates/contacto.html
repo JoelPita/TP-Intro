@@ -14,6 +14,8 @@
     <!-- Bootstrap + main styles -->
 	<link rel="stylesheet" href="{{url_for('static', filename='css/mate_amargo.css')}}">
 
+    <script defer src="static/js/validar-formulario.js"></script>
+
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -71,30 +73,42 @@
 
                                     <h3 class="mb-4">Escribe tus consultas</h3>
                                     
-                                    <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                                    <form method="POST" id="contactForm" name="contactForm" class="contactForm" onsubmit="return validateInputs();">
                                         <div class="row">
                                         
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
+                                                    <i class="fa fa-check-circle-o"></i>
+                                                    <i class="fa fa-times-circle-o"></i>
+                                                    <small>ERROR!</small>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                                                    <i class="fa fa-check-circle-o"></i>
+                                                    <i class="fa fa-times-circle-o"></i>
+                                                    <small>ERROR!</small>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto">
+                                                    <i class="fa fa-check-circle-o"></i>
+                                                    <i class="fa fa-times-circle-o"></i>
+                                                    <small>ERROR!</small>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <textarea name="message" class="form-control" id="message" cols="30" rows="6" placeholder="Mensaje"></textarea>
+                                                    <i class="fa fa-check-circle-o"></i>
+                                                    <i class="fa fa-times-circle-o"></i>
+                                                    <small>ERROR!</small>
                                                 </div>
                                             </div>
 
