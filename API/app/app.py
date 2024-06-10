@@ -5,7 +5,6 @@ from .reviews.routes import reviews_bp
 from .reservas.routes import reservas_bp
 from .users.routes import users_bp
 
-
 app = Flask(__name__)
 
 #Deberia estar en un try?

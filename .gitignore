@@ -65,6 +65,8 @@ venv.bak/
 *.log
 *.pid
 
+*.env
+
 # Anaconda
 *.conda
 *.ipynb_checkpoints
