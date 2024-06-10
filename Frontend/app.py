@@ -14,7 +14,7 @@ LONGITUD = "-72.25593247083323"
 UNIDAD = "metric"
 
 app = Flask(__name__)
-#engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
+engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
 
 """
     Método que se encarga de la comunicación con el servicio de Open Weather y se obtiene
