@@ -1,6 +1,9 @@
+import os
 from flask import Blueprint, jsonify, request, current_app
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 # ---Crer Blueprint para reservas ---
 reservas_bp = Blueprint('reservas', __name__)
@@ -104,11 +107,13 @@ def confirm_reserva(id):
             'motivo_rechazo': motivo_rechazo,
             'id': id
         })
+
+        send_email(data['email_cliente'], estado, motivo_rechazo)
+
         conn.commit()
         conn.close()
         
         #TO DO: IMPLEMENTAR ENVIO DE MAIL
-        send_email(data['email_cliente'], estado, motivo_rechazo)
 
         return jsonify({"success": True, "message": "Reserva actualizada correctamente"}), 200
     except SQLAlchemyError as e:
@@ -117,4 +122,24 @@ def confirm_reserva(id):
         return jsonify({"success": False, "message": error}), 500
 
 def send_email(email, estado, motivo_rechazo):
-    pass
+    from_email = 'from_email@example.com'  # Cambia esto por tu correo de envío
+    subject = f'Su reserva ha sido {estado}'
+    if estado == 'rechazada':
+        content = f'<p>Lo sentimos, su reserva ha sido rechazada. Motivo: {motivo_rechazo}</p>'
+    else:
+        content = '<p>¡Felicidades! Su reserva ha sido aceptada.</p>'
+    
+    message = Mail(
+        from_email=from_email,
+        to_emails=email,
+        subject=subject,
+        html_content=content
+    )
+    try:
+        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        response = sg.send(message)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+    except Exception as e:
+        print(str(e))
