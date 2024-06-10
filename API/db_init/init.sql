@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS Users (
 CREATE TABLE IF NOT EXISTS Habitaciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(80) NOT NULL,
-    descripcion VARCHAR(20),
+    descripcion VARCHAR(250),
     precio_noche DECIMAL(10, 2)
 );
 
