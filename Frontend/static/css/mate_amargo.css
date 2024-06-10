@@ -1,16 +1,3 @@
-/*!
-=========================================================
-* FoodHut Landing page
-=========================================================
-
-* Copyright: 2019 DevCRUD (https://devcrud.com)
-* Licensed: (https://devcrud.com/licenses)
-* Coded by www.devcrud.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 :root {
   --blue: #79A9F5;
   --indigo: #C45F90;
@@ -11265,10 +11252,25 @@ pre {
 }
 
 .has-img-bg {
-  background: url(../imgs/about-section.jpg) no-repeat center center;
+  background: url(../imgs/about-section1.jpg) no-repeat center center;
   background-size: cover;
 }
-
+.has-img-bg2 {
+  background: url(../imgs/about-section2.jpg) no-repeat center center;
+  background-size: cover;
+}
+.has-img-bg3 {
+  background: url(../imgs/about-section3.jpg) no-repeat center center;
+  background-size: cover;
+}
+.has-img-bg4 {
+  background: url(../imgs/about-section4.jpg) no-repeat center center;
+  background-size: cover;
+}
+.has-img-bg5 {
+  background: url(../imgs/about-section5.jpg) no-repeat center center;
+  background-size: cover;
+}
 .has-bg-overlay {
   position: relative;
 }
@@ -11280,7 +11282,7 @@ pre {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url(../imgs/book-table-img.jpg) no-repeat center center fixed;
+  background: url(../imgs/main.jpg) no-repeat center center fixed;
   background-size: cover;
   z-index: -1;
   opacity: .3;
