@@ -77,7 +77,7 @@ def obtener_pronostico():
     
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('index.html')
 
 @app.route('/admin')
 def admin():
