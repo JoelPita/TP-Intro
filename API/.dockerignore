@@ -1,0 +1,24 @@
+# Ignorar el entorno virtual
+.venv
+
+# Ignorar archivos y directorios de control de versiones
+.git
+.gitignore
+
+# Ignorar archivos compilados de Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorar archivos de configuración del entorno
+.env
+.DS_Store
+
+# Ignorar nodos de módulos
+node_modules
+
+# Otros archivos y directorios innecesarios
+.vscode
+.idea
+*.log

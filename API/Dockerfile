@@ -12,17 +12,11 @@ COPY Pipfile Pipfile.lock /app/
 # Instalar las dependencias del Pipfile
 RUN pipenv install --deploy --ignore-pipfile
 
-# Lista los paquetes instalados
+# Verificar la instalación de Flask
 RUN pipenv run pip list
 
 # Copiar el contenido del proyecto
 COPY . .
-
-# Copiar el archivo de entorno environment_variables.env
-COPY environment_variables.env /app/environment_variables.env
-
-# Establecer las variables de entorno desde el archivo environment_variables.env
-ENV $(cat /app/environment_variables.env | xargs)
 
 
 # Exponer el puerto en el que correrá la aplicación
