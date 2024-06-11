@@ -6,7 +6,7 @@ from sqlalchemy.exc import SQLAlchemyError
 gestion_precios_bp = Blueprint('gestion_precios', __name__)
 
 # Esta funcion pertenece al modulo de habitaciones. 
-# La creé acá para que mi módulo funcione hasta que la verdadera sea agregada al proyecto. 
+# La creé acá para que mi módulo pueda ser testeado hasta que la verdadera sea agregada al proyecto. 
 @gestion_precios_bp.route('/obtener-habitaciones', methods=['GET']) 
 def obtener_habitaciones():
     query = text("SELECT * FROM Habitaciones")
