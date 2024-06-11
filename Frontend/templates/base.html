@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with FoodHut landing page.">
-    <title>{% block head_title %}Hotel Mate Amargo{% endblock %}</title>
+    <title>{% block head_title %}Hotel del Glaciar{% endblock %}</title>
    
     <!-- font icons -->
     <link rel="stylesheet" href="{{url_for('static', filename='vendors/themify-icons/css/themify-icons.css')}}">
@@ -12,6 +12,9 @@
 
     <!-- Bootstrap + main styles -->
 	<link rel="stylesheet" href="{{url_for('static', filename='css/mate_amargo.css')}}">
+
+    {% block head %}
+    {% endblock %}
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
     
