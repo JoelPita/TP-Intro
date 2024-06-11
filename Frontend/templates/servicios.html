@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with FoodHut landing page.">
-    <title>Hotel Mate Amargo</title>
+    <meta name="description" content="Hotel del Glaciar page">
+    <title>Hotel del Glaciar</title>
     <link rel="shortcut icon" href="{{url_for('static', filename='imgs/favicon.png')}}">
+   
     <!-- font icons -->
     <link rel="stylesheet" href="{{url_for('static', filename='vendors/themify-icons/css/themify-icons.css')}}">
-    
-    <link rel="stylesheet" href="{{url_for('static', filename='vendors/animate/animate.css')}}">
+
+    <link rel="stylesheet" href="{{url_for('static',filename='vendors/animate/animate.css')}}">
 
     <!-- Bootstrap + main styles -->
-	<link rel="stylesheet" href="{{url_for('static', filename='css/mate_amargo.css')}}">
+	<link rel="stylesheet" href="{{url_for('static',filename='css/mate_amargo.css')}}">
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+<body data-spy="scroll" data-target=".navbar" data-offset="40" >
     
     <!-- Navbar -->
     <nav class="custom-navbar navbar navbar-expand-lg navbar-dark fixed-top" data-spy="affix" data-offset-top="10">
@@ -36,6 +37,9 @@
                     <a class="nav-link" href="{{url_for('reserva')}}">Reserva</a>
                 </li>
             </ul>
+            <a class="navbar-brand m-auto" href="#">
+                <span class="brand-txt">Hotel del Glaciar</span>
+            </a>
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('reviews')}}">Reviews</a>
@@ -52,9 +56,9 @@
     <!-- header -->
     <header id="home" class="header">
         <div class="overlay text-white text-center">
-            <h1 class="display-2 font-weight-bold my-3">Hotel Mate Amargo</h1>
-            <h2 class="display-4 mb-5">Descubre la calidez de tu hogar en nuestro hotel</h2>
-            <a class="btn btn-lg btn-primary" href="{{'habitaciones.html'}}">Vea nuestras habitaciones</a>
+            <h1 class="display-2 font-weight-bold my-3">Hotel del Glaciar</h1>
+            <h2 class="display-4 mb-5">Descubre la calidez y comodidad de tu hogar en nuestro hotel</h2>
+            <a class="btn btn-lg btn-primary" href="{{url_for('habitaciones')}}">Vea nuestras habitaciones</a>
         </div>
     </header>
     <!-- Servicios  -->
@@ -87,7 +91,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card bg-transparent border my-3 my-md-0">
-                            <img src="{{url_for('static', filename='imgs/servicio-2.jpg')}}" class="rounded-0 card-img-top mg-responsive">
+                            <img src="{{url_for('static', filename='imgs/about-section4.jpg')}}" class="rounded-0 card-img-top mg-responsive">
                             <div class="card-body">
                                 <h1 class="text-center mb-4"><a href="#" class="badge badge-primary">SERVICIO DE CUARTO</a></h1>
                                 <h4 class="pt20 pb20">Nuestro servicio de cuarto</h4>
@@ -151,13 +155,34 @@
             </div>
             <div class="col-md-6 px-5 has-height-lg middle-items">
                 <h3>ENCUENTRANOS</h3>
-                <p>La ubicacion es centrica</p>
+                <p>Ubicado majestuosamente en el corazón de Ushuaia, el Hotel del Glaciar es un refugio de lujo entre las imponentes montañas y los serenos paisajes naturales de la región.</p>
                 <div class="text-muted">
                     <p><span class="ti-location-pin pr-3"></span> 12345 Fake ST NoWhere, AB Country</p>
                     <p><span class="ti-support pr-3"></span> (123) 456-7890</p>
                     <p><span class="ti-email pr-3"></span>mate_amargo@gmail.com</p>
                 </div>
             </div>
+        </div>
+    </div>
+    <!-- Reservar habtacion  -->
+    <div class="container-fluid has-bg-overlay text-center text-light has-height-lg middle-items" id="book-table">
+        <div class="">
+            <h2 class="section-title mb-5">HACER RESERVA</h2>
+            <div class="row mb-5">
+                <div class="col-sm-6 col-md-3 col-xs-12 my-2">
+                    <input type="email"  class="form-control form-control-lg custom-form-control" placeholder="EMAIL">
+                </div>
+                <div class="col-sm-6 col-md-3 col-xs-12 my-2">
+                    <input type="number"  class="form-control form-control-lg custom-form-control" placeholder="HABITACION">
+                </div>
+                <div class="col-sm-6 col-md-3 col-xs-12 my-2">
+                    <input type="date"  class="form-control form-control-lg custom-form-control" placeholder="12/12/12">
+                </div>
+                <div class="col-sm-6 col-md-3 col-xs-12 my-2">
+                    <input type="date" class="form-control form-control-lg custom-form-control" placeholder="12/12/12">
+                </div>
+            </div>
+            <a href="#" class="btn btn-lg btn-primary" id="rounded-btn">RESERVAR</a>
         </div>
     </div>
 
@@ -182,19 +207,16 @@
     <!-- end of page footer -->
 
 	<!-- core  -->
-    <script src="{{url_for('static', filename='vendors/jquery/jquery-3.4.1.js')}}"></script>
-    <script src="static/vendors/bootstrap/bootstrap.bundle.js"></script>
+    <script src="{{url_for('static',filename='vendors/jquery/jquery-3.4.1.js')}}"></script>
+    <script src="{{url_for('static',filename='vendors/bootstrap/bootstrap.bundle.js')}}"></script>
 
     <!-- bootstrap affix -->
-    <script src="{{url_for('static', filename='vendors/bootstrap/bootstrap.affix.js')}}"></script>
+    <script src="{{url_for('static',filename='vendors/bootstrap/bootstrap.affix.js')}}"></script>
 
     <!-- wow.js -->
-    <script src="{{url_for('static', filename='vendors/wow/wow.js')}}"></script>
-    
-    <!-- google maps -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
+    <script src="{{url_for('static',filename='vendors/wow/wow.js')}}"></script>
 
-    <!-- Mate Amargo js -->
+    <!--  js -->
     <script src="{{url_for('static', filename='js/mate_amargo.js')}}"></script>
 
 </body>
