@@ -1,5 +1,3 @@
-modal_precios.js
-
 document.addEventListener("DOMContentLoaded", function() {
     var editButtons = document.querySelectorAll(".edit-button");
     var modal = document.getElementById("editModal");
@@ -15,14 +13,12 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("habitacionId").value = id;
         precioNocheInput.value = precio;
         modal.style.display = "block";
-        errorMessage.style.display = "none"; // Oculta el mensaje de error al abrir el modal
+        errorMessage.style.display = "none"; 
         });
     });
 
     precioForm.addEventListener("submit", function(event) {
-    // Evita el comportamiento predeterminado del envío del formulario
     event.preventDefault();
-            
     var nuevoPrecio = precioNocheInput.value;
     if (!(/^\d*\.?\d+$/.test(nuevoPrecio))) {
         errorMessage.style.display = "block";
