@@ -38,5 +38,10 @@ CREATE TABLE IF NOT EXISTS Reviews (
     texto VARCHAR(150) NOT NULL,
     visible BOOLEAN DEFAULT false,
     estado VARCHAR(50) DEFAULT 'nueva'
-
 );
+
+ #agregué para probar mi modulo, posteriormente será eliminado
+INSERT INTO Habitaciones (nombre, descripcion, precio_noche) VALUES ('Basica', 'Tiene humedad', 1000.25);
+INSERT INTO Habitaciones (nombre, descripcion, precio_noche) VALUES ('Media', 'Esta rota', 2000.50);
+INSERT INTO Habitaciones (nombre, descripcion, precio_noche) VALUES ('Buena', 'Es chica', 3000.75);
+INSERT INTO Habitaciones (nombre, descripcion, precio_noche) VALUES ('Premium', 'Suit presidencial', 999999.99);
