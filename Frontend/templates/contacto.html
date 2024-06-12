@@ -1,179 +1,134 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with FoodHut landing page.">
-    <title>Hotel Mate Amargo</title>
-   
-    <!-- font icons -->
-    <link rel="stylesheet" href="{{url_for('static', filename='vendors/themify-icons/css/themify-icons.css')}}">
-    
-    <link rel="stylesheet" href="{{url_for('static', filename='vendors/animate/animate.css')}}">
-
-    <!-- Bootstrap + main styles -->
-	<link rel="stylesheet" href="{{url_for('static', filename='css/mate_amargo.css')}}">
-
-    <script defer src="static/js/validar-formulario.js"></script>
+{% extends "base.html" %}
 
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+{% block link_scrip %}
 
-</head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-    
-    <!-- Navbar -->
-    <nav class="custom-navbar navbar navbar-expand-lg navbar-dark fixed-top" data-spy="affix" data-offset-top="10">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('servicios')}}">Servicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('habitaciones')}}">Habitaciones</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('reserva')}}">Reserva</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('reviews')}}">Reviews</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('contacto')}}">Contactenos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{url_for('admin')}}" class="btn btn-primary ml-xl-4">Administracion</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<script defer src="{{url_for("static", filename="js/validar-formulario.js")}}"></script>
 
-    <header id="home" class="header">
-        <div class="overlay text-white text-center">
-            <h1 class="display-2 font-weight-bold my-3">FORMULARIO DE CONTACTO</h1>
-        </div>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <div class="container">
+{% endblock %}
 
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="wrapper">
-                        <div class="row no-gutters">
 
-                            <div class="col-md-6 d-flex align-items-stretch">
-                                <div class="contact-wrap w-100 p-md-5 p-4 py-5">
+{% block header %}
 
-                                    <h3 class="mb-4">Escribe tus consultas</h3>
-                                    
-                                    <form method="POST" id="contactForm" name="contactForm" class="contactForm" onsubmit="return validateInputs();">
-                                        <div class="row">
-                                        
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
-                                                    <i class="fa fa-check-circle-o"></i>
-                                                    <i class="fa fa-times-circle-o"></i>
-                                                    <small>ERROR!</small>
-                                                </div>
-                                            </div>
+<div class="overlay text-white text-center">
+    <h1 class="display-2 font-weight-bold my-3">FORMULARIO DE CONTACTO</h1>
+</div>
 
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email">
-                                                    <i class="fa fa-check-circle-o"></i>
-                                                    <i class="fa fa-times-circle-o"></i>
-                                                    <small>ERROR!</small>
-                                                </div>
-                                            </div>
+{% endblock %}
 
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto">
-                                                    <i class="fa fa-check-circle-o"></i>
-                                                    <i class="fa fa-times-circle-o"></i>
-                                                    <small>ERROR!</small>
-                                                </div>
-                                            </div>
 
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <textarea name="message" class="form-control" id="message" cols="30" rows="6" placeholder="Mensaje"></textarea>
-                                                    <i class="fa fa-check-circle-o"></i>
-                                                    <i class="fa fa-times-circle-o"></i>
-                                                    <small>ERROR!</small>
-                                                </div>
-                                            </div>
+{% block body_content %}
 
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
-                                                </div>
-                                            </div>
+<div class="container">
 
-                                        </div>
-                                    </form>
-                                    
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="wrapper">
+                <div class="row no-gutters">
 
-                                </div>
-                            </div>
+                    <div class="col-md-6 d-flex align-items-stretch">
+                        <div class="contact-wrap w-100 p-md-5 p-4 py-5">
 
-                            <div class="col-md-6 d-flex align-items-stretch">
-
-                                <div class="info-wrap w-100 p-md-5 p-4 py-5 img">
-
-                                    <h3>Informacion para Contactarnos</h3>
-                                    <p class="mb-4">Estamos abiertos a cualquier sugerencia</p>
-
-                                    <div class="dbox w-100 d-flex align-items-center">
-                                        <div class="icon d-flex align-items-center justify-content-center">
-                                            <span class="fa fa-map-marker"></span>
-                                        </div>
-                                        <div class="text pl-3">
-                                            <p><span>Direccion: </span> En algun lugar del mundo </p>
+                            <h3 class="mb-4">Escribe tus consultas</h3>
+                            
+                            <form method="POST" id="contactForm" name="contactForm" class="contactForm" onsubmit="return validateInputs();">
+                                <div class="row">
+                                
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
+                                            <i class="fa fa-check-circle-o"></i>
+                                            <i class="fa fa-times-circle-o"></i>
+                                            <small>ERROR!</small>
                                         </div>
                                     </div>
 
-                                    <div class="dbox w-100 d-flex align-items-center">
-                                        <div class="icon d-flex align-items-center justify-content-center">
-                                            <span class="fa fa-phone"></span>
-                                        </div>
-                                        <div class="text pl-3">
-                                            <p><span>Telefono: </span> <a href="tel://1234567920">+1235 2355 98</a></p>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                                            <i class="fa fa-check-circle-o"></i>
+                                            <i class="fa fa-times-circle-o"></i>
+                                            <small>ERROR!</small>
                                         </div>
                                     </div>
 
-                                    <div class="dbox w-100 d-flex align-items-center">
-                                        <div class="icon d-flex align-items-center justify-content-center">
-                                            <span class="fa fa-paper-plane"></span>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto">
+                                            <i class="fa fa-check-circle-o"></i>
+                                            <i class="fa fa-times-circle-o"></i>
+                                            <small>ERROR!</small>
                                         </div>
-                                        <div class="text pl-3">
-                                            <p><span>Email: </span> <a href="mailto:info@yoursite.com">queSeYo@gmail.com</a></p>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <textarea name="message" class="form-control" id="message" cols="30" rows="6" placeholder="Mensaje"></textarea>
+                                            <i class="fa fa-check-circle-o"></i>
+                                            <i class="fa fa-times-circle-o"></i>
+                                            <small>ERROR!</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
                                         </div>
                                     </div>
 
                                 </div>
-
-                            </div>
+                            </form>
+                            
 
                         </div>
                     </div>
+
+                    <div class="col-md-6 d-flex align-items-stretch">
+
+                        <div class="info-wrap w-100 p-md-5 p-4 py-5 img">
+
+                            <h3>Informacion para Contactarnos</h3>
+                            <p class="mb-4">Estamos abiertos a cualquier sugerencia</p>
+
+                            <div class="dbox w-100 d-flex align-items-center">
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <span class="fa fa-map-marker"></span>
+                                </div>
+                                <div class="text pl-3">
+                                    <p><span>Direccion: </span> En algun lugar del mundo </p>
+                                </div>
+                            </div>
+
+                            <div class="dbox w-100 d-flex align-items-center">
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <span class="fa fa-phone"></span>
+                                </div>
+                                <div class="text pl-3">
+                                    <p><span>Telefono: </span> <a href="tel://1234567920">+1235 2355 98</a></p>
+                                </div>
+                            </div>
+
+                            <div class="dbox w-100 d-flex align-items-center">
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <span class="fa fa-paper-plane"></span>
+                                </div>
+                                <div class="text pl-3">
+                                    <p><span>Email: </span> <a href="mailto:info@yoursite.com">queSeYo@gmail.com</a></p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
-                
             </div>
-
         </div>
+        
+    </div>
 
-    </header>
+</div>
 
-    
-
-</body>
-</html>
+{% endblock %}
