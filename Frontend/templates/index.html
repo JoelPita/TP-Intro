@@ -12,7 +12,11 @@
     <link rel="stylesheet" href="{{url_for('static',filename='vendors/animate/animate.css')}}">
 
     <!-- Bootstrap + main styles -->
-	<link rel="stylesheet" href="{{url_for('static',filename='css/mate_amargo.css')}}">
+	<link rel="stylesheet" href="{{url_for('static', filename='css/mate_amargo.css')}}">
+
+    <!-- Widget Stylesheet -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/weather.css',_external=True)}}" />
+
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" >
     
@@ -34,6 +38,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('reserva')}}">Reserva</a>
+                </li>
+                <li class="nav-item">
+                    {% include 'weather.html' %}
                 </li>
             </ul>
             <a class="navbar-brand m-auto" href="#">
@@ -196,6 +203,12 @@
 
     <!--  js -->
     <script src="{{url_for('static', filename='js/mate_amargo.js')}}"></script>
+
+    <!-- Widget Animation js -->
+    <script src="{{url_for('static', filename='js/weatherAnimation.js',_external=True)}}"></script>
+    
+    <!-- Weather data js -->
+    <script src="{{url_for('static', filename='js/weatherAPI.js',_external=True)}}"></script>
 
 </body>
 </html>
