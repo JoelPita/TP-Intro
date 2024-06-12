@@ -111,6 +111,10 @@ def reviews():
 def page_not_found(e):
     return render_template('404.html'),404
 
+@app.route('/nosotros')
+def sobre_nosotros():
+    return render_template('nosotros.html')
+
 
 if __name__ == "__main__":
     app.run(host='127.0.0.0.0', port=5000, debug=True) 
