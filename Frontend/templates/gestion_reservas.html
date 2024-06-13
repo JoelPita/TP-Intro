@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block head_title %}Gestion de reservas{% endblock %}
+
+{% block header %}
+<div class="overlay text-white text-center">
+    <h1 class="display-2 font-weight-bold my-3">Hotel del Glaciar</h1>
+    <h2 class="display-4 mb-5">Gestion de Reservas</h2>
+</div>
+{% endblock %}
+
+{% block body_content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4">Reservas</h2>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Fecha Desde</th>
+                <th>Fecha Hasta</th>
+                <th>Cantidad de Habitaciones</th>
+                <th>Cantidad de Personas</th>
+                <th>Método de Pago</th>
+                <th>Estado</th>
+                <th>Precio Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reserva in reservas %}
+            <tr>
+                <td>{{ reserva.id }}</td>
+                <td>{{ reserva.email_cliente }}</td>
+                <td>{{ reserva.nombre_cliente }}</td>
+                <td>{{ reserva.telefono_cliente }}</td>
+                <td>{{ reserva.fecha_desde }}</td>
+                <td>{{ reserva.fecha_hasta }}</td>
+                <td>{{ reserva.cantidad_habitaciones }}</td>
+                <td>{{ reserva.cantidad_personas }}</td>
+                <td>{{ reserva.metodo_pago }}</td>
+                <td>{{ reserva.estado }}</td>
+                <td>{{ reserva.precio_total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
