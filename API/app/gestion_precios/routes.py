@@ -31,6 +31,11 @@ def obtener_habitaciones():
         error = str(err.__cause__)
         return jsonify({"message": error}), 500
 
+# Función que maneja una request PATCH para actualizar el precio 
+# de una habitación en la base de datos. 
+# Ejecuta la query y devuelve respuestas JSON según modificó correctamente
+# o si encontró un error.
+
 @gestion_precios_bp.route('/gestion_precios', methods=['PATCH'])
 def actualizar_precios_habitaciones():
     datos = request.get_json()
