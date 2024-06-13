@@ -1,69 +1,18 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Hotel del Glaciar page">
-    <title>Hotel del Glaciar</title>
-    <link rel="shortcut icon" href="{{url_for('static', filename='imgs/favicon.png')}}">
-   
-    <!-- font icons -->
-    <link rel="stylesheet" href="{{url_for('static', filename='vendors/themify-icons/css/themify-icons.css')}}">
+{% extends "base.html" %}
+{% block header %} 
 
-    <link rel="stylesheet" href="{{url_for('static',filename='vendors/animate/animate.css')}}">
+    <div class="overlay text-white text-center">
+        <h1 class="display-2 font-weight-bold my-3">Hotel del Glaciar</h1>
+        <h2 class="section-title py-5">Nuestros servicios e instalaciones</h2>
+    </div>
+{% endblock %}
+{% block body_content %}
 
-    <!-- Bootstrap + main styles -->
-	<link rel="stylesheet" href="{{url_for('static',filename='css/mate_amargo.css')}}">
-</head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40" >
+
+
     
-    <!-- Navbar -->
-    <nav class="custom-navbar navbar navbar-expand-lg navbar-dark fixed-top" data-spy="affix" data-offset-top="10">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('servicios')}}">Servicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('habitaciones')}}">Habitaciones</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('reserva')}}">Reserva</a>
-                </li>
-            </ul>
-            <a class="navbar-brand m-auto" href="#">
-                <span class="brand-txt">Hotel del Glaciar</span>
-            </a>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('reviews')}}">Reviews</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('contacto')}}">Contactenos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{url_for('admin')}}" class="btn btn-primary ml-xl-4">Administracion</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <!-- header -->
-    <header id="home" class="header">
-        <div class="overlay text-white text-center">
-            <h1 class="display-2 font-weight-bold my-3">Hotel del Glaciar</h1>
-            <h2 class="display-4 mb-5">Descubre la calidez y comodidad de tu hogar en nuestro hotel</h2>
-            <a class="btn btn-lg btn-primary" href="{{url_for('habitaciones')}}">Vea nuestras habitaciones</a>
-        </div>
-    </header>
     <!-- Servicios  -->
     <div id="blog" class="container-fluid bg-dark text-light py-5 text-center wow fadeIn">
-        <h2 class="section-title py-5">Nuestros servicios e instalaciones</h2>
         <div class="row justify-content-center">
             <div class="col-sm-7 col-md-4 mb-5">
                 <ul class="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
@@ -157,9 +106,9 @@
                 <h3>ENCUENTRANOS</h3>
                 <p>Ubicado majestuosamente en el corazón de Ushuaia, el Hotel del Glaciar es un refugio de lujo entre las imponentes montañas y los serenos paisajes naturales de la región.</p>
                 <div class="text-muted">
-                    <p><span class="ti-location-pin pr-3"></span> 12345 Fake ST NoWhere, AB Country</p>
+                    <p><span class="ti-location-pin pr-3"></span>Luis Fernando Martial 2355, V9410 Ushuaia, Tierra del Fuego</p>
                     <p><span class="ti-support pr-3"></span> (123) 456-7890</p>
-                    <p><span class="ti-email pr-3"></span>mate_amargo@gmail.com</p>
+                    <p><span class="ti-email pr-3"></span>alojamiento.ids@gmail.com</p>
                 </div>
             </div>
         </div>
@@ -167,7 +116,7 @@
     <!-- Reservar habtacion  -->
     <div class="container-fluid has-bg-overlay text-center text-light has-height-lg middle-items" id="book-table">
         <div class="">
-            <h2 class="section-title mb-5">HACER RESERVA</h2>
+            <h2 class="section-title mb-5">HACE TU RESERVA AHORA!</h2>
             <div class="row mb-5">
                 <div class="col-sm-6 col-md-3 col-xs-12 my-2">
                     <input type="email"  class="form-control form-control-lg custom-form-control" placeholder="EMAIL">
@@ -185,39 +134,4 @@
             <a href="#" class="btn btn-lg btn-primary" id="rounded-btn">RESERVAR</a>
         </div>
     </div>
-
-    <!-- page footer  -->
-    <div class="container-fluid bg-dark text-light has-height-md middle-items border-top text-center wow fadeIn">
-        <div class="row">
-            <div class="col-sm-4">
-                <h3>ESCRIBENOS</h3>
-                <P class="text-muted">mate_amargo@gmail.com</P>
-            </div>
-            <div class="col-sm-4">
-                <h3>LLAMANOS</h3>
-                <P class="text-muted">(123) 456-7890</P>
-            </div>
-            <div class="col-sm-4">
-                <h3>ENCUENTRANOS</h3>
-                <P class="text-muted">12345 Fake ST NoWhere AB Country</P>
-            </div>
-        </div>
-    </div>
-    
-    <!-- end of page footer -->
-
-	<!-- core  -->
-    <script src="{{url_for('static',filename='vendors/jquery/jquery-3.4.1.js')}}"></script>
-    <script src="{{url_for('static',filename='vendors/bootstrap/bootstrap.bundle.js')}}"></script>
-
-    <!-- bootstrap affix -->
-    <script src="{{url_for('static',filename='vendors/bootstrap/bootstrap.affix.js')}}"></script>
-
-    <!-- wow.js -->
-    <script src="{{url_for('static',filename='vendors/wow/wow.js')}}"></script>
-
-    <!--  js -->
-    <script src="{{url_for('static', filename='js/mate_amargo.js')}}"></script>
-
-</body>
-</html>
+{% endblock %}

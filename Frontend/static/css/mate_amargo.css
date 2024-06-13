@@ -11296,7 +11296,7 @@ pre {
 
 .header .overlay {
   height: 100%;
-  background: rgba(33, 37, 41, 0.85);
+  background: rgba(33, 37, 41, 0.5); 
   display: -webkit-flex;
   display: -ms-flex;
   display: -webkit-box;
