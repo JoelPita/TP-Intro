@@ -1,81 +1,145 @@
-{% extends "base.html" %}
-{% block head_title %}Panel de precios - Hotel del Glaciar{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with FoodHut landing page.">
+    <title>Panel de precios - Hotel del Glaciar</title>
+   
+    <!-- font icons -->
+    <link rel="stylesheet" href="{{url_for('static', filename='vendors/themify-icons/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendors/animate/animate.css')}}">
 
-{% block head %}
+    <!-- Bootstrap + main styles -->
+	<link rel="stylesheet" href="{{url_for('static', filename='css/mate_amargo.css')}}">
+    
+    <!-- Mi pagina tiene un estilo diferente a las demas por ser parte del backoffice.
+         Linkeo el archivo css a lo último para que tenga mayor precedencia que el estilo estandar,
+         de esta manera puedo personalizar esta página sin afectar a todo el sitio-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/gestion_precios.css') }}">
-{% endblock %}
 
-{% block body_content %}
-<!-- Contenido principal -->
-<div class="container mt-5">
-    <h1 class="titulo">Panel de precios</h1>
-    <div class="container-custom">
-        <h3 class="titulo">Habitaciones</h3>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    
+    <!-- Navbar -->
+    <nav class="custom-navbar navbar navbar-expand-lg navbar-dark fixed-top navbar-custom" data-spy="affix" data-offset-top="10">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('servicios')}}">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('habitaciones')}}">Habitaciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('reserva')}}">Reserva</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('reviews')}}">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('contacto')}}">Contactenos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url_for('admin')}}" class="btn btn-primary ml-xl-4">Administracion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- header -->
+    <header id="home" class="header">
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="container mt-5">
+        <div class="panel-header">
+        <h2>Panel de precios</h2>
+        </div>
+        <div class="container-custom">
+            <h3 class="title">Habitaciones</h3>
         
-        <!-- Tabla-->
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Precio/Noche</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Acá con este bucle for se acomodan los datos de las habitaciones en la tabla. -->
-                {% for habitacion in datos %}
+            <!-- Tabla-->
+            <table class="table table-bordered table-hover">
+                <thead>
                     <tr>
-                        <td>{{ habitacion.nombre }}</td>
-                        <td>{{ habitacion.descripcion }}</td>
-                        <td>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span>$ {{ habitacion.precio_noche }}</span>
-                            <button data-id="{{ habitacion.id }}" 
-                                    data-precio="{{ habitacion.precio_noche }}" 
-                                    class="edit-button btn btn-primary ml-1" 
-                                    data-toggle="modal" 
-                                    data-target="#editModal">Modificar
-                            </button>
-                        </div>
-                        </td>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Precio/Noche</th>
                     </tr>
-                {% endfor %}
+                </thead>
+                <tbody>
+                    <!-- Acá con este bucle for se acomodan los datos de las habitaciones en la tabla. -->
+                    {% for habitacion in datos %}
+                        <tr>
+                            <td>{{ habitacion.nombre }}</td>
+                            <td>{{ habitacion.descripcion }}</td>
+                            <td>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span>$ {{ habitacion.precio_noche }}</span>
+                                <button data-id="{{ habitacion.id }}" 
+                                        data-precio="{{ habitacion.precio_noche }}" 
+                                        class="edit-button btn btn-primary ml-1" 
+                                        data-toggle="modal" 
+                                        data-target="#editModal">Modificar
+                                </button>
+                            </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 
-<!-- Modal para modificar precio -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title modal-title-custom" id="editModalLabel">Modificar Precio</h5>
-            </div>
-            <div class="modal-body">
-                <form id="editForm" action="{{ url_for('enviar_precios_habitaciones')}}" method="post">
-                    <div class="form-group">
-                        <label for="precio">Nuevo Precio</label>
-                        <input type="text" class="form-control" id="precio" name="precio_noche">
-                    </div>
-                    <input type="hidden" id="habitacionId" name="id">
-                    <div id="error-message" class="text-danger error-message">Ingresar un número válido para el precio.</div>
-                    <div class="modal-footer">
-                        <input type="submit" value="Guardar Cambios" class="btn btn-primary">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    </div>
-                </form>
+    <!-- Modal para modificar precio -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title modal-title-custom" id="editModalLabel">Modificar Precio</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="editForm" action="{{ url_for('enviar_precios_habitaciones')}}" method="post">
+                        <div class="form-group">
+                            <label for="precio">Nuevo Precio</label>
+                            <input type="text" class="form-control" id="precio" name="precio_noche">
+                        </div>
+                        <input type="hidden" id="habitacionId" name="id">
+                        <div id="error-message" class="text-danger error-message">Ingresar un número válido para el precio.</div>
+                        <div class="modal-footer">
+                            <input type="submit" value="Guardar Cambios" class="btn btn-primary">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Scripts -->
-<script src="{{ url_for('static', filename='js/modal_precios.js') }}"></script>
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/modal_precios.js') }}"></script>
+	<!-- core  -->
+    <script src="{{url_for('static',filename='vendors/jquery/jquery-3.4.1.js')}}"></script>
+    <script src="{{url_for('static',filename='vendors/bootstrap/bootstrap.bundle.js')}}"></script>
 
-{% endblock %}
+    <!-- bootstrap affix -->
+    <script src="{{url_for('static',filename='vendors/bootstrap/bootstrap.affix.js')}}"></script>
 
-{% block footer %}
-<!-- vacío para no incluir la sección de contacto -->
-{% endblock %}
+    <!-- wow.js -->
+    <script src="{{url_for('static',filename='vendors/wow/wow.js')}}"></script>
+
+    <!-- js -->
+    <script src="{{url_for('static', filename='js/mate_amargo.js')}}"></script>
+
+</body>
+</html>
