@@ -4,12 +4,14 @@ from sqlalchemy import create_engine
 from .reviews.routes import reviews_bp
 from .reservas.routes import reservas_bp
 from .users.routes import users_bp
+import logging
 
 app = Flask(__name__)
 
 #Deberia estar en un try?
 engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
 app.config['engine'] = engine
+logging.basicConfig(level=logging.INFO)
 
 #Registrar todos los blueprint
 app.register_blueprint(reviews_bp, url_prefix='/reviews')
