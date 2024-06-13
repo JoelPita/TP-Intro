@@ -1,8 +1,5 @@
 from flask import Flask, jsonify, request, render_template, url_for, redirect
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine
-from sqlalchemy import text
-from sqlalchemy.exc import SQLAlchemyError
+
 import requests
 import datetime
 """
@@ -14,7 +11,7 @@ LONGITUD = "-72.25593247083323"
 UNIDAD = "metric"
 
 app = Flask(__name__)
-engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
+
 
 """
     Método que se encarga de la comunicación con el servicio de Open Weather y se obtiene
