@@ -1,27 +1,44 @@
 /* gestion_precios.css */
 
+/* Mantiene fijo el navbar */
+.navbar-custom {
+    background-color: #343a40;
+    transition: background-color 0.5s;
+}
+
+.custom-navbar {
+    min-height: 90px;
+}
+
 .header {
-    height: none; 
-    max-height: none; 
+    height: 10px; 
+    max-height: 100px; 
+    min-height: 100px;
 }
 
 body {
     height: 100vh;
-    max-height: 900px;
     background: url(../imgs/main.jpg) no-repeat center center fixed;
     background-size: cover;
-    min-height: 750px;
+    min-height: 600px;
 }
 
-.titulo {
-    color: #333;
+.panel-header {
+    background-color: #343a40; 
+    color: #ffffff; 
+    padding: 10px;
+    margin-bottom: 0px;
+    border-radius: 7px;
+}
+
+.title {
+    color: #343a40;
 }
 
 .container-custom {
     background-color: #dedcdc;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px #000000
 }
 
 .table thead th:nth-child(1) {
@@ -37,22 +54,29 @@ body {
 }
 
 .table tbody tr:nth-child(odd) {
-    background-color: #41484f; 
+    background-color: #616b76; 
 }
 
 .table tbody tr:nth-child(even) {
-    background-color: #343a40;
+    background-color: #49525a;
 }
 
 .table-hover tbody tr:hover {
-    background-color: #1b1f22; 
+    background-color: #343a40; 
     color: #ffffff; 
 }
 
 .table thead th {
-    background-color: #1b1f22;
+    background-color: #343a40;
     color: #ffffff;
 }
+
+.table-bordered,
+.table-bordered th,
+.table-bordered td {
+    border-color: #343a40; 
+}
+
 .modal-title-custom {
     color: #343a40; 
 }

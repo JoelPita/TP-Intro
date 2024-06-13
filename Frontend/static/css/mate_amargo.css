@@ -11185,11 +11185,11 @@ pre {
 }
 
 .header {
-  height: 10vh;
-  max-height: 90px;
+  height: 100vh;
+  max-height: 900px;
   background: url(../imgs/main.jpg) no-repeat center center fixed;
   background-size: cover;
-  min-height: 75px;
+  min-height: 750px;
 }
 
 .header .overlay {
