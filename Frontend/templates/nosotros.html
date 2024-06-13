@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Hotel del Glaciar page">
+    <title>Hotel del Glaciar</title>
+   
+    <!-- font icons -->
+    <link rel="stylesheet" href="{{url_for('static', filename='vendors/themify-icons/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='vendors/animate/animate.css')}}">
+
+    <!-- Bootstrap + main styles -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/mate_amargo.css')}}">
+
+    <!-- Widget Stylesheet -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/weather.css',_external=True)}}" />
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/nosotros.css',_external=True)}}" />
+
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" class="body-bg">
+    
+    <!-- Navbar -->
+    <nav class="custom-navbar navbar navbar-expand-lg navbar-dark fixed-top" data-spy="affix" data-offset-top="10">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('servicios')}}">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('habitaciones')}}">Habitaciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('reserva')}}">Reserva</a>
+                </li>
+                <li class="nav-item">
+                    {% include 'weather.html' %}
+                </li>
+            </ul>
+            <a class="navbar-brand m-auto" href="#">
+                <span class="brand-txt">Hotel del Glaciar</span>
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('sobre_nosotros')}}">nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('reviews')}}">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('contacto')}}">Contactenos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{url_for('admin')}}" class="btn btn-primary ml-xl-4">Administracion</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- header -->
+    <!-- <header id="home" class="header">
+        <div class="overlay text-white text-center">
+            <h1 class="display-2 font-weight-bold my-3">Hotel del Glaciar</h1>
+            <h2 class="display-4 mb-5">Descubre la calidez y comodidad de tu hogar en nuestro hotel</h2>
+            <a class="btn btn-lg btn-primary" href="{{url_for('habitaciones')}}">Vea nuestras habitaciones</a>
+        </div>
+    </header> -->
+    
+   <!-- Contenido principal -->
+
+    <div class="title-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="text-danger">¿Quiénes somos?</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about">
+        <div class="container-fluid">
+        <!-- Sección 1 -->
+        <div class="row">
+            <div class="col-md-5">
+                <div class="titlepage card-style">
+                    <h2>Historia y Legado</h2>
+                    <p class="margin_0">
+                        En el Hotel Glacial Ushuaia, nuestra historia se entrelaza con el legado de Tierra del Fuego. Desde nuestros modestos comienzos como una posada familiar hace más de dos décadas, hemos sido un faro de hospitalidad en el extremo sur del mundo. <br>
+                        Fundado por la familia González con una visión clara de ofrecer una experiencia auténtica, hemos evolucionado hacia un destino internacional sin perder nuestras raíces. Cada visita es un tributo a nuestra historia, conectando a nuestros huéspedes con la rica herencia de la región.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="about_img card-style">
+                    <figure>
+                        <img src="{{ url_for('static', filename='imgs/hotel_nosotros_5.jpeg') }}" alt="Imagen 1">
+                    </figure>
+                </div>
+            </div>
+        </div>
+        <!-- Sección 2 -->
+        <div class="row">
+            <div class="col-md-7">
+                <div class="about_img card-style">
+                    <figure>
+                        <img src="{{ url_for('static', filename='imgs/hotel_nosotros_2.jpeg') }}" alt="Imagen 2">
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="titlepage card-style">
+                    <h2>Fundamentos</h2>
+                    <p class="margin_0">
+                        Nos guía nuestra dedicación a la excelencia, al esforzarnos por superar las expectativas de nuestros huéspedes en cada interacción, ofreciendo un servicio impecable y experiencias inolvidables en cada momento de su estadía.<br>
+                        Celebramos la diversidad, ofreciendo a nuestros huéspedes una experiencia verdaderamente única que refleja la riqueza cultural de la región.<br>
+                        Somos un miembro activo y solidario de la comunidad local, apoyando iniciativas sociales y contribuyendo al desarrollo económico y cultural.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Sección 3 -->
+        <div class="row">
+            <div class="col-md-5">
+                <div class="titlepage card-style">
+                    <h2>Compromiso</h2>
+                    <p class="margin_0">
+                        En el Hotel del Glacial Ushuaia, la conservación del entorno es fundamental. Nos comprometemos a proteger y preservar la belleza natural de Tierra del Fuego, adoptando prácticas sostenibles que minimicen nuestro impacto ambiental. <br>
+                        Cada acción refleja nuestro respeto por la naturaleza única de nuestra ubicación, asegurando que las generaciones futuras puedan disfrutar de este tesoro como lo hacen nuestros huéspedes hoy.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="about_img card-style">
+                    <figure>
+                        <img src="{{ url_for('static', filename='imgs/hotel_nosotros_3.jpeg') }}" alt="Imagen 3">
+                    </figure>
+                </div>
+            </div>
+        </div>
+        <!-- Sección 4 -->
+        <div class="row">
+            <div class="col-md-7">
+                <div class="about_img card-style">
+                    <figure>
+                        <img src="{{ url_for('static', filename='imgs/hotel_nosotros_4.jpeg') }}" alt="Imagen 4">
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="titlepage card-style">
+                    <h2>Visión</h2>
+                    <p class="margin_0">
+                        Aspiramos a ser reconocidos como el destino líder en el extremo sur del mundo, donde los viajeros descubren la magia de Tierra del Fuego mientras disfrutan de un alojamiento de clase mundial y experiencias excepcionales. <br> 
+                        Soñamos con inspirar y enriquecer a nuestros visitantes, siendo un modelo de excelencia en hospitalidad sostenible, elevar los estándares y crear un impacto positivo.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Sección 5 -->
+        <div class="row">
+                <div class="col-md-5">
+                    <div class="titlepage card-style">
+                        <h2>Misión:</h2>
+                        <p class="margin_0">
+                            Nuestra misión es combinar la belleza natural de Tierra del Fuego con lujo, comodidad y autenticidad. <br>
+                            En cada detalle, desde el mate amargo de bienvenida hasta el fogón de despedida, nos esforzamos por ofrecer un servicio excepcional y una hospitalidad genuina. <br>
+                            Que cada huésped experimente la esencia única de estas mágicas tierras, y se lleve consigo los recuerdos de un viaje transformador.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="about_img card-style">
+                        <figure>
+                            <img src="{{ url_for('static', filename='imgs/hotel_nosotros_1.jpeg') }}" alt="Imagen 1">
+                        </figure>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Reservar habtacion  -->
+    <div class="container-fluid has-bg-overlay text-center text-light has-height-lg middle-items" id="book-table">
+        <div class="">
+            <h2 class="section-title mb-5">HACER RESERVA</h2>
+            <div class="row mb-5">
+                <div class="col-sm-6 col-md-3 col-xs-12 my-2">
+                    <input type="email"  class="form-control form-control-lg custom-form-control" placeholder="EMAIL">
+                </div>
+                <div class="col-sm-6 col-md-3 col-xs-12 my-2">
+                    <input type="number"  class="form-control form-control-lg custom-form-control" placeholder="HABITACION">
+                </div>
+                <div class="col-sm-6 col-md-3 col-xs-12 my-2">
+                    <input type="date"  class="form-control form-control-lg custom-form-control" placeholder="12/12/12">
+                </div>
+                <div class="col-sm-6 col-md-3 col-xs-12 my-2">
+                    <input type="date" class="form-control form-control-lg custom-form-control" placeholder="12/12/12">
+                </div>
+            </div>
+            <a href="#" class="btn btn-lg btn-primary" id="rounded-btn">RESERVAR</a>
+        </div>
+    </div>
+
+    <!-- core  -->
+    <script src="{{url_for('static',filename='vendors/jquery/jquery-3.4.1.js')}}"></script>
+    <script src="{{url_for('static',filename='vendors/bootstrap/bootstrap.bundle.js')}}"></script>
+
+    <!-- bootstrap affix -->
+    <script src="{{url_for('static',filename='vendors/bootstrap/bootstrap.affix.js')}}"></script>
+
+    <!-- wow.js -->
+    <script src="{{url_for('static',filename='vendors/wow/wow.js')}}"></script>
+
+    <!--  js -->
+    <script src="{{url_for('static', filename='js/mate_amargo.js')}}"></script>
+
+    <!-- Widget Animation js -->
+    <script src="{{url_for('static', filename='js/weatherAnimation.js',_external=True)}}"></script>
+    
+    <!-- Weather data js -->
+    <script src="{{url_for('static', filename='js/weatherAPI.js',_external=True)}}"></script>
+
+</body>
+</html>
