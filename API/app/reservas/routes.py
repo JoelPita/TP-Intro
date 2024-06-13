@@ -4,6 +4,7 @@ from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+import logging
 
 # ---Crer Blueprint para reservas ---
 reservas_bp = Blueprint('reservas', __name__)
@@ -93,53 +94,107 @@ def confirm_reserva(id):
         return jsonify({"success": False, "message": "Estado inválido. Solo se permite 'aceptada' o 'rechazada'."}), 400
     
     motivo_rechazo = data['motivo_rechazo']
-    query = text("""
+    query_update = text("""
         UPDATE Reservas 
         SET estado = :estado, motivo_rechazo = :motivo_rechazo
         WHERE id = :id
+        """)
+    
+    query_select = text("""
+        SELECT R.email_cliente, R.nombre_cliente, R.telefono_cliente, R.fecha_desde, R.fecha_hasta, 
+                R.cantidad_habitaciones, R.cantidad_personas, R.metodo_pago, R.precio_total, H.nombre
+        FROM Reservas R
+        INNER JOIN Habitaciones H ON R.habitacion_id = H.id
+        WHERE R.id = :id
         """)
         
     try:
         engine = current_app.config['engine']
         conn = engine.connect()
-        conn.execute(query, {
+
+        result_get_reserva = conn.execute(query_select, {'id': id})
+
+        if result_get_reserva.rowcount == 0:
+            conn.close()
+            return jsonify({"success": False, "message": "Reserva no encontrada"}), 404
+        
+        # Actualizar el estado de la reserva
+        conn.execute(query_update, {
             'estado': estado,
             'motivo_rechazo': motivo_rechazo,
             'id': id
         })
 
-        send_email(data['email_cliente'], estado, motivo_rechazo)
-
         conn.commit()
         conn.close()
         
-        #TO DO: IMPLEMENTAR ENVIO DE MAIL
+        
+        reserva = result_get_reserva.fetchone()
+        reserva_data = {
+            'email_cliente': reserva[0],
+            'nombre_cliente': reserva[1],
+            'telefono_cliente': reserva[2],
+            'fecha_desde': reserva[3],
+            'fecha_hasta': reserva[4],
+            'cantidad_habitaciones': reserva[5],
+            'cantidad_personas': reserva[6],
+            'metodo_pago': reserva[7],
+            'precio_total': reserva[8],
+            'nombre_habitacion': reserva[9]
+        }
 
+        subject = f'Hotel del Glaciar | Su reserva ha sido {estado}'
+        if estado == 'rechazada':
+            content = f"""
+                <p>Lo sentimos, su reserva ha sido rechazada.</p>
+                <p>Motivo: {motivo_rechazo}</p>
+                <p>Detalles de la reserva:</p>
+                <p>Nombre: {reserva_data['nombre_cliente']}</p>
+                <p>Teléfono: {reserva_data['telefono_cliente']}</p>
+                <p>Fecha Desde: {reserva_data['fecha_desde']}</p>
+                <p>Fecha Hasta: {reserva_data['fecha_hasta']}</p>
+                <p>Cantidad de Habitaciones: {reserva_data['cantidad_habitaciones']}</p>
+                <p>Tipo de habitacion: {reserva_data['nombre_habitacion']}</p>
+                <p>Cantidad de Personas: {reserva_data['cantidad_personas']}</p>
+                <p>Precio Total: {reserva_data['precio_total']}</p>
+            """
+        else:
+            content = f"""
+                <p>¡Felicidades! Su reserva ha sido aceptada.</p>
+                <p>Detalles de la reserva:</p>
+                <p>Nombre: {reserva_data['nombre_cliente']}</p>
+                <p>Teléfono: {reserva_data['telefono_cliente']}</p>
+                <p>Fecha Desde: {reserva_data['fecha_desde']}</p>
+                <p>Fecha Hasta: {reserva_data['fecha_hasta']}</p>
+                <p>Cantidad de Habitaciones: {reserva_data['cantidad_habitaciones']}</p>
+                <p>Tipo de habitacion: {reserva_data['nombre_habitacion']}</p>
+                <p>Cantidad de Personas: {reserva_data['cantidad_personas']}</p>
+                <p>Precio Total: {reserva_data['precio_total']}</p>
+                <p>Metodo de Pago: {reserva_data['metodo_pago']}</p>
+            """
+        
+        send_email(reserva_data['email_cliente'], subject, content)
         return jsonify({"success": True, "message": "Reserva actualizada correctamente"}), 200
+    
     except SQLAlchemyError as e:
         error = str(e.__cause__)
         conn.close()
         return jsonify({"success": False, "message": error}), 500
 
-def send_email(email, estado, motivo_rechazo):
-    from_email = 'from_email@example.com'  # Cambia esto por tu correo de envío
-    subject = f'Su reserva ha sido {estado}'
-    if estado == 'rechazada':
-        content = f'<p>Lo sentimos, su reserva ha sido rechazada. Motivo: {motivo_rechazo}</p>'
-    else:
-        content = '<p>¡Felicidades! Su reserva ha sido aceptada.</p>'
+def send_email(to_email, subject, content):
+    from_email = 'mriveiro@fi.uba.ar'
     
     message = Mail(
         from_email=from_email,
-        to_emails=email,
+        to_emails=to_email,
         subject=subject,
         html_content=content
     )
     try:
         sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
         response = sg.send(message)
-        print(response.status_code)
-        print(response.body)
-        print(response.headers)
+        logging.info(f'Status Code: {response.status_code}')
+        logging.info(f'Response Body: {response.body}')
+        logging.info(f'Response Headers: {response.headers}')
     except Exception as e:
-        print(str(e))
+        logging.error(f'Error: {str(e)}')
