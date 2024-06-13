@@ -40,8 +40,9 @@ def servicios():
 def page_not_found(e):
     return render_template('404.html'),404
 
+
 @app.route('/actualizar_precios', methods = ['GET'])
-def modificar_precios_habitaciones():
+def pedir_precios_habitaciones():
     obtener_habitaciones = 'http://127.0.0.1:5000/gestion_precios/obtener-habitaciones' #se reemplazara por el endpoint correspondiente cuando esté disponible
                     #no logro que funcione con url_for('gestion_precios.obtener_habitaciones', _external=True)
     try:                       
@@ -56,8 +57,9 @@ def modificar_precios_habitaciones():
     except requests.RequestException:
         return render_template('404.html')      #deberia ser pagina de error 500
     
+    
 @app.route('/actualizar_precios', methods=['POST'])
-def enviar_precios_habitaciones():
+def modificar_precios_habitaciones():
     id_habitacion = request.form['id']
     nuevo_precio = str(request.form['precio_noche'])
     actualizar_precio = 'http://127.0.0.1:5000/gestion_precios/gestion_precios'
@@ -66,7 +68,7 @@ def enviar_precios_habitaciones():
         response = requests.patch(actualizar_precio, json={'id': id_habitacion, 'precio_noche': nuevo_precio})
 
         if response.status_code == 200:
-            return redirect(url_for('modificar_precios_habitaciones', _external=True)) 
+            return redirect(url_for('pedir_precios_habitaciones', _external=True)) 
         elif response.status_code == 404:
             return render_template('404.html')
         else:
