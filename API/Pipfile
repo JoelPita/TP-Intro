@@ -7,8 +7,12 @@ verify_ssl = true
 flask = "*"
 flask_sqlalchemy = "*"
 mysql-connector-python = "*"
+sendgrid = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.12"
+
+[scripts]
+start = "flask run --host=0.0.0.0 --port=5000"

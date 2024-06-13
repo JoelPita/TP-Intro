@@ -11,8 +11,9 @@ CREATE TABLE IF NOT EXISTS Users (
 CREATE TABLE IF NOT EXISTS Habitaciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(80) NOT NULL,
-    descripcion VARCHAR(20),
-    precio_noche DECIMAL(10, 2)
+    descripcion VARCHAR(200),
+    precio_noche DECIMAL(10, 2),
+    personas_max INT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Reservas (
@@ -40,3 +41,19 @@ CREATE TABLE IF NOT EXISTS Reviews (
     estado VARCHAR(50) DEFAULT 'nueva'
 
 );
+
+-- Inserción de datos ficticios en la tabla Habitaciones
+INSERT INTO Habitaciones (nombre, descripcion, precio_noche, personas_max) 
+VALUES
+    ('Suite Deluxe', 'Suite con vista al mar', 150.00, 4),
+    ('Habitación Doble', 'Habitación con dos camas individuales', 80.00, 2),
+    ('Habitación Simple', 'Habitación con una cama individual', 50.00, 1);
+
+-- Inserción de datos ficticios en la tabla Reservas
+INSERT INTO Reservas (email_cliente, nombre_cliente, telefono_cliente, fecha_desde, fecha_hasta, 
+                      cantidad_habitaciones, cantidad_personas, metodo_pago, estado, motivo_rechazo, 
+                      precio_total, habitacion_id) 
+VALUES
+    ('marting.riveiro@gmail.com', 'Cliente Uno', '123456789', '2024-07-01', '2024-07-07', 1, 2, 'Tarjeta de Crédito', 'pendiente', NULL, 560.00, 1),
+    ('tinchoriveiro@gmail.com', 'Cliente Dos', '987654321', '2024-07-10', '2024-07-15', 2, 4, 'Transferencia Bancaria', 'pendiente', NULL, 800.00, 2),
+    ('tinchoriveiro@gmail.com', 'Cliente Tres', '123123123', '2024-08-01', '2024-08-05', 1, 1, 'Efectivo', 'pendiente', NULL, 200.00, 3);
