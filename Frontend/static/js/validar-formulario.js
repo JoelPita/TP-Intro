@@ -12,14 +12,14 @@ function validateInputs() {
     const messageValue = message.value.trim();
 
     if(usernameValue === "") {
-        setError(username, "Necesita ingresar un nombre.");
+        setError(username, "Necesitas ingresar un nombre.");
         es_valido = false;
     } else {
         setSuccess(username);
     }
 
     if(emailValue === "") {
-        setError(email, "Necesita ingresar un mail");
+        setError(email, "Necesitas ingresar un mail");
         es_valido = false;
     } else if (!isValidEmail(emailValue)) {
         setError(email, "Ese mail no es valido.");
@@ -29,14 +29,14 @@ function validateInputs() {
     }
 
     if(subjectValue === "") {
-        setError(subject, "Necesita agregar un asunto.");
+        setError(subject, "Necesitas agregar un asunto.");
         es_valido = false;
     } else {
         setSuccess(subject)
     }
 
     if (messageValue === "") {
-        setError(message, "Necesita agregar un mensaje.");
+        setError(message, "Necesitas agregar un mensaje.");
         es_valido = false;
     } else {
         setSuccess(message)
