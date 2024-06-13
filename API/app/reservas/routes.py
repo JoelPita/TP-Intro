@@ -143,37 +143,44 @@ def confirm_reserva(id):
             'nombre_habitacion': reserva[9]
         }
 
-        subject = f'Hotel del Glaciar | Su reserva ha sido {estado}'
         if estado == 'rechazada':
-            content = f"""
-                <p>Lo sentimos, su reserva ha sido rechazada.</p>
-                <p>Motivo: {motivo_rechazo}</p>
-                <p>Detalles de la reserva:</p>
-                <p>Nombre: {reserva_data['nombre_cliente']}</p>
-                <p>Teléfono: {reserva_data['telefono_cliente']}</p>
-                <p>Fecha Desde: {reserva_data['fecha_desde']}</p>
-                <p>Fecha Hasta: {reserva_data['fecha_hasta']}</p>
-                <p>Cantidad de Habitaciones: {reserva_data['cantidad_habitaciones']}</p>
-                <p>Tipo de habitacion: {reserva_data['nombre_habitacion']}</p>
-                <p>Cantidad de Personas: {reserva_data['cantidad_personas']}</p>
-                <p>Precio Total: {reserva_data['precio_total']}</p>
-            """
+            resultado = "Lo sentimos, su reserva ha sido rechazada"
+            subtitulo = f"Motivo: {motivo_rechazo}"
         else:
-            content = f"""
-                <p>¡Felicidades! Su reserva ha sido aceptada.</p>
-                <p>Detalles de la reserva:</p>
-                <p>Nombre: {reserva_data['nombre_cliente']}</p>
-                <p>Teléfono: {reserva_data['telefono_cliente']}</p>
-                <p>Fecha Desde: {reserva_data['fecha_desde']}</p>
-                <p>Fecha Hasta: {reserva_data['fecha_hasta']}</p>
-                <p>Cantidad de Habitaciones: {reserva_data['cantidad_habitaciones']}</p>
-                <p>Tipo de habitacion: {reserva_data['nombre_habitacion']}</p>
-                <p>Cantidad de Personas: {reserva_data['cantidad_personas']}</p>
-                <p>Precio Total: {reserva_data['precio_total']}</p>
-                <p>Metodo de Pago: {reserva_data['metodo_pago']}</p>
-            """
+            resultado = "¡Felicidades! Su reserva ha sido aceptada"
+            subtitulo = ""
+
+        subject = f'Hotel del Glaciar | Su reserva ha sido {estado}'
+
+        datos_reserva = f"""
+            Detalles de la reserva:
+            
+            Nombre: {reserva_data['nombre_cliente']}
+
+            Teléfono: {reserva_data['telefono_cliente']}
+
+            Desde: {reserva_data['fecha_desde']}
+
+            Hasta: {reserva_data['fecha_hasta']}
+
+            Cantidad de Habitaciones: {reserva_data['cantidad_habitaciones']}
+
+            Tipo de habitación: {reserva_data['nombre_habitacion']}
+
+            Cantidad de Personas: {reserva_data['cantidad_personas']}
+
+            Precio Total: {reserva_data['precio_total']}
+
+            Método de Pago: {reserva_data['metodo_pago']}
+        """
         
-        send_email(reserva_data['email_cliente'], subject, content)
+        send_confirmation_email(
+            to_email=reserva_data['email_cliente'],
+            subject=subject,
+            resultado=resultado,
+            subtitulo=subtitulo,
+            datos_reserva=datos_reserva
+        )
         return jsonify({"success": True, "message": "Reserva actualizada correctamente"}), 200
     
     except SQLAlchemyError as e:
@@ -181,15 +188,24 @@ def confirm_reserva(id):
         conn.close()
         return jsonify({"success": False, "message": error}), 500
 
-def send_email(to_email, subject, content):
+def send_confirmation_email(to_email, subject, resultado, subtitulo, datos_reserva):
+    template_id = 'd-18e23cf95aaf4d5ea38a78406d9757d2'
+
+    dynamic_template_data = {
+        'resultado': resultado,
+        'subtitulo': subtitulo,
+        'datos_reserva': datos_reserva
+    }
     from_email = 'mriveiro@fi.uba.ar'
     
     message = Mail(
         from_email=from_email,
         to_emails=to_email,
-        subject=subject,
-        html_content=content
+        subject=subject
     )
+    message.template_id = template_id
+    message.dynamic_template_data = dynamic_template_data
+
     try:
         sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
         response = sg.send(message)
