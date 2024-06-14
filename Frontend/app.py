@@ -1,4 +1,6 @@
 from flask import Flask, jsonify, request, render_template, url_for, redirect
+import smtplib
+from email.mime.text import MIMEText
 import requests
 import datetime
 """
@@ -90,8 +92,27 @@ def habitaciones_id(id):
 def servicios():
     return render_template('servicios.html')
 
-@app.route('/contacto')
+@app.route('/contacto', methods=["GET", "POST"])
 def contacto():
+    if request.method == "POST":
+        nombre = request.form.get("name")
+        email = request.form.get("email")
+        asunto = request.form.get("subject")
+        mensaje_contenido = request.form.get("message")
+
+        mensaje_completo = (f"NOMBRE: {nombre}\n"
+                            f"MAIL: {email}\n"
+                            f"MENSAJE:\n{mensaje_contenido}")
+
+        mensaje = MIMEText(mensaje_completo)
+        mensaje["Subject"] = asunto
+        mensaje["From"] = "hotel.glaciar.argentina@gmail.com"
+        mensaje["To"] = "hotel.glaciar.argentina@gmail.com"
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
+            smtp_server.login("hotel.glaciar.argentina@gmail.com", "oqvu xdib bmnp ymzy")
+            smtp_server.sendmail("hotel.glaciar.argentina@gmail.com", "hotel.glaciar.argentina@gmail.com", mensaje.as_string())
+
+        return render_template('contacto.html')
     return render_template('contacto.html')
 
 @app.route('/reserva', methods=["GET", "POST"])

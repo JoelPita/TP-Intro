@@ -240,6 +240,71 @@ textarea {
   line-height: inherit;
 }
 
+.wrapper {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 21px 41px -13px rgba(0, 0, 0, 0.18);
+  -moz-box-shadow: 0px 21px 41px -13px rgba(0, 0, 0, 0.18);
+  box-shadow: 4px 21px 41px -13px rgb(34, 37, 39);
+}
+
+.contact-wrap {
+  background: #272a34;
+}
+  
+.contact-wrap h3{
+  color: #fff;
+}
+
+.info-wrap {
+  background: #1c251d;
+}
+
+.info-wrap h3{
+  color: white;
+  font-size: 1.6rem;
+  position: relative;
+}
+
+.info-wrap .dbox{
+  width: 100%;
+  margin-bottom: 27px;
+}
+
+.info-wrap .dbox:last-child {
+  margin-bottom: 0;
+}
+
+.info-wrap .dbox p {
+  margin-bottom: 0;
+}
+
+.info-wrap .dbox p span {
+  font-weight: 1000;
+  color: #ffffff;
+}
+
+.info-wrap .dbox p a {
+  color: rgba(75, 243, 185, 0.8);
+}
+
+.info-wrap .dbox .icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.02); 
+}
+      
+.info-wrap .dbox .icon span {
+    font-size: 25px;
+    color: #ffffff; 
+  }
+
+.info-wrap .dbox .text {
+  width: calc(100% - 50px);
+}
+
 button,
 input {
   overflow: visible;
@@ -544,6 +609,8 @@ pre code {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
+  padding-top: 40px;
+  padding-bottom: 40px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -1874,13 +1941,11 @@ pre code {
   border-color: #ff8ca3;
 }
 
-.table-hover .table-primary:hover {
-  background-color: #ffa8ba;
-}
-
-.table-hover .table-primary:hover > td,
-.table-hover .table-primary:hover > th {
-  background-color: #ffa8ba;
+.table-primary th,
+.table-primary td,
+.table-primary thead th,
+.table-primary tbody + tbody {
+  border-color: #ff8ca3;
 }
 
 .table-secondary,
@@ -2164,6 +2229,43 @@ pre code {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.form-group i {
+	visibility: hidden;
+	position: absolute;
+	top: 10px;
+	right: 25px;
+}
+
+.form-group small {
+  font-size: 15px;
+  visibility: hidden;
+
+}
+
+.form-group.success input {
+  border-color: #16d32f;
+}
+
+.form-group.error input{
+  border-color: #ff214f;
+}
+
+.form-group.success i.fa-check-circle-o {
+  visibility: visible;
+  color: #16d32f;
+}
+
+.form-group.error i.fa-times-circle-o {
+  visibility: visible;
+  color: #ff214f;
+}
+
+.form-group.error small {
+  visibility: visible;
+  color: #ff214f;
+}
+
+
 @media (prefers-reduced-motion: reduce) {
   .form-control {
     -webkit-transition: none;
@@ -2179,9 +2281,9 @@ pre code {
 .form-control:focus {
   color: #dee2e6;
   background-color: #495057;
-  border-color: #ff214f;
+  border-color: #1c19e0;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(255, 33, 79, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(19, 179, 207, 0.25);
 }
 
 .form-control::-webkit-input-placeholder {
@@ -5444,7 +5546,7 @@ input[type="button"].btn-block {
 .badge {
   display: inline-block;
   padding: 0.25em 0.4em;
-  font-size: 75%;
+  font-size: 65%;
   font-weight: 700;
   line-height: 1;
   text-align: center;
