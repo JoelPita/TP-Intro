@@ -1,55 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <title>Hotel del Glaciar</title>
-   
-    <!-- font icons -->
-    <link rel="stylesheet" href="{{url_for('static', filename='vendors/themify-icons/css/themify-icons.css')}}">
-    
-    <link rel="stylesheet" href="{{url_for('static', filename='vendors/animate/animate.css')}}">
-
-    <!-- Bootstrap + main styles -->
-	<link rel="stylesheet" href="{{url_for('static', filename='css/mate_amargo.css')}}">
-</head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40">
-    
-    <!-- Navbar -->
-    <nav class="custom-navbar navbar navbar-expand-lg navbar-dark fixed-top" data-spy="affix" data-offset-top="10">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('servicios')}}">Servicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('habitaciones')}}">Habitaciones</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('reserva')}}">Reserva</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('reviews')}}">Reviews</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('contacto')}}">Contactenos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{url_for('admin')}}" class="btn btn-primary ml-xl-4">Administracion</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <!-- header -->
+{% extends "base.html" %}
+    {% block content %}
     <header  class="header">
         <div class="overlay text-white text-center">
             <h1 class="display-2 font-weight-bold my-3">Error 404</h1>
@@ -57,5 +7,4 @@
             <a href="{{url_for('home')}}" class="btn btn-lg btn-primary" >VOLVER</a>
         </div>
     </header>
-</body>
-</html>
+    {% endblock %}
