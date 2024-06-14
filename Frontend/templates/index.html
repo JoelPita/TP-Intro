@@ -1,64 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Hotel del Glaciar page">
-    <title>Hotel del Glaciar</title>
-   
-    <!-- font icons -->
-    <link rel="stylesheet" href="{{url_for('static', filename='vendors/themify-icons/css/themify-icons.css')}}">
-
-    <link rel="stylesheet" href="{{url_for('static',filename='vendors/animate/animate.css')}}">
-
-    <!-- Bootstrap + main styles -->
-	<link rel="stylesheet" href="{{url_for('static', filename='css/mate_amargo.css')}}">
-
-    <!-- Widget Stylesheet -->
-    <link rel="stylesheet" href="{{url_for('static', filename='css/weather.css',_external=True)}}" />
-
-</head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40" >
-    
-    <!-- Navbar -->
-    <nav class="custom-navbar navbar navbar-expand-lg navbar-dark fixed-top" data-spy="affix" data-offset-top="10">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('servicios')}}">Servicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('habitaciones')}}">Habitaciones</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('reserva')}}">Reserva</a>
-                </li>
-                <li class="nav-item">
-                    {% include 'weather.html' %}
-                </li>
-            </ul>
-            <a class="navbar-brand m-auto" href="#">
-                <span class="brand-txt">Hotel del Glaciar</span>
-            </a>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('reviews')}}">Reviews</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('contacto')}}">Contactenos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{url_for('admin')}}" class="btn btn-primary ml-xl-4">Administracion</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+{% extends "base.html" %}
+    {% block content %}
     <!-- header -->
     <header id="home" class="header">
         <div class="overlay text-white text-center">
@@ -90,6 +31,7 @@
             </div>
         </div>
     </div>
+
     <br>
     <br>
     <!--  About Section 2 -->
@@ -106,6 +48,44 @@
                 </div>
             </div>
             <div class="col-lg-6 has-img-bg2"><a href="{{url_for('static',filename='imgs/about-section2.jpg')}}"></a></div>
+        </div>
+    </div>
+    <div id="blog">
+        <br class=fondo>
+        <br class=fondo>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="foods" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card bg-transparent border my-3 my-md-0">
+                            <img src="{{url_for('static', filename='imgs/sobre-ushuaia1.jpg')}}"  class="rounded-0 card-img-top mg-responsive">
+                            <div class="card-body">
+                                <h1 class="text-center mb-4">La ciudad de Ushuaia</h1>
+                                <p class="text-white">Ushuaia, una ciudad pintoresca en el extremo sur de Argentina, combina historia y naturaleza en un escenario vibrante. Sus calles empedradas serpentean entre casas de colores, mientras el Canal Beagle ofrece vistas espectaculares de islas y glaciares. Cafeterías acogedoras y tiendas de artesanía reflejan su rica herencia cultural, convirtiendo a Ushuaia en un destino único y fascinante.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-transparent border my-3 my-md-0">
+                            <img src="{{url_for('static', filename='imgs/sobre-ushuaia3.jpg')}}" class="rounded-0 card-img-top mg-responsive">
+                            <div class="card-body">
+                                <h1 class="text-center mb-4">El paisaje de Ushuaia</h1>
+                                <p class="text-white">El lago se extiende sereno ante la majestuosidad de las montañas, reflejando el cielo en tonos azules y rosados al atardecer. Los picos nevados y la vegetación exuberante añaden un toque de belleza indescriptible al paisaje. Este es un lugar donde el tiempo parece detenerse, invitando a la contemplación y la reflexión en su belleza pura y sublime.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-transparent border my-3 my-md-0">
+                            <img src="{{url_for('static', filename='imgs/sobre-ushuaia2.jpg')}}"  class="rounded-0 card-img-top mg-responsive">
+                            <div class="card-body">
+                                <h1 class="text-center mb-4">La noche en Ushuaia</h1>
+                                <p class="text-white">Cuando cae la noche en Ushuaia, la ciudad se transforma en un escenario mágico de luces titilantes y misterio. El reflejo de las luces en el canal crea un efecto deslumbrante, mientras el cielo se ilumina con millones de estrellas. La vida nocturna ofrece opciones para todos los gustos, desde acogedores bares hasta sofisticados restaurantes, prometiendo una experiencia inolvidable para quienes se aventuran a explorarla.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <br>
@@ -190,25 +170,6 @@
             <a href="#" class="btn btn-lg btn-primary" id="rounded-btn">RESERVAR</a>
         </div>
     </div>
+    {% endblock %}
 
-	<!-- core  -->
-    <script src="{{url_for('static',filename='vendors/jquery/jquery-3.4.1.js')}}"></script>
-    <script src="{{url_for('static',filename='vendors/bootstrap/bootstrap.bundle.js')}}"></script>
 
-    <!-- bootstrap affix -->
-    <script src="{{url_for('static',filename='vendors/bootstrap/bootstrap.affix.js')}}"></script>
-
-    <!-- wow.js -->
-    <script src="{{url_for('static',filename='vendors/wow/wow.js')}}"></script>
-
-    <!--  js -->
-    <script src="{{url_for('static', filename='js/mate_amargo.js')}}"></script>
-
-    <!-- Widget Animation js -->
-    <script src="{{url_for('static', filename='js/weatherAnimation.js',_external=True)}}"></script>
-    
-    <!-- Weather data js -->
-    <script src="{{url_for('static', filename='js/weatherAPI.js',_external=True)}}"></script>
-
-</body>
-</html>
