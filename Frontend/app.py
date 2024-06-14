@@ -1,4 +1,6 @@
 from flask import Flask, jsonify, request, render_template, url_for, redirect
+import smtplib
+from email.mime.text import MIMEText
 import requests
 import datetime
 """

@@ -10,93 +10,104 @@
 </div>
 {% endblock %}
 
-    <!-- Bootstrap + main styles -->
-	<link rel="stylesheet" href="{{url_for('static', filename='css/mate_amargo.css')}}">
-
-    {% block link_scrip %}  {% endblock %}
-
-</head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-    
-    <!-- Navbar -->
-    <nav class="custom-navbar navbar navbar-expand-lg navbar-dark fixed-top" data-spy="affix" data-offset-top="10">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('home')}}">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('servicios')}}">Servicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('habitaciones')}}">Habitaciones</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('reserva')}}">Reserva</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('reviews')}}">Reviews</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('contacto')}}">Contactenos</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{url_for('admin')}}" class="btn btn-primary ml-xl-4">Administracion</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    
-    <!-- header -->
-    <header id="home" class="header">
-        {% block header %} 
-        {% endblock %}
-    </header>
-
-    <!-- Main Content -->
-    {% block body_content %}
-    {% endblock %}
-
-    <!-- page footer  -->
-    <div class="container-fluid bg-dark text-light has-height-md middle-items border-top text-center wow fadeIn">
+<!-- Main Content -->
+{% block body_content %}
+<div class="container-fluid">
+    <!--  About Section  -->
+    <div id="about" class="container-fluid wow fadeIn" id="about"data-wow-duration="1.5s">
         <div class="row">
-            <div class="col-sm-4">
-                <h3>EMAIL US</h3>
-                <P class="text-muted">mate_amargo@gmail.com</P>
-            </div>
-            <div class="col-sm-4">
-                <h3>CALL US</h3>
-                <P class="text-muted">(123) 456-7890</P>
-            </div>
-            <div class="col-sm-4">
-                <h3>FIND US</h3>
-                <P class="text-muted">12345 Fake ST NoWhere AB Country</P>
+            <div class="col-lg-6 has-img-bg"><a href="{{url_for('static',filename='imgs/about-section.jpg')}}"></a></div>
+            <div class="col-lg-6">
+                <div class="row justify-content-center">
+                    <div class="col-sm-8 py-5 my-5">
+                        <h2 class="mb-4">Sobre nuestro hotel</h2>
+                        <br>
+                        <h5>Ubicado majestuosamente en el corazón de Ushuaia, el Hotel del Glaciar es un refugio de lujo entre las imponentes montañas y los serenos paisajes naturales de la región. Con una arquitectura que combina elegancia moderna y elementos tradicionales de la Patagonia, nuestro hotel ofrece una experiencia única y memorable para cada huésped.</h5>
+                        <br>
+
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
-    <!-- end of page footer -->
-
-	<!-- core  -->
-    <script src="{{url_for('static', filename='vendors/jquery/jquery-3.4.1.js')}}"></script>
-    <script src="static/vendors/bootstrap/bootstrap.bundle.js"></script>
-
-    <!-- bootstrap affix -->
-    <script src="{{url_for('static', filename='vendors/bootstrap/bootstrap.affix.js')}}"></script>
-
-    <!-- wow.js -->
-    <script src="{{url_for('static', filename='vendors/wow/wow.js')}}"></script>
-    
-    <!-- google maps -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
-
-    <!-- Mate_amargo js -->
-    <script src="{{url_for('static', filename='js/mate_amargo.js')}}"></script>
-
-</body>
-</html>
+    <br>
+    <br>
+    <!--  About Section 2 -->
+    <div class="container-fluid wow fadeIn" data-wow-duration="1.5s">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="row justify-content-center">
+                    <div class="col-sm-8 py-5 my-5s">
+                        <h2 class="mb-4">Sobre Ushuaia</h2>
+                        <br>
+                        <h5>Conocida como la "Ciudad del Fin del Mundo", Ushuaia es un destino encantador que cautiva a visitantes de todo el mundo con su belleza natural incomparable y su rica historia. Situada en el extremo sur de Argentina, esta pintoresca ciudad ofrece una variedad de actividades al aire libre, desde excursiones en el Parque Nacional Tierra del Fuego hasta navegaciones por el Canal Beagle, garantizando una aventura inolvidable para todos los que la visitan.</h5>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 has-img-bg2"><a href="{{url_for('static',filename='imgs/about-section2.jpg')}}"></a></div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <!--  About Section 3 -->
+    <div  class="container-fluid wow fadeIn" data-wow-duration="1.5s">
+        <div class="row">
+            <div class="col-lg-6 has-img-bg3"><a href="{{url_for('static',filename='imgs/about-section.jpg')}}"></a></div>
+            <div class="col-lg-6">
+                <div class="row justify-content-center">
+                    <div class="col-sm-8 py-5 my-5">
+                        <h2 class="mb-4">Actividades que ofrecemos</h2>
+                        <br>
+                        <h5>Como parte de nuestro compromiso de brindar una experiencia integral, el Hotel del Glaciar ofrece una variedad de actividades gratuitas para nuestros huéspedes. Desde excursiones guiadas por los senderos cercanos hasta clases de yoga al aire libre y degustaciones de vinos regionales, hay algo para todos los gustos y edades. Además, nuestro equipo de expertos en actividades estará encantado de ayudar a organizar excursiones adicionales para explorar la belleza natural y la rica cultura de Ushuaia.</h5>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+     <!--  About Section 4 -->
+    <div class="container-fluid wow fadeIn" data-wow-duration="1.5s">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="row justify-content-center">
+                    <div class="col-sm-8 py-5 my-5s">
+                        <h2 class="mb-4">Servicios</h2>
+                        <br>
+                        <h5>
+                            En el Hotel del Glaciar, nos esforzamos por superar las expectativas de nuestros huéspedes desde el momento en que llegan, con un equipo de recepción disponible las 24 horas para brindar una cálida bienvenida y asistencia personalizada durante toda su estadía. Nuestro centro de bienestar ofrece una amplia gama de tratamientos de spa y masajes para aquellos que buscan relajarse y rejuvenecer, mientras que nuestros restaurantes celebran los sabores locales con platos gourmet preparados con ingredientes frescos y de temporada. Además, contamos con un gimnasio completamente equipado, una piscina cubierta climatizada y jacuzzi para mantenerse en forma y relajarse después de un día de aventuras.
+                        </h5>
+                        <br>
+                        <a href="{{url_for('servicios')}}" class="btn btn-lg btn-primary" >SERVICIOS</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 has-img-bg4"><a href="{{url_for('static',filename='imgs/about-section2.jpg')}}"></a></div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <!--  About Section 5 -->
+    <div id="about" class="container-fluid wow fadeIn" id="about"data-wow-duration="1.5s">
+        <div class="row">
+            <div class="col-lg-6 has-img-bg5"><a href="{{url_for('static',filename='imgs/about-section.jpg')}}"></a></div>
+            <div class="col-lg-6">
+                <div class="row justify-content-center">
+                    <div class="col-sm-8 py-5 my-5">
+                        <h2 class="mb-4">Habitaciones</h2>
+                        <br>
+                        <h5>Nuestras habitaciones y suites están elegantemente decoradas con un toque moderno y están equipadas con comodidades de primera calidad para garantizar una estancia relajante y confortable. Con impresionantes vistas a las montañas o al mar, cada habitación es un santuario de serenidad donde los huéspedes pueden descansar y recargar energías después de un día de exploración.</h5>
+                        <br>
+                        <a href="{{url_for('habitaciones')}}" class="btn btn-lg btn-primary" >HABITACIONES</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+    </div>
+</div>
+{% endblock %}
