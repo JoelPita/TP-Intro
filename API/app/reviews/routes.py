@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request, current_app
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 
-# ---Crer Blueprint para reviews ---
+# ---Crear Blueprint para reviews ---
 reviews_bp = Blueprint('reviews', __name__)
 
 # ---Crear las rutas con el blueprint---
@@ -34,7 +34,7 @@ def update_visibility(id):
     query = text("UPDATE Reviews SET visible = :visible WHERE id= :id")
     try:
         engine = current_app.config['engine']
-        with engine.connect() as conn: # <--------------------Cuando se arme la funcion final reemplazar AQUI.
+        with engine.connect() as conn: 
             result = conn.execute(query, {'visible': new_status, 'id': id})
             conn.commit()
             # --- Verifica si existe una review para el id ----
@@ -46,6 +46,28 @@ def update_visibility(id):
     
     return jsonify({'message': "Se ha modificado la visibilidad correctamente"}), 200
 
+# ---Actualizar la columna estado ---
+@reviews_bp.route('/<int:id>/state', methods=['PUT'] ) 
+def update_state(id):
+    new_status= request.get_json().get('estado')
+    # --- Me aseguro que la request venga con un status----
+    if new_status is None:
+        return jsonify({'message': "Datos incompletos"}), 400
+    query = text("UPDATE Reviews SET estado = :estado WHERE id= :id")
+    try:
+        engine = current_app.config['engine']
+        with engine.connect() as conn: 
+            result = conn.execute(query, {'estado': new_status, 'id': id})
+            conn.commit()
+            # --- Verifica si existe una review para el id ----
+            if  result.rowcount == 0:
+                return jsonify({'message': 'Review no encontrada para el id especificado'}), 404
+    except SQLAlchemyError as err:
+        error_message = str(err.__cause__) if err.__cause__ else str(err)
+        return jsonify({'message': "Se ha producido un error: " + error_message}), 500
+    
+    return jsonify({'message': "Se ha modificado el estado correctamente"}), 200
+
 
 # --- Obtener todas las reviews (para el administrador) ---
 @reviews_bp.route('/', methods=['GET'])
@@ -53,7 +75,7 @@ def get_all_reviews():
     query = text("SELECT * FROM Reviews")
     try:
         engine = current_app.config['engine']
-        with engine.connect() as conn: # <--------------------Cuando se arme la funcion final reemplazar AQUI.
+        with engine.connect() as conn: 
             result = conn.execute(query)
     except SQLAlchemyError as err:
         error_message = str(err.__cause__) if err.__cause__ else str(err)

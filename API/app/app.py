@@ -8,10 +8,12 @@ import logging
 
 app = Flask(__name__)
 
-#Deberia estar en un try?
-engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
-app.config['engine'] = engine
-logging.basicConfig(level=logging.INFO)
+#Creacion de engine
+try:
+    engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
+    app.config['engine'] = engine
+except Exception as e:
+    print(f"Error connecting to the database: {e}")
 
 #Registrar todos los blueprint
 app.register_blueprint(reviews_bp, url_prefix='/reviews')
