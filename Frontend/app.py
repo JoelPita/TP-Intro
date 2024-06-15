@@ -71,7 +71,11 @@ def obtener_pronostico():
             'estado': forecast_data['list'][i]['weather'][0]['main']
         }
     return jsonify(forecast_weather)
-    
+
+# Establecer aqui la ruta para hacer funcionar todas las solicitudes
+def api_URL(ruta):
+    return f'http://127.0.0.1:5000/{ruta}'
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -132,7 +136,7 @@ def reserva():
             'precio_total': 0  # to do: calcular precio total
         }
         print("Datos recibidos del formulario:", data)
-        api_url = "http://127.0.0.1:5000/reservas"
+        api_url = api_URL('reservas')
         headers = {'Content-Type': 'application/json'}
         
         response = requests.post(api_url, json=data, headers=headers)
@@ -147,7 +151,7 @@ def reserva():
 
 @app.route('/gestion_reservas')
 def gestion_reservas():
-    api_url = "http://127.0.0.1:5000/reservas"
+    api_url = api_URL('reservas')
     response = requests.get(api_url)
     if response.status_code == 200:
         reservas = response.json().get("reservas", [])
@@ -158,6 +162,23 @@ def gestion_reservas():
 @app.route('/reviews')
 def reviews():
     return render_template('reviews.html')
+
+@app.route('/admin/reviews', methods=['GET'])
+def admin_reviews():
+    # Hardcodeo la vista por si falla la API
+    fallback_reviews = [
+    {"id": 00, "nombre_autor": "ERROR", "texto":  "La API no pudo conectarse."},
+    {"id": 00, "nombre_autor": "ERROR", "texto":  "La API no pudo conectarse."},
+    {"id": 00, "nombre_autor": "ERROR", "texto":  "La API no pudo conectarse."}
+    ]
+    try:
+        # Obtengo las reviews desde la API
+        response = requests.get(api_URL('reviews/'))
+        my_reviews = response.json()
+        return render_template('admin_reviews.html', reviews=my_reviews)
+    except requests.exceptions.RequestException as e:
+        return render_template('admin_reviews.html', reviews=fallback_reviews)
+
 
 @app.errorhandler(404)
 def page_not_found(e):

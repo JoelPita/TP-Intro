@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block head_title %}Admin Reviews{% endblock %}
+
+{% block link_scrip %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/admin_reviews.css')}}">
+{% endblock %}
+
+{% block header %}
+<div class="overlay text-white text-center">
+    <h1 class="d-none d-md-block my-5">Administracion de Reviews</h1>
+    <h4 class="d-block d-md-none my-5">Administracion de Reviews</h4>
+    <div class="row text-center">
+        <div class="col-md-6 my-4 mb-md-1">
+            <div class="testmonial-card">
+                <h3 class="h5 h-md-3 testmonial-title">Tips</h3>
+                <div class="testmonial-body overlay">
+                    <p class="lead">Los mensajes deben incentivar a los visitantes a decidirse por el hotel.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 my-4 d-none d-md-block">
+            <div class="testmonial-card">
+                <h3 class="h5 h-md-3 testmonial-title">Tips</h3>
+                <div class="testmonial-body overlay">
+                    <p class="lead">Manten ocultos aquellos mensajes no comprensibles o mal intencionados.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-lg btn-primary my-5" href="#reviews-panel">COMENZAR</a>
+</div>
+{% endblock %}
+
+{% block body_content %}
+<div class="container-fluid" id="reviews-panel">
+    <h2 class="h4 h-md-3 my-5 text-center border border-top p-3">Panel de reviews</h2>
+    <div class="text-center mt-3">
+        <input type="text" id="search-input" placeholder="Buscar en una review..." class="form-control mb-3">
+        <button class="btn btn-primary filter-btn" data-filtro="data-estado" data-estado="all">Mostrar Todas</button>
+        <button class="btn btn-primary filter-btn" data-filtro="data-estado" data-estado="nueva">Mostrar Nuevas</button>
+        <button class="btn btn-primary filter-btn" data-filtro="data-estado" data-estado="favorita">Mostrar Favoritas</button>
+        <button class="btn btn-primary filter-btn" data-filtro="data-visible" data-visible="0">Mostrar Ocultas</button>
+        <button class="btn btn-primary filter-btn" data-filtro="data-visible" data-visible="1">Mostrar Visibles</button>
+    </div>
+    <div class="row text-center justify-content-center">
+        <div class="col-md-6 my-4">
+            <div id="reviews-list" class="list-group">
+                {% for review in reviews %}
+                <div class="list-group-item-dark review-item" data-id="{{ review.id }}" data-estado="{{ review.estado }}" data-visible="{{ review.visible }}">
+                    <blockquote class="blockquote mb-4">
+                        <p class="mb-0 review-text">{{ review.texto }}</p>
+                        <footer class="blockquote-footer text-white">{{ review.nombre_autor }}</footer>
+                    </blockquote>
+                    <div class="d-flex justify-content-between">
+                        <button class="estado-button btn btn-primary mark-as-read-btn"> {{ 'Quitar de favoritas' if review.estado == 'favorita' else ('Marcar como leída' if review.estado == 'nueva' else 'Marcar como favorita') }}</button>                        
+                        <button class="visibility-button btn {{ 'btn-danger' if review.visible else 'btn-success' }}">{{ 'Ocultar' if review.visible else 'Mostrar' }}</button> 
+                   </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="#" id="prev-page">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#" id="next-page">Next</a></li>
+        </ul>
+    </nav>
+</div>
+
+<script src="{{ url_for('static', filename='js/reviews_admin.js') }}"></script>
+{% endblock %}
