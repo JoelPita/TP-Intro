@@ -3,38 +3,60 @@ document.addEventListener('DOMContentLoaded', function () {
     const reviewsList = document.getElementById('reviews-list');
     const searchInput = document.getElementById('search-input');
     let reviewsElements = Array.from(document.querySelectorAll('.review-item'));
-    // Elementos de la paginacion
+    // Elementos de la paginacion y fultrado
     const itemsPerPage = 5;
     let currentPage = 1;
     let filteredReviews = reviewsElements;
 
-    // Funcion que agrega los eventos y debe usarse una sola vez
-    function addEventListeners() {
-        reviewsElements.forEach(reviewElement => {
-            const id = reviewElement.getAttribute('data-id');
-            const visibilityButton = reviewElement.querySelector('.visibility-button');
-            const estadoButton = reviewElement.querySelector('.estado-button');
-            
-            // Evento de visibilidad
-            visibilityButton.addEventListener('click', function () {
-                if (this.disabled) return;
-                this.disabled = true; // controlo que no se hagan varios clicks seguidos
-                const visible = reviewElement.getAttribute('data-visible') === 'true';
-                updateVisibility(id, visible, this, reviewElement);
-            });
 
-            estadoButton.addEventListener('click', function () {
-                if (this.disabled) return;
-                this.disabled = true; // controlo que no se hagan varios clicks seguidos
-                const estado = reviewElement.getAttribute('data-estado');
-                updateEstado(id, estado, this, reviewElement);
-            });
-        });
+    const URL = 'http://localhost:5000'
+
+    // Agrega los eventos al reviewsList, quien disparada los eventos si la zona clickeada tiene el targe
+    // Me ahorro de poner eventos a todos los botones
+    reviewsList.addEventListener('click', function(event) {
+        if (event.target.classList.contains('visibility-button')) {
+            handleVisibilityButtonClick(event);
+        } else if (event.target.classList.contains('estado-button')) {
+            handleEstadoButtonClick(event);
+        } else if (event.target.classList.contains('delete-button')) {
+            handleDeleteButtonClick(event);
+        }
+
+    });
+
+    // Evento para la Delete
+    function handleDeleteButtonClick(event) {
+        const button = event.target;
+        const reviewElement = button.closest('.review-item');
+        const id = reviewElement.getAttribute('data-id');
+        // Mostrar una confirmación antes de proceder con la eliminación
+        const confirmation = confirm("¿Posta queres eliminar esta review?");
+        if (confirmation) {
+            deleteReview(id, reviewElement);
+        }
     }
 
-    // Eventos en botones
+    // Evento para la visibilidad
+    function handleVisibilityButtonClick(event) {
+        const button = event.target;
+        const reviewElement = button.closest('.review-item');
+        const id = reviewElement.getAttribute('data-id');
+        const visible = reviewElement.getAttribute('data-visible') === 'true';
+        updateVisibility(id, visible, button, reviewElement);
+    }
+
+    // Evento para para los estados
+    function handleEstadoButtonClick(event) {
+        const button = event.target;
+        const reviewElement = button.closest('.review-item');
+        const id = reviewElement.getAttribute('data-id');
+        const estado = reviewElement.getAttribute('data-estado');
+        updateEstado(id, estado, button, reviewElement);
+    }
+
+    // Peticiones a la API y actualizacion de botones 
     function updateVisibility(id, visible, button, reviewElement) {
-        fetch(`http://localhost:5000/reviews/${id}/visibility`, {
+        fetch(`${URL}/reviews/${id}/visibility`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -44,19 +66,46 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             alert("Perfecto. " + data.message);
-            reviewElement.setAttribute('data-visible', !visible);
-            updateVisibleButton(button, !visible); // Actualizo el contenido del boton
-            button.disabled = false; // Reactivo el boton
+            reviewElement.setAttribute('data-visible', (!visible).toString());
+
+            //Controlo que no se muestre el boton borrar para Reviews favoritas
+            const estado = reviewElement.getAttribute('data-estado');
+            const button_delete = reviewElement.querySelector('.delete-button');
+            if (visible && estado !== 'favorita') {
+                button_delete.classList.remove('d-none');
+                button_delete.classList.add('d-block');
+            } else {
+                button_delete.classList.remove('d-block');
+                button_delete.classList.add('d-none');
+            }
+            updateVisibleButton(button, !visible);
         })
         .catch(error => {
             alert('Error al actualizar la visibilidad');
-            button.disabled = false;
+        });
+    }
+
+    function deleteReview(id, reviewElement) {
+        fetch(`${URL}/reviews/${id}/delete`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Perfecto. " + data.message);
+            reviewElement.remove(); // Elimina el elemento de la lista
+            location.reload(); // Recargar la página después de la eliminación
+        })
+        .catch(error => {
+            alert('Error al eliminar la review');
         });
     }
 
     function updateEstado(id, estado, button, reviewElement) {
         const newEstado = (estado === 'nueva' || estado === 'favorita') ? 'desmarcada' : 'favorita';
-        fetch(`http://localhost:5000/reviews/${id}/state`, {
+        fetch(`${URL}/reviews/${id}/state`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -67,27 +116,36 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             alert("Estado actualizado: " + data.message);
             reviewElement.setAttribute('data-estado', newEstado);
-            button.textContent = newEstado === 'desmarcada' ? 'Marcar como favorita' : 'Quitar de favorita';
-            button.disabled = false; 
+            button.textContent = newEstado === 'desmarcada' ? 'Marcar como favorita' : 'Quitar de favoritas';
+            updateReviewFav(estado, newEstado, reviewElement);
         })
         .catch(error => {
             alert('Error al actualizar el estado');
-            button.disabled = false; 
         });
     }
 
-    // Cambio visual de los botones al tocarlos.
+    // Actualizaciones de botones
     function updateVisibleButton(button, newVisible) {
         button.textContent = newVisible ? 'Ocultar' : 'Mostrar';
         button.className = newVisible ? 'btn btn-danger visibility-button' : 'btn btn-success visibility-button';
     }
 
-    // Renderiza la vista cada vez que se toca un boton de cambio de estado o de siguiente pagina.
+    function updateReviewFav(estado, newEstado, reviewElement) {
+        const button_delete = reviewElement.querySelector('.delete-button');
+        const isVisible = reviewElement.getAttribute('data-visible') === 'true';
+        
+        reviewElement.classList.toggle('favorite-review', newEstado === 'favorita');
+        button_delete.classList.toggle('d-none', newEstado === 'favorita' || isVisible);
+        button_delete.classList.toggle('d-block', !(newEstado === 'favorita' || isVisible));
+    }
+    
+    // Filtra y recarga la lista cada vez que se toca un boton de cambio de estado o de siguiente pagina.
     function renderReviews() {
-        reviewsList.innerHTML = ''; // Limpiar la lista de reviews
-        let start = (currentPage - 1) * itemsPerPage;
-        let end = start + itemsPerPage;
-        filteredReviews.slice(start, end).forEach(review => {
+        reviewsList.innerHTML = '';
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const reviewsToRender = filteredReviews.slice(start, end);
+        reviewsToRender.forEach(review => {
             reviewsList.appendChild(review);
         });
         updatePagination();
@@ -96,9 +154,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Agrego eventos al tocar un boton de filtro por estado de reviews
     document.querySelectorAll('.filter-btn').forEach(button => {
         button.addEventListener('click', function () {
-            const criterio = this.getAttribute('data-filtro')
+            const titulo = document.getElementById('text-list-review');
+            titulo.innerText = this.textContent;
+            const criterio = this.getAttribute('data-filtro');
             const filter = this.getAttribute(criterio);
-            filteredReviews = reviewsElements.filter(review => filter === 'all' || review.getAttribute(criterio) === filter);
+            filteredReviews = reviewsElements.filter(review => {
+                return filter === 'all' || review.getAttribute(criterio) === filter;
+            });
             currentPage = 1;
             renderReviews();
         });
@@ -112,23 +174,23 @@ document.addEventListener('DOMContentLoaded', function () {
             const author = review.querySelector('.blockquote-footer').textContent.toLowerCase();
             return text.includes(query) || author.includes(query);
         });
-        currentPage = 1; // Resetear a la primera página después de buscar
+        currentPage = 1;
+        const titulo = document.getElementById('text-list-review');
+        titulo.innerText = 'Todas';
         renderReviews();
     }
 
-    // Event listener para el campo de búsqueda
     searchInput.addEventListener('input', function () {
         searchReviews(this.value);
     });
 
-    // Función para cambiar de página
+    // Funciones de paginacion
     function changePage(newPage) {
         if (newPage < 1 || newPage > Math.ceil(filteredReviews.length / itemsPerPage)) return;
         currentPage = newPage;
         renderReviews();
     }
 
-    // Event listeners para la paginación
     document.getElementById('prev-page').addEventListener('click', function (e) {
         e.preventDefault();
         changePage(currentPage - 1);
@@ -139,14 +201,11 @@ document.addEventListener('DOMContentLoaded', function () {
         changePage(currentPage + 1);
     });
 
-    // Función para actualizar los botones de paginación
     function updatePagination() {
         const totalPages = Math.ceil(filteredReviews.length / itemsPerPage);
         document.querySelector('#prev-page').parentElement.classList.toggle('disabled', currentPage === 1);
         document.querySelector('#next-page').parentElement.classList.toggle('disabled', currentPage === totalPages);
     }
 
-    // Inicializaciones
-    addEventListeners();
     renderReviews();
 });
