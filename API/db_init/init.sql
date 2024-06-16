@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS Reservas (
     motivo_rechazo VARCHAR(150),
     precio_total DECIMAL(10, 2),
     habitacion_id INT,
+    codigo_reserva VARCHAR(10) NULL,
     FOREIGN KEY (habitacion_id) REFERENCES Habitaciones(id)
 );
 
@@ -45,7 +46,7 @@ CREATE TABLE IF NOT EXISTS Reviews (
 -- Inserción de datos ficticios en la tabla Habitaciones
 INSERT INTO Habitaciones (nombre, descripcion, precio_noche, personas_max) 
 VALUES
-    ('Suite Deluxe', 'Suite con vista al mar', 150.00, 4),
+    ('Suite Deluxe', 'Suite con vista al lago', 150.00, 4),
     ('Habitación Doble', 'Habitación con dos camas individuales', 80.00, 2),
     ('Habitación Simple', 'Habitación con una cama individual', 50.00, 1);
 
