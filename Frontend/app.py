@@ -86,7 +86,7 @@ def habitaciones():
 
 @app.route('/habitaciones/<id>', methods = ['GET'])
 def habitaciones_id(id):
-    return
+    return render_template('habitacion.html', id=id)
 
 @app.route('/servicios')
 def servicios():
