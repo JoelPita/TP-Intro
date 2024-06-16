@@ -11437,6 +11437,10 @@ pre {
 .has-height-lg {
   min-height: 500px;
 }
+.boton_habitaciones{
+  padding-bottom: 50px;
+  padding-left:45%;
+}
 
 .gallary {
   margin: 0;
