@@ -11556,11 +11556,13 @@ pre {
   font-size: 18px;
   width: 100%;
   overflow: hidden;
+  overflow-y: scroll;
+  height: 250px;
 }
 
 .container-comments .col-lg-40 {
-  margin-left: 5vh;
-  margin-right: 5vh;
+  margin-left: 15vh;
+  margin-right: 15vh;
 }
 
 .comentarios-en-columnas .user-container { 
@@ -11583,4 +11585,37 @@ pre {
 
 .comentarios-en-columnas p { 
   padding: 0px 10px;
+}
+
+@media (max-width: 1100px) {
+  .col-sm-8 {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 33.33333%;
+        -ms-flex: 0 0 33.33333%;
+            flex: 0 0 33.33333%;
+    min-width: 100%;
+  }
+}
+
+
+@media (max-width: 1100px) {
+  .container-comments .col-lg-40, .container-comments .fila{
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 33.33333%;
+        -ms-flex: 0 0 33.33333%;
+            flex: 0 0 33.33333%;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .container-comments .fila{
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 33.33333%;
+        -ms-flex: 0 0 33.33333%;
+            flex: 0 0 33.33333%;
+    padding-left: 2%;
+    padding-right: 2%;
+  }
 }
