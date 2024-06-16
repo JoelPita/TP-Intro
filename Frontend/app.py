@@ -1,17 +1,32 @@
 from flask import Flask, jsonify, request, render_template, url_for, redirect
+<<<<<<< Updated upstream
 import smtplib
 from email.mime.text import MIMEText
+=======
+<<<<<<< Updated upstream
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine
+from sqlalchemy import text
+from sqlalchemy.exc import SQLAlchemyError
+>>>>>>> Stashed changes
 import requests
+=======
+import smtplib
+from email.mime.text import MIMEText
+>>>>>>> Stashed changes
 import datetime
-"""
-    Constantes esenciales para la construcción de la URL de la API del clima.
-"""
-API_KEY = "dbec3add72c6ecd469b009ae31e34fb5"
-LATITUD = "-50.33943088470253"
-LONGITUD = "-72.25593247083323"
-UNIDAD = "metric"
+
+from blueprints.weatherAPI.weather import weatherBp
+from blueprints.contacto.contacto import contactoBp
+from blueprints.reserva.reserva import reservaBp
+from blueprints.gestion_reservas.gestion_reserva import gestionReservaBp
 
 app = Flask(__name__)
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
+>>>>>>> Stashed changes
 
 """
     Método que se encarga de la comunicación con el servicio de Open Weather y se obtiene
@@ -71,6 +86,12 @@ def obtener_pronostico():
             'estado': forecast_data['list'][i]['weather'][0]['main']
         }
     return jsonify(forecast_weather)
+=======
+app.register_blueprint(weatherBp)
+app.register_blueprint(contactoBp, url_prefix="/contacto")
+app.register_blueprint(reservaBp, url_prefix="/reserva")
+app.register_blueprint(gestionReservaBp, url_prefix="/gestion_reservas")
+>>>>>>> Stashed changes
     
 @app.route('/')
 def home():
@@ -92,7 +113,12 @@ def habitaciones_id(id):
 def servicios():
     return render_template('servicios.html')
 
+<<<<<<< Updated upstream
 @app.route('/contacto', methods=["GET", "POST"])
+=======
+<<<<<<< Updated upstream
+@app.route('/contacto')
+>>>>>>> Stashed changes
 def contacto():
     if request.method == "POST":
         nombre = request.form.get("name")
@@ -145,6 +171,7 @@ def reserva():
     
     return render_template('reserva.html')
 
+<<<<<<< Updated upstream
 @app.route('/gestion_reservas')
 def gestion_reservas():
     api_url = "http://127.0.0.1:5000/reservas"
@@ -155,6 +182,10 @@ def gestion_reservas():
     else:
         return jsonify({"message": "Error al obtener las reservas"}), 500
 
+=======
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 @app.route('/reviews')
 def reviews():
     return render_template('reviews.html')
