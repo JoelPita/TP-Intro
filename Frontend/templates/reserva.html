@@ -13,7 +13,9 @@
 <div class="container-fluid has-bg-overlay text-center text-light has-height-lg middle-items" id="book-table">
     <div class="">
         <h2 class="section-title mb-5">¡Completa tus datos acá!</h2>
-        <form method="post" action="{{ url_for('reserva') }}">
+
+        <form method="post" action="{{ url_for('reservaBp.reserva') }}">
+
             <div class="row mb-5">
                 <div class="col-sm-6 col-md-3 col-xs-12 my-2">
                     <input type="email" name="email_cliente" class="form-control form-control-lg custom-form-control" placeholder="Email" required>
