@@ -31,7 +31,9 @@ CREATE TABLE IF NOT EXISTS Reservas (
     precio_total DECIMAL(10, 2),
     habitacion_id INT,
     codigo_reserva VARCHAR(10) NULL,
+    reviewId INT NULL,
     FOREIGN KEY (habitacion_id) REFERENCES Habitaciones(id)
+    FOREIGN KEY (reviewId) REFERENCES Reviews(id)
 );
 
 CREATE TABLE IF NOT EXISTS Reviews (
