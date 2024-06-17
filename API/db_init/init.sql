@@ -16,6 +16,14 @@ CREATE TABLE IF NOT EXISTS Habitaciones (
     personas_max INT NULL
 );
 
+CREATE TABLE IF NOT EXISTS Reviews (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_autor VARCHAR(80) NOT NULL,
+    texto VARCHAR(150) NOT NULL,
+    visible BOOLEAN DEFAULT false,
+    estado VARCHAR(50) DEFAULT 'nueva'
+);
+
 CREATE TABLE IF NOT EXISTS Reservas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email_cliente VARCHAR(100) NOT NULL,
@@ -32,17 +40,8 @@ CREATE TABLE IF NOT EXISTS Reservas (
     habitacion_id INT,
     codigo_reserva VARCHAR(10) NULL,
     reviewId INT NULL,
-    FOREIGN KEY (habitacion_id) REFERENCES Habitaciones(id)
+    FOREIGN KEY (habitacion_id) REFERENCES Habitaciones(id),
     FOREIGN KEY (reviewId) REFERENCES Reviews(id)
-);
-
-CREATE TABLE IF NOT EXISTS Reviews (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre_autor VARCHAR(80) NOT NULL,
-    texto VARCHAR(150) NOT NULL,
-    visible BOOLEAN DEFAULT false,
-    estado VARCHAR(50) DEFAULT 'nueva'
-
 );
 
 -- Inserción de datos ficticios en la tabla Habitaciones

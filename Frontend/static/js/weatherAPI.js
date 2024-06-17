@@ -1,23 +1,27 @@
 
 // Funcion que aplica el icono correspondiente al estado del clima.
 function cambiar_Icono(elemento, estado_clima) {
-    switch (estado_clima) {
-        case 'clouds':
-            elemento.src = 'static/imgs/dia-nublado.jpg';
-            break;
-        case 'sunny':
-            elemento.src = 'static/imgs/soleado.jpg';
-            break;
-        case 'rain':
-            elemento.src = 'static/imgs/lluvioso.jpg';
-            break;
-        case 'snow':
-            elemento.src = 'static/imgs/nevado.jpg';
-            break;
-        
-        default:
-            elemento.src = 'static/imgs/dia-nublado.jpg';
-    };
+    fetch('/weather_icons')
+    .then(response => response.json())
+    .then(data => {
+        switch (estado_clima) {
+            case 'clouds':
+                elemento.src = data.clouds;
+                break;
+            case 'sunny':
+                elemento.src = data.sunny;
+                break;
+            case 'rain':
+                elemento.src = data.rain;
+                break;
+            case 'snow':
+                elemento.src = data.snow;
+                break;
+            
+            default:
+                elemento.src = 'static/imgs/dia-nublado.jpg';
+        };
+    });
 };
 
 // Captura los datos del back-end de app.py y los muestra en el html.
