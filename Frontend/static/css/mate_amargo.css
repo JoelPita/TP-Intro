@@ -11493,6 +11493,7 @@ pre {
 }
 
 /* CUSTOM BOOTSTRAP */
+/*Estilos de reviews.html*/
 #reviews-container {
   max-height: 500px;
   text-align: center;
@@ -11622,4 +11623,15 @@ pre {
     padding-left: 2%;
     padding-right: 2%;
   }
+}
+
+#commentForm input, #commentForm textarea {
+  background-color: white;
+  color: black;
+  margin-bottom: 20px;
+}
+
+#commentForm img {
+  width: 90px;
+  height: 90px;
 }

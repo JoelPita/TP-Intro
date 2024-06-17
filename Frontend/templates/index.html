@@ -179,12 +179,6 @@
     {% block section %}
     {% endblock %}
 
-
-
-
-
-
-
     <br>
     <br>
     <!--  About Section 5 -->
@@ -207,39 +201,61 @@
     </div>
 
 
-        <div class="gallary row">
-            <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-                <img src="{{ url_for('static',filename='imgs/habitacion-1.jpg') }}" class="gallary-img">
-                <a href="{{ url_for('habitaciones_id',id=1)}}" class="gallary-overlay">
-                    <i class="gallary-icon ti-plus"></i>
-                </a>
-            </div>
-            <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-                <img src="{{ url_for('static',filename='imgs/habitacion-6.jpg'  ) }}" class="gallary-img">
-                <a href="{{ url_for('habitaciones_id',id=2) }}" class="gallary-overlay">
-                    <i class="gallary-icon ti-plus"></i>
-                </a>
-            </div>
-            <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-                <img src="{{ url_for('static',filename='imgs/habitacion-9.jpg') }}" class="gallary-img">
-                <a href="{{ url_for('habitaciones_id', id=3) }}" class="gallary-overlay">
-                    <i class="gallary-icon ti-plus"></i>
-                </a>
-            </div>
-            <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-                <img src="{{ url_for('static',filename='imgs/habitacion-10.jpg') }}" class="gallary-img">
-                <a href="{{ url_for('habitaciones_id',id=4) }}" class="gallary-overlay">
-                    <i class="gallary-icon ti-plus"></i>
-                </a>
-            </div>
+    <div class="gallary row">
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="{{ url_for('static',filename='imgs/habitacion-1.jpg') }}" class="gallary-img">
+            <a href="{{ url_for('habitaciones_id',id=1)}}" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
         </div>
-        <br>
-        <div>
-            <h1 class=boton_habitaciones>
-                <a href="{{url_for('habitaciones')}}" class="btn btn-lg btn-primary" >Ver Habitaciones</a>
-            </h1>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="{{ url_for('static',filename='imgs/habitacion-6.jpg'  ) }}" class="gallary-img">
+            <a href="{{ url_for('habitaciones_id',id=2) }}" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
         </div>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="{{ url_for('static',filename='imgs/habitacion-9.jpg') }}" class="gallary-img">
+            <a href="{{ url_for('habitaciones_id', id=3) }}" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="{{ url_for('static',filename='imgs/habitacion-10.jpg') }}" class="gallary-img">
+            <a href="{{ url_for('habitaciones_id',id=4) }}" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+    </div>
+    <br>
+    <div>
+        <h1 class=boton_habitaciones>
+            <a href="{{url_for('habitaciones')}}" class="btn btn-lg btn-primary" >Ver Habitaciones</a>
+        </h1>
+    </div>
 
+    <div class="container-fluid wow fadeIn" data-wow-duration="1.5s">
+        <div>
+            <div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-8 py-5 my-5s">
+                        <h2>Reviews</h2>
+                        <br>
+                        <h5>
+                            Veamos qué es lo que opinan nuestros clientes.
+                        </h5>
+                        <br>
+                        {% include "reviewsSummary.html" %}
+                        <div class="reviews-button">
+                            <a href="{{url_for('reviewsBp.reviews')}}" class="btn btn-lg btn-primary" >Ver mas</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
 </div>
 
 {% endblock %}

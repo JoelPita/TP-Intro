@@ -87,6 +87,61 @@
         </div>
     </div>
 </div>
-<br>
-<br>
+
+
+<div class="container-comments wow fadeIn" data-wow-duration="1.5s">   
+    <div>
+        <div class="comentarios-en-columnas col-lg-40">
+            <div class="fila justify-content-center">
+                <div class="col-sm-8 py-5 my-5">
+                    <h3 class="mb-4">¡Ahora queremos leerte!</h3>
+                    <h4 class="mb-4">Con confianza, comenta tu experiencia con nosotros...</h4>
+                    <br>
+                    <section class="comment">
+
+                        <form method="POST" id="commentForm" name="commentForm" class="commentForm" onsubmit="return validateInputs();">
+                            <section class="user-container"> 
+                                <section class="usuario">
+                                    <img src="{{url_for('static',filename='imgs/user-icon.jpg')}}" class="user-icon-comments">
+                                    <div class="col-md-12">
+                                        <div class="comment-group">
+                                            <input type="text" class="form-control" name="id_reserva" id="id_reserva" placeholder="Codigo de reserva.">
+                                            <i class="fa fa-check-circle-o"></i>
+                                            <i class="fa fa-times-circle-o"></i>
+                                        </div>
+                                        <div class="comment-group">
+                                            <input type="text" class="form-control" name="nombre_autor" id="nombre_autor" placeholder="Escribe tu nombre.">
+                                            <i class="fa fa-check-circle-o"></i>
+                                            <i class="fa fa-times-circle-o"></i>
+                                        </div>
+                                    </div>
+                                </section>
+                            </section>
+
+                            <div class="col-md-12">
+                                <div class="comment-group">
+                                    <textarea name="comment" class="form-control" id="comment" cols="30" rows="6" placeholder="Escribe algo..."></textarea>
+                                    <i class="fa fa-check-circle-o"></i>
+                                    <i class="fa fa-times-circle-o"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary">COMENTAR</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </section>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <br>
+    <br>
+</div>
+
 {% endblock %}
