@@ -93,29 +93,6 @@ def update_state(id):
     
     return jsonify({'message': "Se ha modificado el estado correctamente"}), 200
 
-# ---Actualizar la columna estado ---
-@reviews_bp.route('/<int:id>/state', methods=['PUT'] ) 
-def update_state(id):
-    new_status= request.get_json().get('estado')
-    # --- Me aseguro que la request venga con un status----
-    if new_status is None:
-        return jsonify({'message': "Datos incompletos"}), 400
-    query = text("UPDATE Reviews SET estado = :estado WHERE id= :id")
-    try:
-        engine = current_app.config['engine']
-        with engine.connect() as conn: 
-            result = conn.execute(query, {'estado': new_status, 'id': id})
-            conn.commit()
-            # --- Verifica si existe una review para el id ----
-            if  result.rowcount == 0:
-                return jsonify({'message': 'Review no encontrada para el id especificado'}), 404
-    except SQLAlchemyError as err:
-        error_message = str(err.__cause__) if err.__cause__ else str(err)
-        return jsonify({'message': "Se ha producido un error: " + error_message}), 500
-    
-    return jsonify({'message': "Se ha modificado el estado correctamente"}), 200
-
-
 # --- Obtener todas las reviews (para el administrador) ---
 @reviews_bp.route('/', methods=['GET'])
 def get_all_reviews():
@@ -165,25 +142,6 @@ def get_visible_reviews():
         reviews.append(entity)
 
     return jsonify(reviews), 200    
-
-
-@reviews_bp.route('/<int:id>/delete', methods=['DELETE'])
-def delete_review(id):
-    delete_query = text("DELETE FROM Reviews WHERE id = :id")
-    validation_query = text("SELECT * FROM Reviews WHERE id = :id")
-    try:
-        engine = current_app.config['engine']
-        with engine.connect() as conn:
-            val_result = conn.execute(validation_query, {'id': id})
-            if val_result.rowcount == 0:
-                return jsonify({"message": "Review no encontrada"}), 404
-            conn.execute(delete_query, {'id': id})
-            conn.commit()
-    except SQLAlchemyError as err:
-        error_message = str(err.__cause__) if err.__cause__ else str(err)
-        return jsonify({'message': "Se ha producido un error: " + error_message}), 500    
-    return jsonify({"message": "Review eliminada correctamente"}), 200
-
 
 
 @reviews_bp.route('/<int:id>/delete', methods=['DELETE'])
