@@ -83,17 +83,4 @@ def reviews():
 
     # GET request
     reviews_favs = get_random_reviews()
-    total_reviews = get_total_reviews()
-    return render_template('reviews.html', reviews=reviews_favs, total_reviews=total_reviews)
-
-def get_total_reviews():
-    try:
-        api_ruta = current_app.config['API_ROUTE']
-        api_url = api_ruta + "reviews/visible"
-        response = requests.get(api_url)
-        response.raise_for_status()  # Verifica si la solicitud fue exitosa
-        total_reviews = response.json()
-        return total_reviews
-    except requests.RequestException as e:
-        print(f"Error fetching reviews: {e}")
-        return []
+    return render_template('reviews.html', reviews=reviews_favs)

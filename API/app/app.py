@@ -15,9 +15,6 @@ try:
     app.config['engine'] = engine
 except Exception as e:
     print(f"Error connecting to the database: {e}")
-#Deberia estar en un try?
-engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
-app.config['engine'] = engine
 
 # Define la URL del frontend
 frontend_url = "http://localhost:5001"

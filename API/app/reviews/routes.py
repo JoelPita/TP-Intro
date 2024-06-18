@@ -60,7 +60,6 @@ def update_visibility(id):
     try:
         engine = current_app.config['engine']
         with engine.connect() as conn: 
-        with engine.connect() as conn: 
             result = conn.execute(query, {'visible': new_status, 'id': id})
             conn.commit()
             # --- Verifica si existe una review para el id ----
@@ -123,7 +122,6 @@ def get_all_reviews():
     query = text("SELECT * FROM Reviews")
     try:
         engine = current_app.config['engine']
-        with engine.connect() as conn: 
         with engine.connect() as conn: 
             result = conn.execute(query)
     except SQLAlchemyError as err:

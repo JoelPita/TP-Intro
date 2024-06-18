@@ -11,7 +11,7 @@ def home():
     return render_template('index.html', reviews=reviews)
 
 #Le pido 3 reviews al azar, principalmente las favoritas, sino cualquiera visible.
-def get_random_reviews(limit=3):
+def get_random_reviews(limit=7):
     try:
         api_ruta = current_app.config['API_ROUTE']
         api_url = api_ruta + "reviews/visible"

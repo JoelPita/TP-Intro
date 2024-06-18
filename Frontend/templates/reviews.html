@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block body_content %}
-<div class="container my-5">
+<div class="container mt-5">
     <h1 class="text-center border-bottom pb-3 mb-4" id="Agregar-review">Agregar Review</h1>
     
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -32,108 +32,54 @@
         </div>
         {% endif %}
     {% endwith %}
-    
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <form action="{{ url_for('reviewsBp.reviews') }}#Agregar-review" method="POST" class="bg-light p-4 shadow rounded text-dark">
-                <div class="form-group">
-                    <label for="codigo_reserva">Código de Reserva:</label>
-                    <input type="text" id="codigo_reserva" name="codigo_reserva" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="nombre_autor">Nombre del Autor:</label>
-                    <input type="text" id="nombre_autor" name="nombre_autor" maxlength="80" class="form-control" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="texto">Texto de la Review:</label>
-                    <textarea id="texto" name="texto" maxlength="150" class="form-control" rows="4" required></textarea>
-                </div>
-                
-                <button type="submit" class="btn btn-primary btn-block">Agregar Review</button>
-            </form>
-        </div>
-    </div>
-</div>    
+</div>
 
-<!--  About Section 1 -->    
-<div class="container-comments wow fadeIn" data-wow-duration="1.5s">
+<div class="container-comments wow fadeIn mb-5" data-wow-duration="1.5s">   
     <div class="comentarios-en-columnas col-lg-40">
         <div class="fila justify-content-center">
             <div class="col-sm-8 py-5">
-                <br>
-                {% for review in total_reviews %}
+                <h3 class="mb-4">¡Ahora queremos leerte!</h3>
+                <h4 class="mb-4">Con confianza, comenta tu experiencia con nosotros y la compartiremos...</h4>
+                
                 <section class="comment">
-                    <h5>{{ review.texto }}</h5>
-                    <section class="user-container"> 
-                        <section class="usuario">
-                            <img src="{{ url_for('static', filename='imgs/user-icon.jpg') }}" class="user-icon-comments">
-                            <p>{{ review.nombre_autor }}</p>
+                    <form method="POST" id="commentForm" name="commentForm" class="commentForm">
+                        <section class="user-container"> 
+                            <section class="usuario">
+                                <img src="{{url_for('static',filename='imgs/user-icon.jpg')}}" class="user-icon-comments">
+                                <div class="col-md-12">
+                                    <div class="comment-group">
+                                        <input type="text" class="form-control" name="codigo_reserva" id="codigo_reserva" placeholder="Código de Reserva" required>
+                                        <i class="fa fa-check-circle-o"></i>
+                                        <i class="fa fa-times-circle-o"></i>
+                                    </div>
+                                    <div class="comment-group">
+                                        <input type="text" class="form-control" name="nombre_autor" id="nombre_autor" placeholder="Nombre del Autor" required>
+                                        <i class="fa fa-check-circle-o"></i>
+                                        <i class="fa fa-times-circle-o"></i>
+                                    </div>
+                                </div>
+                            </section>
                         </section>
-                    </section>
+                    
+                        <div class="col-md-12">
+                            <div class="comment-group">
+                                <textarea name="texto" class="form-control" id="comment" cols="30" rows="6" placeholder="Texto de la Review" required></textarea>
+                                <i class="fa fa-check-circle-o"></i>
+                                <i class="fa fa-times-circle-o"></i>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">COMENTAR</button>
+                            </div>
+                        </div>
+                    </form>
                 </section>
-                <br>
-                {% endfor %}
             </div>
         </div>
     </div>
 </div>
 
-
-<div class="container-comments wow fadeIn" data-wow-duration="1.5s">   
-    <div>
-        <div class="comentarios-en-columnas col-lg-40">
-            <div class="fila justify-content-center">
-                <div class="col-sm-8 py-5 my-5">
-                    <h3 class="mb-4">¡Ahora queremos leerte!</h3>
-                    <h4 class="mb-4">Con confianza, comenta tu experiencia con nosotros...</h4>
-                    <br>
-                    <section class="comment">
-
-                        <form method="POST" id="commentForm" name="commentForm" class="commentForm" onsubmit="return validateInputs();">
-                            <section class="user-container"> 
-                                <section class="usuario">
-                                    <img src="{{url_for('static',filename='imgs/user-icon.jpg')}}" class="user-icon-comments">
-                                    <div class="col-md-12">
-                                        <div class="comment-group">
-                                            <input type="text" class="form-control" name="id_reserva" id="id_reserva" placeholder="Codigo de reserva.">
-                                            <i class="fa fa-check-circle-o"></i>
-                                            <i class="fa fa-times-circle-o"></i>
-                                        </div>
-                                        <div class="comment-group">
-                                            <input type="text" class="form-control" name="nombre_autor" id="nombre_autor" placeholder="Escribe tu nombre.">
-                                            <i class="fa fa-check-circle-o"></i>
-                                            <i class="fa fa-times-circle-o"></i>
-                                        </div>
-                                    </div>
-                                </section>
-                            </section>
-
-                            <div class="col-md-12">
-                                <div class="comment-group">
-                                    <textarea name="comment" class="form-control" id="comment" cols="30" rows="6" placeholder="Escribe algo..."></textarea>
-                                    <i class="fa fa-check-circle-o"></i>
-                                    <i class="fa fa-times-circle-o"></i>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">COMENTAR</button>
-                                </div>
-                            </div>
-                        </form>
-
-                    </section>
-                    <br>
-                    <br>
-                </div>
-            </div>
-        </div>
-    </div> 
-    <br>
-    <br>
-</div>
 
 {% endblock %}
