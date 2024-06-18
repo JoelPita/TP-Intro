@@ -17,7 +17,7 @@
     <!-- Widget Stylesheet -->
 <link rel="stylesheet" href="{{url_for('static', filename='css/weather.css',_external=True)}}" />
 
-    {% block link_scrip %} {% endblock %}
+    {% block links_head %} {% endblock %}
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
     
@@ -38,7 +38,7 @@
                     <a class="nav-link" href="{{url_for('habitaciones')}}">Habitaciones</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('reservaBp.reserva')}}">Reserva</a>
+                    <a class="nav-link" href="{{url_for('reservasBp.reserva')}}">Reserva</a>
                 </li>
                 <li class="nav-item">
                     {% include 'weather.html' %}
@@ -86,6 +86,8 @@
         </div>
     </div>
     
+
+  
     <!-- end of page footer -->
 
 	<!-- core  -->
@@ -109,5 +111,9 @@
     
     <!-- Weather data js -->
     <script src="{{url_for('static', filename='js/weatherAPI.js',_external=True)}}"></script>
+    <!-- Scripts block -->
+    {% block scripts %}
+    {% endblock %}
+
 </body>
 </html>

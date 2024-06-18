@@ -5,7 +5,7 @@ import requests
 admin_reviewsBp = Blueprint("admin_reviewsBp", __name__, template_folder='templates')
 
 @admin_reviewsBp.route('/', methods=['GET'])
-def admin_reviews():
+def gestion_reviews():
     # Hardcodeo la vista por si falla la API
     fallback_reviews = [
     {"id": 00, "nombre_autor": "ERROR", "texto":  "La API no pudo conectarse."},

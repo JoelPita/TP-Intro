@@ -3,7 +3,6 @@ from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 
 # ---Crear Blueprint para reviews ---
-# ---Crear Blueprint para reviews ---
 reviews_bp = Blueprint('reviews', __name__)
 
 # ---Crear las rutas con el blueprint---

@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, render_template, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
+from flask_cors import CORS
 from .reviews.routes import reviews_bp
 from .reservas.routes import reservas_bp
 from .users.routes import users_bp
@@ -8,6 +9,7 @@ import logging
 from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 #Creacion de engine
 try:
