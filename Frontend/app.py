@@ -1,5 +1,5 @@
 import os
-from flask import Flask, flash, jsonify, make_response, request, render_template, url_for, redirect
+from flask import Flask, flash, jsonify, make_response, request, render_template, url_for, redirect, current_app
 import smtplib
 from email.mime.text import MIMEText
 import requests
@@ -36,7 +36,8 @@ def admin():
             'email': request.form['email'],
             'password': request.form['password']
         }
-        api_url = api_URL('users/validar_credenciales')  # Endpoint de la API para el login de admin
+        api_ruta = current_app.config['API_ROUTE']
+        api_url = api_ruta + "users/validar_credenciales" # Endpoint de la API para el login de admin
         headers = {'Content-Type': 'application/json'}
 
         try:
@@ -105,28 +106,9 @@ def contacto():
         return render_template('contacto.html')
     return render_template('contacto.html')
 
-
-
 @app.route('/reviews')
 def reviews():
     return render_template('reviews.html')
-
-@app.route('/admin/reviews', methods=['GET'])
-def admin_reviews():
-    # Hardcodeo la vista por si falla la API
-    fallback_reviews = [
-    {"id": 00, "nombre_autor": "ERROR", "texto":  "La API no pudo conectarse."},
-    {"id": 00, "nombre_autor": "ERROR", "texto":  "La API no pudo conectarse."},
-    {"id": 00, "nombre_autor": "ERROR", "texto":  "La API no pudo conectarse."}
-    ]
-    try:
-        # Obtengo las reviews desde la API
-        response = requests.get(api_URL('reviews/'))
-        my_reviews = response.json()
-        return render_template('admin_reviews.html', reviews=my_reviews)
-    except requests.exceptions.RequestException as e:
-        return render_template('admin_reviews.html', reviews=fallback_reviews)
-
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -135,7 +117,6 @@ def page_not_found(e):
 @app.route('/nosotros')
 def sobre_nosotros():
     return render_template('nosotros.html')
-
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5001, debug=True)
