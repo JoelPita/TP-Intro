@@ -2989,6 +2989,8 @@ fieldset:disabled a.btn {
   border-color: #47D8E0;
 }
 
+
+
 .btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active,
 .show > .btn-info.dropdown-toggle {
   color: #212529;
@@ -11658,4 +11660,25 @@ pre {
 #commentForm img {
   width: 90px;
   height: 90px;
+}
+
+.admin-card {
+  background-color: #1a2535; 
+  border: none;
+  border-radius: 10px;
+}
+
+.admin-card .form-control {
+  background-color: rgba(255, 255, 255, 0.9); 
+  border: none;
+  color: #1a2535; 
+}
+
+.admin-card .text-light {
+  color: #ffffff !important; 
+}
+
+.admin-card .form-control::placeholder {
+  color: #1a2535; 
+  opacity: .75; 
 }

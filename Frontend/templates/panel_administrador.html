@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block head_title %}Administracion{% endblock %}
+
+{% block header %}
+    <div class="container-fluid has-bg-overlay text-center text-light has-height-lg middle-items" id="admin-panel">
+        <div class="">
+            <h2 class="section-title mt-5">Panel de administración</h2>
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-4 my-2">
+                    <a href="{{ url_for('reservasBp.gestion_reservas') }}" class="btn btn-lg btn-primary">Gestión de Reservas</a>
+                </div>
+                <div class="col-md-4 my-2">
+                    <a href="{{ url_for('admin_reviewsBp.gestion_reviews') }}" class="btn btn-lg btn-primary">Gestión de Reviews</a>
+                </div>
+                <div class="col-md-4 my-2">
+                    <a href="{{ url_for('reservasBp.gestion_reservas') }}" class="btn btn-lg btn-primary">Gestión de Precios de Habitaciones</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
