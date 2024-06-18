@@ -76,5 +76,40 @@ def modificar_precios_habitaciones():
     except requests.RequestException:
         return render_template('404.html')     #deberia ser pagina de error 500
 
+@app.route('/actualizar_precios', methods = ['GET'])
+def pedir_precios_habitaciones():
+    obtener_habitaciones = 'http://127.0.0.1:5000/gestion_precios/obtener-habitaciones' #se reemplazara por el endpoint correspondiente cuando esté disponible
+                    #no logro que funcione con url_for('gestion_precios.obtener_habitaciones', _external=True)
+    try:                       
+        response = requests.get(obtener_habitaciones)
+        if response.status_code == 200:
+            datos = response.json()
+            return render_template('gestion_precios.html', datos=datos)
+        elif response.status_code == 404:
+            return render_template('404.html')
+        else:
+            return render_template('404.html')  #deberia ser pagina de error 500
+    except requests.RequestException:
+        return render_template('404.html')      #deberia ser pagina de error 500
+    
+    
+@app.route('/actualizar_precios', methods=['POST'])
+def modificar_precios_habitaciones():
+    id_habitacion = request.form['id']
+    nuevo_precio = str(request.form['precio_noche'])
+    actualizar_precio = 'http://127.0.0.1:5000/gestion_precios/gestion_precios'
+                     #no logro que funcione con url_for('gestion_precios.actualizar_precios_habitaciones', _external=True)
+    try:
+        response = requests.patch(actualizar_precio, json={'id': id_habitacion, 'precio_noche': nuevo_precio})
+
+        if response.status_code == 200:
+            return redirect(url_for('pedir_precios_habitaciones', _external=True)) 
+        elif response.status_code == 404:
+            return render_template('404.html')
+        else:
+            return render_template('404.html') #deberia ser pagina de error 500
+    except requests.RequestException:
+        return render_template('404.html')     #deberia ser pagina de error 500
+
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5001, debug=True)
