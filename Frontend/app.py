@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import requests
 
 from blueprints.weatherAPI.weather import weatherBp
 from blueprints.contacto.contacto import contactoBp
@@ -33,7 +34,7 @@ def habitaciones():
 
 @app.route('/habitaciones/<id>', methods = ['GET'])
 def habitaciones_id(id):
-    return
+    return render_template('habitacion.html', id=id)
 
 @app.route('/servicios')
 def servicios():

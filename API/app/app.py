@@ -9,6 +9,12 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
+#Creacion de engine
+try:
+    engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
+    app.config['engine'] = engine
+except Exception as e:
+    print(f"Error connecting to the database: {e}")
 #Deberia estar en un try?
 engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
 app.config['engine'] = engine
@@ -25,5 +31,6 @@ app.register_blueprint(reviews_bp, url_prefix='/reviews')
 app.register_blueprint(reservas_bp, url_prefix='/reservas')
 app.register_blueprint(users_bp, url_prefix='/users')
 
+
 if __name__ == "__main__":
-    app.run(host='127.0.0.0.0', port=5000, debug=True) 
+    app.run(host='127.0.0.0', port=5000, debug=True) 

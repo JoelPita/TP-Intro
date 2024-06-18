@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+
 {% block head_title %}Hotel del Glaciar{% endblock %}
-      
+
 <!-- header -->
 {% block header %}
 <div class="overlay text-white text-center">
@@ -14,6 +15,9 @@
 {% block body_content %}
 <div class="container-fluid">
     <!--  About Section  -->
+    <br>
+    <br>
+    <br>
     <div id="about" class="container-fluid wow fadeIn" id="about"data-wow-duration="1.5s">
         <div class="row">
             <div class="col-lg-6 has-img-bg"><a href="{{url_for('static',filename='imgs/about-section.jpg')}}"></a></div>
@@ -39,9 +43,9 @@
             <div class="col-lg-6">
                 <div class="row justify-content-center">
                     <div class="col-sm-8 py-5 my-5s">
-                        <h2 class="mb-4">Sobre Ushuaia</h2>
+                        <h2 class="mb-4">Porque elegir Ushuaia como destino</h2>
                         <br>
-                        <h5>Conocida como la "Ciudad del Fin del Mundo", Ushuaia es un destino encantador que cautiva a visitantes de todo el mundo con su belleza natural incomparable y su rica historia. Situada en el extremo sur de Argentina, esta pintoresca ciudad ofrece una variedad de actividades al aire libre, desde excursiones en el Parque Nacional Tierra del Fuego hasta navegaciones por el Canal Beagle, garantizando una aventura inolvidable para todos los que la visitan.</h5>
+                        <h5>Ushuaia, en el extremo austral del mundo, ofrece una combinación única de paisajes impresionantes y aventuras emocionantes. Desde explorar glaciares y navegar por el canal Beagle hasta descubrir la cultura fueguina, cada momento en Ushuaia promete una experiencia inolvidable en un entorno natural espectacular.</h5>
                         <br>
                     </div>
                 </div>
@@ -49,7 +53,47 @@
             <div class="col-lg-6 has-img-bg2"><a href="{{url_for('static',filename='imgs/about-section2.jpg')}}"></a></div>
         </div>
     </div>
-    <br>
+
+
+     <div id="blog" class="container-fluid bg-dark text-light py-5 text-center wow fadeIn">
+        <div class="row justify-content-center">
+    
+        </div>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="foods" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card bg-transparent border my-3 my-md-0">
+                            <img src="{{url_for('static', filename='imgs/about-ushuaia1.jpg')}}"  class="rounded-0 card-img-top mg-responsive">
+                            <div class="card-body">
+                                <h1 class="text-center mb-4">La ciudad de Ushuaia</h1>
+                                <p class="text-white"> Ushuaia, la ciudad al fin del mundo, se anida entre montañas y el mar, ofreciendo un paisaje urbano pintoresco y vibrante. Sus calles coloridas y su ambiente acogedor contrastan con la imponente naturaleza que la rodea, invitando a explorar tanto la ciudad como los paisajes naturales únicos de Tierra del Fuego.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-transparent border my-3 my-md-0">
+                            <img src="{{url_for('static', filename='imgs/about-ushuaia2.jpg')}}" class="rounded-0 card-img-top mg-responsive">
+                            <div class="card-body">
+                                <h1 class="text-center mb-4">Los paisajes de Ushuaia</h1>
+                                <p class="text-white">Ushuaia emerge entre montañas nevadas y el canal Beagle, pintando un paisaje vibrante con casas coloridas que se destacan contra el verdor de la vegetación y el azul del mar. Es un enclave donde la naturaleza salvaje y la vida urbana se entrelazan en perfecta armonía, creando un escenario único en el extremo austral del mundo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-transparent border my-3 my-md-0">
+                            <img src="{{url_for('static', filename='imgs/about-ushuaia3.jpg')}}"  class="rounded-0 card-img-top mg-responsive">
+                            <div class="card-body">
+                                <h1 class="text-center mb-4">La noche en Ushuaia</h1>
+                                <p class="text-white">Bajo el cielo estrellado, la noche envuelve el paisaje en un manto de misterio y tranquilidad. Los árboles se recortan contra el fondo oscuro, mientras las estrellas brillan como guías en el infinito. El aire fresco lleva consigo susurros de la naturaleza dormida, creando un ambiente de serenidad y magia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <br>
     <!--  About Section 3 -->
     <div  class="container-fluid wow fadeIn" data-wow-duration="1.5s">
@@ -85,9 +129,56 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 has-img-bg4"><a href="{{url_for('static',filename='imgs/about-section2.jpg')}}"></a></div>
+             <div class="col-lg-6 has-img-bg4"><a href="{{url_for('static',filename='imgs/about-section4.jpg')}}"></a></div>
+            </div>
         </div>
     </div>
+    <br>
+    <div id="testmonial" class="container-fluid wow fadeIn bg-dark text-light has-height-lg middle-items">
+        <div class="row mt-3 mb-5">
+            <div class="col-md-4 my-3 my-md-0">
+                <div class="testmonial-card">
+                    <div class="card bg-transparent border my-3 my-md-0">
+                        <img src="{{url_for('static', filename='imgs/servicio-6.jpg')}}"  class="rounded-0 card-img-top mg-responsive">
+                    </div>
+                    <br>
+                    <h3 class="testmonial-title">Gimnasio</h3>
+                    <div class="testmonial-body">
+                        <p>El gimnasio del Hotel del Glaciar en Ushuaia ofrece un espacio moderno y bien equipado con vistas panorámicas de los glaciares circundantes. Equipado con equipos de última generación, es ideal para mantenerse en forma durante tu estadía en este impresionante destino.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 my-3 my-md-0">
+                <div class="testmonial-card">
+                    <div class="card bg-transparent border my-3 my-md-0">
+                        <img src="{{url_for('static', filename='imgs/servicio-5.jpg')}}"  class="rounded-0 card-img-top mg-responsive">
+                    </div>
+                    <br>
+                    <h3 class="testmonial-title">Sauna</h3>
+                    <div class="testmonial-body">
+                        <p>El sauna del hotel proporciona un ambiente tranquilo y rejuvenecedor después de un día de exploración en Ushuaia. Con temperaturas perfectamente reguladas, te invita a relajarte y revitalizarte en un entorno cómodo y acogedor.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 my-3 my-md-0">
+                <div class="testmonial-card">
+                    <div class="card bg-transparent border my-3 my-md-0">
+                        <img src="{{url_for('static', filename='imgs/servicio-4.jpg')}}"  class="rounded-0 card-img-top mg-responsive">
+                    </div>
+                    <br>
+                    <h3 class="testmonial-title">Piscina</h3>
+                    <div class="testmonial-body">
+                        <p>La piscina climatizada del Hotel del Glaciar es un lugar perfecto para disfrutar de momentos de tranquilidad y relajación. Con vistas impresionantes y una temperatura agradable, ofrece una experiencia de natación placentera en cualquier época del año.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- See all services-->
+    {% block section %}
+    {% endblock %}
+
     <br>
     <br>
     <!--  About Section 5 -->
@@ -100,8 +191,7 @@
                         <h2 class="mb-4">Habitaciones</h2>
                         <br>
                         <h5>Nuestras habitaciones y suites están elegantemente decoradas con un toque moderno y están equipadas con comodidades de primera calidad para garantizar una estancia relajante y confortable. Con impresionantes vistas a las montañas o al mar, cada habitación es un santuario de serenidad donde los huéspedes pueden descansar y recargar energías después de un día de exploración.</h5>
-                        <br>
-                        <a href="{{url_for('habitaciones')}}" class="btn btn-lg btn-primary" >HABITACIONES</a>
+
                     </div>
                 </div>
             </div>
@@ -109,7 +199,41 @@
         <br>
         <br>
     </div>
-    <!--  Rewiews Section 6 -->
+
+
+    <div class="gallary row">
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="{{ url_for('static',filename='imgs/habitacion-1.jpg') }}" class="gallary-img">
+            <a href="{{ url_for('habitaciones_id',id=1)}}" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="{{ url_for('static',filename='imgs/habitacion-6.jpg'  ) }}" class="gallary-img">
+            <a href="{{ url_for('habitaciones_id',id=2) }}" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="{{ url_for('static',filename='imgs/habitacion-9.jpg') }}" class="gallary-img">
+            <a href="{{ url_for('habitaciones_id', id=3) }}" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
+            <img src="{{ url_for('static',filename='imgs/habitacion-10.jpg') }}" class="gallary-img">
+            <a href="{{ url_for('habitaciones_id',id=4) }}" class="gallary-overlay">
+                <i class="gallary-icon ti-plus"></i>
+            </a>
+        </div>
+    </div>
+    <br>
+    <div>
+        <h1 class=boton_habitaciones>
+            <a href="{{url_for('habitaciones')}}" class="btn btn-lg btn-primary" >Ver Habitaciones</a>
+        </h1>
+    </div>
+
     <div class="container-fluid wow fadeIn" data-wow-duration="1.5s">
         <div>
             <div>
@@ -133,4 +257,5 @@
     <br>
     <br>
 </div>
+
 {% endblock %}

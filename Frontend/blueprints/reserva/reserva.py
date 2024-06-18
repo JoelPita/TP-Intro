@@ -1,7 +1,5 @@
 from flask import Blueprint, jsonify, request, render_template, current_app
-import smtplib
 import requests
-from email.mime.text import MIMEText
 
 reservaBp = Blueprint("reservaBp", __name__, template_folder='templates')
 

@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS Reviews (
 INSERT INTO Habitaciones (nombre, descripcion, precio_noche, personas_max) 
 VALUES
     ('Suite Deluxe', 'Suite con vista al lago', 150.00, 4),
+    ('Suite Deluxe', 'Suite con vista al lago', 150.00, 4),
     ('Habitación Doble', 'Habitación con dos camas individuales', 80.00, 2),
     ('Habitación Simple', 'Habitación con una cama individual', 50.00, 1);
 
