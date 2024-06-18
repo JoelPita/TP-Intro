@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS Reservas (
     motivo_rechazo VARCHAR(150),
     precio_total DECIMAL(10, 2),
     habitacion_id INT,
+    codigo_reserva VARCHAR(10) NULL,
     FOREIGN KEY (habitacion_id) REFERENCES Habitaciones(id)
 );
 
@@ -38,22 +39,31 @@ CREATE TABLE IF NOT EXISTS Reviews (
     nombre_autor VARCHAR(80) NOT NULL,
     texto VARCHAR(150) NOT NULL,
     visible BOOLEAN DEFAULT false,
-    estado VARCHAR(50) DEFAULT 'nueva'
-
+    estado VARCHAR(50) DEFAULT 'nueva',
+    reserva_id INT NULL,
+    FOREIGN KEY (reserva_id) REFERENCES Reservas(id)
 );
 
 -- Inserción de datos ficticios en la tabla Habitaciones
 INSERT INTO Habitaciones (nombre, descripcion, precio_noche, personas_max) 
 VALUES
-    ('Suite Deluxe', 'Suite con vista al mar', 150.00, 4),
+    ('Suite Deluxe', 'Suite con vista al lago', 150.00, 4),
     ('Habitación Doble', 'Habitación con dos camas individuales', 80.00, 2),
     ('Habitación Simple', 'Habitación con una cama individual', 50.00, 1);
 
 -- Inserción de datos ficticios en la tabla Reservas
 INSERT INTO Reservas (email_cliente, nombre_cliente, telefono_cliente, fecha_desde, fecha_hasta, 
                       cantidad_habitaciones, cantidad_personas, metodo_pago, estado, motivo_rechazo, 
-                      precio_total, habitacion_id) 
+                      precio_total, habitacion_id, codigo_reserva) 
 VALUES
-    ('marting.riveiro@gmail.com', 'Cliente Uno', '123456789', '2024-07-01', '2024-07-07', 1, 2, 'Tarjeta de Crédito', 'pendiente', NULL, 560.00, 1),
-    ('tinchoriveiro@gmail.com', 'Cliente Dos', '987654321', '2024-07-10', '2024-07-15', 2, 4, 'Transferencia Bancaria', 'pendiente', NULL, 800.00, 2),
-    ('tinchoriveiro@gmail.com', 'Cliente Tres', '123123123', '2024-08-01', '2024-08-05', 1, 1, 'Efectivo', 'pendiente', NULL, 200.00, 3);
+    ('marting.riveiro@gmail.com', 'Cliente Uno', '123456789', '2024-05-01', '2024-05-07', 1, 2, 'Tarjeta de Crédito', 'pendiente', NULL, 560.00, 1, "1s"),
+    ('tinchoriveiro@gmail.com', 'Cliente Dos', '987654321', '2024-07-10', '2024-07-15', 2, 4, 'Transferencia Bancaria', 'pendiente', NULL, 800.00, 2, "sa2"),
+    ('tinchoriveiro@gmail.com', 'Cliente Tres', '123123123', '2024-08-01', '2024-08-05', 1, 1, 'Efectivo', 'pendiente', NULL, 200.00, 3, "ds54");
+
+-- Inserción de datos ficticios en la tabla Reviews
+INSERT INTO Reviews (nombre_autor, texto) 
+VALUES
+    ('Jacinto Perez', "Muy feo todo, chau."),
+    ('Pandolfa Gervasia Meijidez', "Muy lindo todo, chau."),
+    ('Pandolfo Gervasio Meijidez Anacleto', "Muy lindo todo, chau.");
+

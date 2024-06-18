@@ -5,12 +5,19 @@ from .reviews.routes import reviews_bp
 from .reservas.routes import reservas_bp
 from .users.routes import users_bp
 import logging
+from flask_cors import CORS
 
 app = Flask(__name__)
 
 #Deberia estar en un try?
 engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
 app.config['engine'] = engine
+
+# Define la URL del frontend
+frontend_url = "http://localhost:5001"
+# Configura CORS para permitir conexiones desde el frontend a la ruta '/reviews'
+CORS(app, resources={r"/reviews/*": {"origins": frontend_url}})
+
 logging.basicConfig(level=logging.INFO)
 
 #Registrar todos los blueprint
