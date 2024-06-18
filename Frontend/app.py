@@ -9,6 +9,7 @@ from blueprints.admin.admin import adminBp
 from blueprints.index.index import indexBp
 from blueprints.reservas.reserva import reservasBp
 from blueprints.reviews.reviews import reviewsBp
+from blueprints.nosotros.nosotros import nosotrosBp
 
 app = Flask(__name__)
 # Configurar la ruta de la API
@@ -21,6 +22,7 @@ app.register_blueprint(adminBp, url_prefix="/admin")
 app.register_blueprint(indexBp, url_prefix='/')
 app.register_blueprint(reservasBp, url_prefix="/reserva")
 app.register_blueprint(reviewsBp, url_prefix="/reviews")
+app.register_blueprint(nosotrosBp, url_prefix="/nosotros")
 
 
 @app.route('/panel_admin', methods=["GET"])
@@ -129,6 +131,11 @@ def admin_reviews():
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'),404
+
+@app.route('/nosotros')
+def sobre_nosotros():
+    return render_template('nosotros.html')
+
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5001, debug=True)
