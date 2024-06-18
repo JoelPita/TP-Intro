@@ -359,6 +359,13 @@ textarea {
   resize: vertical;
 }
 
+.margensalon {
+  margin-left: 9%;
+}
+.margenlista {
+  margin-left: 10%;
+}
+
 fieldset {
   min-width: 0;
   padding: 0;
@@ -11372,6 +11379,23 @@ pre {
 .has-img-bg5 {
   background: url(../imgs/about-section5.jpg) no-repeat center center;
   background-size: cover;
+}
+.has-img-bg6 {
+  background: url(../imgs/salon_de_eventos.jpg) no-repeat center center;
+  background-size: cover;
+}
+.sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px; /* Ajusta el espacio entre las celdas */
+  width: 80vw; /* Ensure the width spans the entire viewport */
+  box-sizing: border-box;
+}
+.sudoku-cell {
+  border: 0px solid #ccc;
+  padding: 5px;
+  text-align: center;
+  font-size: 1.5rem;
 }
 .has-bg-overlay {
   position: relative;
