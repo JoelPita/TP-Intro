@@ -1,5 +1,4 @@
-from flask import Blueprint, flash, jsonify, request, render_template, url_for, redirect
-from utils import api_URL
+from flask import Blueprint, flash, jsonify, request, render_template, url_for, redirect, current_app
 import requests
 
 reservasBp = Blueprint("reservasBp", __name__, template_folder='templates')
@@ -18,7 +17,8 @@ def reserva():
             'metodo_pago': request.form['metodo_pago'],
             'habitacion_id': request.form['habitacion_id']
         }
-        api_url = api_URL('reservas')
+        api_ruta = current_app.config['API_ROUTE']
+        api_url = api_ruta + "reservas"
         headers = {'Content-Type': 'application/json'}
         
         response = requests.post(api_url, json=data, headers=headers)
@@ -35,7 +35,8 @@ def reserva():
 def gestion_reservas():
     rol = request.cookies.get('rol')
     if rol == 'admin':
-        api_url = api_URL('reservas')
+        api_ruta = current_app.config['API_ROUTE']
+        api_url = api_ruta + "reservas"
         response = requests.get(api_url)
         if response.status_code == 200:
             reservas = response.json().get("reservas", [])
@@ -48,7 +49,8 @@ def gestion_reservas():
 
 @reservasBp.route('/estado_reserva')
 def estado_reserva():
-    api_url = api_URL('reservas')
+    api_ruta = current_app.config['API_ROUTE']
+    api_url = api_ruta + "reservas"
     response = requests.get(api_url)
     if response.status_code == 200:
         reservas = response.json().get("reservas", [])

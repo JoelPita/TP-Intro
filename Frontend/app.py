@@ -3,24 +3,25 @@ from flask import Flask, flash, jsonify, make_response, request, render_template
 import smtplib
 from email.mime.text import MIMEText
 import requests
-from utils import api_URL
 from blueprints.weatherAPI.weather import weatherBp
 from blueprints.contacto.contacto import contactoBp
+from blueprints.admin.admin import adminBp
+from blueprints.index.index import indexBp
 from blueprints.reservas.reserva import reservasBp
-from blueprints.admin.reviews import admin_reviewsBp
 from blueprints.reviews.reviews import reviewsBp
 
 app = Flask(__name__)
+# Configurar la ruta de la API
+app.config['API_ROUTE'] = 'http://127.0.0.0:5000/'
+
 app.secret_key = os.urandom(24)
 app.register_blueprint(weatherBp)
 app.register_blueprint(contactoBp, url_prefix="/contacto")
+app.register_blueprint(adminBp, url_prefix="/admin")
+app.register_blueprint(indexBp, url_prefix='/')
 app.register_blueprint(reservasBp, url_prefix="/reserva")
-app.register_blueprint(admin_reviewsBp, url_prefix="/admin/reviews")
 app.register_blueprint(reviewsBp, url_prefix="/reviews")
 
-@app.route('/')
-def home():
-    return render_template('index.html')
 
 @app.route('/panel_admin', methods=["GET"])
 def panel_admin():

@@ -183,14 +183,16 @@ def get_reservas():
                 'estado': row[9],
                 'motivo_rechazo': row[10],
                 'precio_total': row[11],
-                'habitacion_id': row[12]
+                'habitacion_id': row[12],
+                'codigo_reserva': row[13]
             }
             reservas.append(reserva)
         conn.close()
         return jsonify({"success": True, "reservas": reservas}), 200
     except SQLAlchemyError as e:
         error = str(e.__cause__)
-        conn.close()
+        if(conn):
+            conn.close()
         return jsonify({"success": False, "message": error}), 500
     
 
