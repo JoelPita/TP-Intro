@@ -7,6 +7,7 @@ from blueprints.reserva.reserva import reservaBp
 from blueprints.gestion_reservas.gestion_reserva import gestionReservaBp
 from blueprints.admin.reviews import admin_reviewsBp
 from blueprints.reviews.reviews import reviewsBp
+from blueprints.nosotros.nosotros import nosotrosBp
 
 app = Flask(__name__)
 app.register_blueprint(weatherBp)
@@ -15,6 +16,7 @@ app.register_blueprint(reservaBp, url_prefix="/reserva")
 app.register_blueprint(gestionReservaBp, url_prefix="/gestion_reservas")
 app.register_blueprint(admin_reviewsBp, url_prefix="/admin/reviews")
 app.register_blueprint(reviewsBp, url_prefix="/reviews")
+app.register_blueprint(nosotrosBp, url_prefix="/nosotros")
 
 @app.route('/')
 def home():
@@ -39,10 +41,6 @@ def servicios():
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'),404
-
-@app.route('/nosotros')
-def sobre_nosotros():
-    return render_template('nosotros.html')
 
 
 if __name__ == "__main__":

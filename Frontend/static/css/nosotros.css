@@ -4,6 +4,9 @@
     background: url('../imgs/fondo_nosotros.jpeg') no-repeat center center fixed; 
     background-size: cover;
     position: relative;
+    padding: 50px 0; 
+    padding-top: 150px;
+  
 }
 
 .body-bg::before {
@@ -18,75 +21,34 @@
 }
 
 .about {
-    padding: 40px 0;
+    padding: 0 15px; 
 }
 
-.about .titlepage {
-    padding: 20px; /
-}
-
+.about .titlepage,
 .about .about_img {
-    padding-top: 20px; 
-}
-
-.about .titlepage h1 {
-    font-size: 36px;
-    font-weight: 700;
-    color: #333;
+    padding: 20px;
     margin-bottom: 30px;
+    background-color: #010c1b;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
+.about .titlepage h2,
 .about .titlepage p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: #e2d8d8;
+    color: #ffffff; 
+}
+
+.about .about_img img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
 }
 
 .about .row {
     align-items: center; 
 }
 
-.title-top {
-    padding: 20px 0;
-    text-align: center; 
-}
 
-.title-top h1 {
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 0;
-    margin-top: 100px; 
-}
-
-.about .titlepage {
-    margin-top: 10px; 
-}
-
-.about_img {
-    text-align: center;
-    padding: 10px;
-}
-
-.about_img img {
-    max-width: 100%;
-    height: auto;
-}
-
-.about .about_img {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.about .about_img figure img {
-    width: 90%;
-    max-width: 100%; 
-    height: auto; 
-    border-radius: 5px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-.card-style {
-    background-color: #170606;
-    border-radius: 10px;
+.header {
+    display: none;
 }
