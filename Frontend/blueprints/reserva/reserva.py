@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, render_template, url_for, redirect
+from flask import Blueprint, jsonify, request, render_template, current_app
 import smtplib
 import requests
 from email.mime.text import MIMEText
@@ -22,7 +22,8 @@ def reserva():
             'precio_total': 0  # to do: calcular precio total
         }
         print("Datos recibidos del formulario:", data)
-        api_url = "http://127.0.0.1:5000/reservas"
+        api_ruta = current_app.config['API_ROUTE']
+        api_url = api_ruta + "reservas"
         headers = {'Content-Type': 'application/json'}
         
         response = requests.post(api_url, json=data, headers=headers)

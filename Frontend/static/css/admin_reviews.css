@@ -1,0 +1,180 @@
+
+/* Contenedor principal para la review */
+.review-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para las reviews como citas */
+.blockquote {
+    background-color: #1f2833; /* Azul oscuro */
+    border-left: 0.25rem solid #66fcf1; /* Verde agua */
+    padding: 1rem;
+    margin: 0;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.blockquote-footer {
+    color: #c5c6c7; /* Gris claro */
+    align-self: flex-end;
+    margin-top: auto;
+}
+
+/* Botones */
+.review-item .d-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+@media (min-width: 576px) {
+    .review-item .d-flex {
+        flex-direction: row;
+    }
+}
+
+.text-wrap {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+}
+
+.delete-button, .visibility-button, .estado-button {
+    height: 50px;
+    border-radius: 1rem;
+    flex: 1;
+}
+
+/* Ajustar el tamaño del texto y el padding en pantallas pequeñas */
+@media (max-width: 575px) {
+    .delete-button, .visibility-button, .estado-button {
+        font-size: 0.875rem; /* Tamaño de texto más pequeño */
+        padding: 0.5rem; /* Relleno reducido */
+    }
+}
+
+.btn-danger, .btn-success {
+    color: #fff; /* Texto */
+}
+
+/* "Ocultar" y 'Estados' */
+.btn-danger, .estado-button {
+    background-color: #d9534f; 
+    border-color: #d43f3a; 
+}
+
+.btn-danger:hover, .estado-button:hover {
+    background-color: #c9302c; 
+    border-color: #ac2925; 
+}
+
+/* "Mostrar" */
+.btn-success {
+    background-color: #5cb85c; 
+    border-color: #4cae4c; 
+}
+
+.btn-success:hover {
+    background-color: #449d44; 
+    border-color: #398439; 
+}
+
+/* Botones de filtrados */
+.filter-btn {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 150px;
+    color: #fff;
+    background-color: #45a29e; /* Verde agua oscuro */
+    border-color: #45a29e;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.filter-btn:hover {
+    background-color: #1f2833;
+    border-color: #66fcf1;
+}
+
+/* Listado */
+.list-group-item-dark {
+    background-color: #0b0c10; /* Negro oscuro */
+    color: #c5c6c7; /* Gris claro */
+    border: 1px solid #1f2833; 
+    margin-bottom: 0.5rem; 
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+}
+
+.list-group-item-dark:hover {
+    background-color: #1f2833;
+    color: #ffffff; 
+}
+
+/* Pagination */
+.pagination .page-link {
+    color: #c5c6c7; /* Links */
+    background-color: #1f2833; 
+    border: 1px solid #45a29e; 
+    border-radius: 0.5rem;
+}
+
+.pagination .page-link:hover {
+    color: #ffffff; 
+    background-color: #66fcf1; 
+    border-color: #45a29e; 
+}
+
+/* Modo Disabled */
+.pagination .page-item.disabled .page-link {
+    color: #6c757d; 
+    background-color: #1f2833; 
+    border-color: #45a29e; 
+}
+
+/* Margenes, bordes y otras utilidades */
+.text-center {
+    text-align: center;
+}
+
+.my-5 {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.my-4 {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.border {
+    border-width: 1px;
+}
+
+.border-top {
+    border-top-width: 1px;
+}
+
+.p-3 {
+    padding: 1rem;
+}
+
+/* Reviews favoritas */
+.favorite-review {
+    background-color: #66fcf1; /* Verde agua */
+    border: 1px solid #45a29e; 
+}
+
+.favorite-review:hover {
+    background-color: #45a29e; 
+    border: 1px solid #1f2833; 
+}

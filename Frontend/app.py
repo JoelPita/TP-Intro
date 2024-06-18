@@ -4,16 +4,24 @@ from blueprints.weatherAPI.weather import weatherBp
 from blueprints.contacto.contacto import contactoBp
 from blueprints.reserva.reserva import reservaBp
 from blueprints.gestion_reservas.gestion_reserva import gestionReservaBp
+from blueprints.admin.admin import adminBp
+from blueprints.index.index import indexBp
+from blueprints.reviews.reviews import reviewsBp
 
 app = Flask(__name__)
+app.secret_key = b'unaClaveSecreta-34weDew4542dsdsggsdsg3333'
+
+# Configurar la ruta de la API
+app.config['API_ROUTE'] = 'http://127.0.0.0:5000/'
+
 app.register_blueprint(weatherBp)
 app.register_blueprint(contactoBp, url_prefix="/contacto")
 app.register_blueprint(reservaBp, url_prefix="/reserva")
 app.register_blueprint(gestionReservaBp, url_prefix="/gestion_reservas")
- 
-@app.route('/')
-def home():
-    return render_template('index.html')
+app.register_blueprint(adminBp, url_prefix="/admin")
+app.register_blueprint(indexBp, url_prefix='/')
+app.register_blueprint(reviewsBp, url_prefix='/reviews')
+
 
 @app.route('/admin')
 def admin():
@@ -30,10 +38,6 @@ def habitaciones_id(id):
 @app.route('/servicios')
 def servicios():
     return render_template('servicios.html')
-
-@app.route('/reviews')
-def reviews():
-    return render_template('reviews.html')
 
 @app.errorhandler(404)
 def page_not_found(e):
