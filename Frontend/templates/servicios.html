@@ -14,15 +14,19 @@
                 <ul class="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#servicios" role="tab" aria-controls="pills-home" aria-selected="true">SERVICIOS</a>
+                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#servicios" role="tab" aria-controls="pills-home" aria-selected="true">SERVICIOS</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#instalaciones" role="tab" aria-controls="pills-profile" aria-selected="false">INSTALACIONES</a>
                         <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#instalaciones" role="tab" aria-controls="pills-profile" aria-selected="false">INSTALACIONES</a>
                     </li>
                 </ul>
             </div>
         </div>
     <div id="about" class="container-fluid wow fadeIn" id="about"data-wow-duration="1.5s">
+    <div id="about" class="container-fluid wow fadeIn" id="about"data-wow-duration="1.5s">
         <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="servicios" role="tabpanel" aria-labelledby="pills-home-tab">
             <div class="tab-pane fade show active" id="servicios" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="row">
                     <div class="col-md-4">
@@ -36,6 +40,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card bg-transparent border my-3 my-md-0">
+                            <img src="{{url_for('static', filename='imgs/room_service.jpg')}}" class="rounded-0 card-img-top mg-responsive">
                             <img src="{{url_for('static', filename='imgs/room_service.jpg')}}" class="rounded-0 card-img-top mg-responsive">
                             <div class="card-body">
                                 <h2 class="pt20 pb20">Servicio de cuarto</h2>
@@ -70,11 +75,13 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="instalaciones" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="tab-pane fade" id="instalaciones" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <div class="row">
                     <div class="col-md-4 my-3 my-md-0">
                         <div class="card bg-transparent border">
                             <img src="{{url_for('static', filename='imgs/servicio-4.jpg')}}" class="rounded-0 card-img-top mg-responsive">
                             <div class="card-body">
+                                <h2 class="pt20 pb20">Piscina</h2>
                                 <h2 class="pt20 pb20">Piscina</h2>
                                 <p class="text-white">Disfrute de nuestra espectacular piscina. Es el lugar perfecto para darse un refrescante baño. Ofrecemos servicio de toallas y un bar cercano para que pueda disfrutar de bebidas y aperitivos mientras se relaja.</p>
                             </div>
@@ -85,6 +92,7 @@
                             <img src="{{url_for('static', filename='imgs/servicio-5.jpg')}}" class="rounded-0 card-img-top mg-responsive">
                             <div class="card-body">
                                 <h2 class="pt20 pb20">Sauna</h2>
+                                <h2 class="pt20 pb20">Sauna</h2>
                                 <p class="text-white">Relájese en nuestro exclusivo sauna, diseñado para ofrecerle una experiencia rejuvenecedora. Con cómodas instalaciones y un ambiente tranquilo, es el lugar perfecto para revitalizar cuerpo y mente.</p>
                             </div>
                         </div>
@@ -93,6 +101,7 @@
                         <div class="card bg-transparent border">
                             <img src="{{url_for('static', filename='imgs/servicio-6.jpg')}}" class="rounded-0 card-img-top mg-responsive">
                             <div class="card-body">
+                                <h2 class="pt20 pb20">Gimnasio</h2>
                                 <h2 class="pt20 pb20">Gimnasio</h2>
                                 <p class="text-white">Mantenganse en forma en nuestro gimnasio, equipado con máquinas modernas. Un ambiente limpio y espacioso ideal para su rutina de ejercicios.</p>
                             </div>
@@ -150,12 +159,14 @@
         <div class="row">
             <div class="col-md-6 px-0">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2299.620952341567!2d-68.3570329!3d-54.8042047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbc4c234f68447879%3A0x31f790a6e0c8dd0c!2sLuis%20Fernando%20Martial%202355%2C%20V9410%20Ushuaia%2C%20Tierra%20del%20Fuego!5e0!3m2!1ses!2sar!4v1718408885248!5m2!1ses!2sar" id="map" style="width: 100%; height: 100%; min-height: 400px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2299.620952341567!2d-68.3570329!3d-54.8042047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbc4c234f68447879%3A0x31f790a6e0c8dd0c!2sLuis%20Fernando%20Martial%202355%2C%20V9410%20Ushuaia%2C%20Tierra%20del%20Fuego!5e0!3m2!1ses!2sar!4v1718408885248!5m2!1ses!2sar" id="map" style="width: 100%; height: 100%; min-height: 400px" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <div class="col-md-6 px-5 has-height-lg middle-items">
                 <h3>ENCUENTRANOS</h3>
                 <p>Ubicado majestuosamente en el corazón de Ushuaia, el Hotel del Glaciar es un refugio de lujo entre las imponentes montañas y los serenos paisajes naturales de la región.</p>
                 <div class="text-muted">
                     <p><span class="ti-location-pin pr-3"></span>Luis Fernando Martial 2355, V9410 Ushuaia, Tierra del Fuego</p>
+                    <p><span class="ti-support pr-3"></span>02901 42-5329</p>
                     <p><span class="ti-support pr-3"></span>02901 42-5329</p>
                     <p><span class="ti-email pr-3"></span>alojamiento.ids@gmail.com</p>
                 </div>
@@ -166,6 +177,7 @@
     <div class="container-fluid has-bg-overlay text-center text-light has-height-lg middle-items" id="book-table">
         <div class="">
             <h2 class="section-title mb-5">HACE TU RESERVA AHORA!</h2>
+            <a href="{{url_for('reserva')}}" class="btn btn-lg btn-primary" id="rounded-btn">RESERVAR</a>
             <a href="{{url_for('reserva')}}" class="btn btn-lg btn-primary" id="rounded-btn">RESERVAR</a>
         </div>
     </div>
