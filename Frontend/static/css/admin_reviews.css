@@ -1,5 +1,69 @@
+/* Fondo de la página */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: url('../imgs/review-background.jpg') no-repeat fixed; 
+    background-size: cover;
+    background-position: center;
+}
 
-/* Contenedor principal para la review */
+/* Asegura que el contenedor de reviews tenga un fondo */
+#reviews-panel {
+    background-color: rgba(0, 0, 0, 0.2); /* Fondo negro semitransparente */
+    padding: 2rem;
+}
+
+/* Contraste de texto */
+#reviews-panel h2, #reviews-panel h5, #reviews-panel p, #reviews-panel blockquote, #reviews-panel footer {
+    color: #ffffff; /* Aunque este text-white, me asegura que el texto sea blanco */
+}
+
+/* Botones */
+#reviews-panel .btn {
+    color: #fff; /* Texto blanco */
+    margin-bottom: 1rem;
+}
+
+#reviews-panel .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+#reviews-panel .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+#reviews-panel .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+#reviews-panel .btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+#reviews-panel .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+#reviews-panel .btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+/* Asegurar que el contenido no esté pegado al borde */
+#reviews-list .list-group-item-dark {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px; 
+    background-color: #343a40; /* Fondo oscuro para las reviews */
+    color: #f8f9fa; /* Texto claro para las reviews */
+}
+
 .review-item {
     display: flex;
     flex-direction: column;
@@ -11,7 +75,7 @@
 
 /* Estilo para las reviews como citas */
 .blockquote {
-    background-color: #1f2833; /* Azul oscuro */
+    background-color: #1f2833; /* Azul bien oscuro */
     border-left: 0.25rem solid #66fcf1; /* Verde agua */
     padding: 1rem;
     margin: 0;
@@ -22,13 +86,15 @@
     flex-grow: 1;
 }
 
+/* Nombre de autor en la review */
 .blockquote-footer {
     color: #c5c6c7; /* Gris claro */
     align-self: flex-end;
     margin-top: auto;
 }
 
-/* Botones */
+
+/* Botonera */
 .review-item .d-flex {
     display: flex;
     flex-direction: column;
@@ -41,11 +107,26 @@
     }
 }
 
+/* Texto de Botones de estado y visibilidad. */
 .text-wrap {
     white-space: normal !important;
     word-wrap: break-word !important;
 }
 
+
+/* Botones */
+/* Animaciones header */
+.btn {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #FF5733; /* Color al pasar el mouse */
+    color: #ffffff;
+}
+
+
+/* Botones review */
 .delete-button, .visibility-button, .estado-button {
     height: 50px;
     border-radius: 1rem;
@@ -171,10 +252,21 @@
 /* Reviews favoritas */
 .favorite-review {
     background-color: #66fcf1; /* Verde agua */
-    border: 1px solid #45a29e; 
+    border: 3px solid #45a29e; 
 }
 
 .favorite-review:hover {
     background-color: #45a29e; 
     border: 1px solid #1f2833; 
+}
+
+/* Hover en blockquotes */
+.blockquote:hover {
+    background-color: #2c3e50; /* Cambiar a un azul más oscuro */
+    border-left-color: #f39c12; /* Cambiar a un amarillo oscuro */
+    color: #ffffff; /* Asegurar que el texto sea blanco */
+}
+
+.blockquote-footer:hover {
+    color: #ecf0f1; /* Cambiar a un gris claro */
 }

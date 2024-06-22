@@ -1,3 +1,28 @@
+/* Index - Section Reviews */
+
+.reviews-section {
+  margin: 0;
+  padding: 0;
+  background: url('../imgs/reviews.jpg') no-repeat fixed; 
+  background-size: cover;
+  background-position: center;
+}
+
+/* Asegura que el contenedor de reviews tenga un fondo */
+#review-index {
+  background-color: rgba(0, 0, 0, 0.4); /* Fondo negro semitransparente */
+}
+
+.reviews-header h2 {
+  font-size: 2.5rem;
+  color: #ffffff;
+}
+
+.reviews-header h5 {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
 :root {
   --blue: #79A9F5;
   --indigo: #C45F90;

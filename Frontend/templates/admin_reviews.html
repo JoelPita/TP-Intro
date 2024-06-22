@@ -27,13 +27,15 @@
             </div>
         </div>
     </div>    
-    <a class="btn btn-lg btn-primary my-5" href="#reviews-panel">COMENZAR</a>
+    <a class="btn btn-lg btn-primary mt-5" href="#reviews-panel">COMENZAR</a>
 </div>
 {% endblock %}
 
 {% block body_content %}
 <div class="container-fluid" id="reviews-panel">
-    <h2 class="h4 h-md-3 my-5 text-center border border-top p-3">Panel de reviews</h2>
+    <div class="bg-dark text-white text-center border-bottom p-3">
+        <h2 class="h4 h-md-3">Panel de reviews</h2>
+    </div>
     <div class="text-center mt-3">
         <button class="btn filter-btn" data-filtro="data-estado" data-estado="all">Todas</button>
         <button class="btn filter-btn" data-filtro="data-estado" data-estado="nueva">Nuevas</button>
@@ -42,9 +44,9 @@
         <button class="btn filter-btn" data-filtro="data-visible" data-visible="true">Visibles</button>
     </div>
     <div class="row text-center justify-content-center">
-        <div class="col-md-8 my-4">
+        <div class="col-md-8">
             <input type="text" id="search-input" placeholder="Buscar en una review..." class="form-control mb-3">
-            <h5 class="border text-white" id="text-list-review">Todas</h5>
+            <h5 class="border text-white p-3 bg-dark" id="text-list-review">Todas</h5>
             <div id="reviews-list" class="list-group">
                 {% for review in reviews %}
                 <div class="list-group-item-dark review-item  {% if review.estado == 'favorita' %}favorite-review{% endif %}" data-id="{{ review.id }}" data-estado="{{ review.estado }}" data-visible="{{ 'true' if review.visible else 'false' }}">
