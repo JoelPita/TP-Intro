@@ -8,8 +8,8 @@ weatherBp = Blueprint("weatherBp", __name__)
     Constantes esenciales para la construcción de la URL de la API del clima.
 """
 API_KEY = "dbec3add72c6ecd469b009ae31e34fb5"
-LATITUD = "-50.33943088470253"
-LONGITUD = "-72.25593247083323"
+LATITUD = "-54.804316946849376"
+LONGITUD = "-68.35705777103327"
 UNIDAD = "metric"
 
 """
