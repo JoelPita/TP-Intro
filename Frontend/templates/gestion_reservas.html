@@ -23,9 +23,11 @@
                 <th>Fecha Hasta</th>
                 <th>Cantidad de Habitaciones</th>
                 <th>Cantidad de Personas</th>
+                <th>Tipo de habitacion</th>
                 <th>Método de Pago</th>
                 <th>Estado</th>
                 <th>Precio Total</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -39,9 +41,12 @@
                 <td>{{ reserva.fecha_hasta }}</td>
                 <td>{{ reserva.cantidad_habitaciones }}</td>
                 <td>{{ reserva.cantidad_personas }}</td>
+                <td>{{ reserva.tipo_habitacion }}</td>
                 <td>{{ reserva.metodo_pago }}</td>
                 <td>{{ reserva.estado }}</td>
                 <td>{{ reserva.precio_total }}</td>
+                <td></td>
+
             </tr>
             {% endfor %}
         </tbody>

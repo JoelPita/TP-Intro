@@ -35,9 +35,8 @@ def reserva():
 def gestion_reservas():
     rol = request.cookies.get('rol')
     if rol == 'admin':
-        api_ruta = current_app.config['API_ROUTE']
-        api_url = api_ruta + "reservas"
-        response = requests.get(api_url)
+        api_ruta = current_app.config['API_ROUTE'] + "reservas"
+        response = requests.get(api_ruta)
         if response.status_code == 200:
             reservas = response.json().get("reservas", [])
             return render_template('gestion_reservas.html', reservas=reservas)
@@ -49,11 +48,4 @@ def gestion_reservas():
 
 @reservasBp.route('/estado_reserva')
 def estado_reserva():
-    api_ruta = current_app.config['API_ROUTE']
-    api_url = api_ruta + "reservas"
-    response = requests.get(api_url)
-    if response.status_code == 200:
-        reservas = response.json().get("reservas", [])
-        return render_template('gestion_reservas.html', reservas=reservas)
-    else:
-        return jsonify({"message": "Error al obtener las reservas"}), 500
+    return render_template('estado_reserva.html')

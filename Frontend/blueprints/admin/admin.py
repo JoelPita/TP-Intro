@@ -6,8 +6,6 @@ adminBp = Blueprint("adminBp", __name__, template_folder='templates')
 
 @adminBp.route('/reviews', methods=["GET"])
 def admin_reviews():
-    # Hardcodeo la vista por si falla la API
-
     try:
         # Obtengo las reviews desde la API
         api_ruta = current_app.config['API_ROUTE']

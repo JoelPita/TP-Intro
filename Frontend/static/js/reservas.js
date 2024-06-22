@@ -1,6 +1,7 @@
+import config from './config.js';
 document.addEventListener("DOMContentLoaded", () => {
 
-    let apiBaseUrl = 'http://127.0.0.1:5000';
+    let apiBaseUrl = config.apiBaseUrl;
     const form = document.getElementById("form_reserva");
     const mensajesError = document.getElementById("mensajes_error");
     const precioTotalElement = document.getElementById("precio_total");

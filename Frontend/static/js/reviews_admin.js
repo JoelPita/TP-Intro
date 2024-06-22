@@ -1,3 +1,5 @@
+import config from './config.js';
+
 document.addEventListener('DOMContentLoaded', function () {
     // El contenedor de la lista y los elementos
     const reviewsList = document.getElementById('reviews-list');
@@ -9,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let filteredReviews = reviewsElements;
 
 
-    const URL = 'http://localhost:5000'
+    const URL = config.apiBaseUrl;
 
     // Agrega los eventos al reviewsList, quien disparada los eventos si la zona clickeada tiene el targe
     // Me ahorro de poner eventos a todos los botones

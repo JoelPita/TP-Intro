@@ -74,9 +74,9 @@ def create_reserva():
     data = request.json
     query = text("""
         INSERT INTO Reservas (email_cliente, nombre_cliente, telefono_cliente, fecha_desde, fecha_hasta, 
-            cantidad_habitaciones, cantidad_personas, metodo_pago, estado, precio_total, habitacion_id) 
+            cantidad_habitaciones, cantidad_personas, metodo_pago, estado, precio_total, habitacion_id, codigo_reserva) 
         VALUES (:email_cliente, :nombre_cliente, :telefono_cliente, :fecha_desde, :fecha_hasta, :cantidad_habitaciones, 
-            :cantidad_personas, :metodo_pago, :estado, :precio_total, :habitacion_id)
+            :cantidad_personas, :metodo_pago, :estado, :precio_total, :habitacion_id, :codigo_reserva)
         """)
     
     try:
@@ -157,17 +157,23 @@ def create_reserva():
 @reservas_bp.route('/', methods=['GET'])
 def get_reservas():
     estado = request.args.get('estado')
+    codigo_reserva = request.args.get('codigo_reserva')
+
+    query = "SELECT r.*, h.nombre FROM Reservas r INNER JOIN Habitaciones h ON r.habitacion_id = h.id WHERE 1 = 1"
+    params = {}
+
     if estado:
-        query = text("SELECT * FROM Reservas WHERE estado = :estado")
-        params = {'estado': estado}
-    else:
-        query = text("SELECT * FROM Reservas")
-        params = {}
+        query += " AND r.estado = :estado"
+        params['estado'] = estado
+
+    if codigo_reserva:
+        query += " AND r.codigo_reserva = :codigo_reserva"
+        params['codigo_reserva'] = codigo_reserva
 
     try:
         engine = current_app.config['engine']
         conn = engine.connect()
-        result = conn.execute(query, params)
+        result = conn.execute(text(query), params)
         reservas = []
         for row in result:
             reserva = {
@@ -184,12 +190,18 @@ def get_reservas():
                 'motivo_rechazo': row[10],
                 'precio_total': row[11],
                 'habitacion_id': row[12],
-                'codigo_reserva': row[13]
+                'codigo_reserva': row[13],
+                'tipo_habitacion': row[14]
             }
             reservas.append(reserva)
         conn.close()
         return jsonify({"success": True, "reservas": reservas}), 200
     except SQLAlchemyError as e:
+        error = str(e.__cause__)
+        if(conn):
+            conn.close()
+        return jsonify({"success": False, "message": error}), 500
+    except Exception as e:
         error = str(e.__cause__)
         if(conn):
             conn.close()
