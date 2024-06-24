@@ -3,7 +3,7 @@
 {% block head_title %}Inicio de Sesión - Admin{% endblock %}
 
 {% block header %} 
-    <div class="container-fluid has-bg-overlay text-center text-light has-height-lg middle-items" id="admin-login">
+    <div class="overlay text-white text-center">
         <div class="d-flex justify-content-center align-items-center h-100">
             <div class="card p-4 admin-card" style="width: 400px;">
                 <h4 class=" mb-4">Acceso Administración</h4>
@@ -16,7 +16,7 @@
                         </div>
                     {% endif %}
                 {% endwith %}
-                <form id="form_admin_login" method="post" action="{{ url_for('admin') }}">
+                <form method="post" action="{{ url_for('admin') }}">
                     <div class="mb-3">
                         <input type="email" name="email" class="form-control form-control-lg custom-form-control" placeholder="Email" required>
                     </div>

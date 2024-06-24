@@ -13,7 +13,9 @@ CREATE TABLE IF NOT EXISTS Habitaciones (
     nombre VARCHAR(80) NOT NULL,
     descripcion VARCHAR(200),
     precio_noche DECIMAL(10, 2),
-    personas_max INT NULL
+    personas_max INT NULL,
+    imagen_archivo VARCHAR(100),
+    cantidad_disponible INT DEFAULT 1
 );
 
 CREATE TABLE IF NOT EXISTS Reservas (

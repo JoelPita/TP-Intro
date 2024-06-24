@@ -2252,8 +2252,8 @@ pre code {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #dee2e6;
-  background-color: #495057;
+  color: black;
+  background-color: #EFE0DF;
   background-clip: padding-box;
   border: 1px solid #1a2535;
   border-radius: 0.2rem;
@@ -2311,8 +2311,8 @@ pre code {
 }
 
 .form-control:focus {
-  color: #dee2e6;
-  background-color: #495057;
+  color: black;
+  background-color: #EFE0DF;
   border-color: #1c19e0;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(19, 179, 207, 0.25);
@@ -2926,8 +2926,8 @@ fieldset:disabled a.btn {
 
 .btn-secondary {
   color: #fff;
-  background-color: #6c757d;
-  border-color: #6c757d;
+  background-color: #1a2535;
+  border-color: #1a2535;
 }
 
 .btn-secondary:hover {
@@ -4274,10 +4274,10 @@ input[type="button"].btn-block {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #dee2e6;
+  color: black;
   vertical-align: middle;
   background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.78rem center/8px 10px;
-  background-color: #495057;
+  background-color: #EFE0DF;
   border: 1px solid #1a2535;
   border-radius: 0.2rem;
   -webkit-appearance: none;
@@ -5177,7 +5177,7 @@ input[type="button"].btn-block {
           flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #D3C8CC;
   background-clip: border-box;
   border: 1px solid #495057;
   border-radius: 0.2rem;
@@ -6539,7 +6539,7 @@ a.close.disabled {
           flex-direction: column;
   width: 100%;
   pointer-events: auto;
-  background-color: #fff;
+  background-color: #EFE0DF;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.15rem;
@@ -11585,7 +11585,7 @@ pre {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ff214f;
+  background-color: #D5C9CA;
   border-radius: 4px;
 }
 

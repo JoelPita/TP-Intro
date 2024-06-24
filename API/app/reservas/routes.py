@@ -6,7 +6,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 import logging
 import secrets
-from datetime import datetime
+import datetime
 
 
 # ---Crer Blueprint para reservas ---
@@ -181,8 +181,8 @@ def get_reservas():
                 'email_cliente': row[1],
                 'nombre_cliente': row[2],
                 'telefono_cliente': row[3],
-                'fecha_desde': row[4],
-                'fecha_hasta': row[5],
+                'fecha_desde': row[4].strftime('%Y-%m-%d'),
+                'fecha_hasta': row[5].strftime('%Y-%m-%d'),
                 'cantidad_habitaciones': row[6],
                 'cantidad_personas': row[7],
                 'metodo_pago': row[8],

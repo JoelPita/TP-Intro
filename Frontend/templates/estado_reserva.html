@@ -3,7 +3,9 @@
 {% block head_title %}Estado de Reserva{% endblock %}
 
 {% block header %}
-<div class="container-fluid has-bg-overlay text-center text-light has-height-lg middle-items" id="estado-reserva">
+
+
+<div class="overlay text-white text-center">
     <div class="d-flex justify-content-center align-items-center h-100">
         <div class="card p-4 admin-card" style="width: 400px;">
             <h4 class="mb-4">Consulte el estado de su reserva</h4>
@@ -16,26 +18,37 @@
             <div id="mensajes_error" class="mt-3"></div>
         </div>
     </div>
+
+
 </div>
 {% endblock %}
 
 {% block body_content %}
-<div id="resultado_reserva" class="container mt-5" style="display: none;">
-    <h3>Detalles de la Reserva</h3>
-    <p><strong>Email:</strong> <span id="email_cliente"></span></p>
-    <p><strong>Nombre:</strong> <span id="nombre_cliente"></span></p>
-    <p><strong>Teléfono:</strong> <span id="telefono_cliente"></span></p>
-    <p><strong>Fecha Desde:</strong> <span id="fecha_desde"></span></p>
-    <p><strong>Fecha Hasta:</strong> <span id="fecha_hasta"></span></p>
-    <p><strong>Cantidad de Habitaciones:</strong> <span id="cantidad_habitaciones"></span></p>
-    <p><strong>Cantidad de Personas:</strong> <span id="cantidad_personas"></span></p>
-    <p><strong>Método de Pago:</strong> <span id="metodo_pago"></span></p>
-    <p><strong>Estado:</strong> <span id="estado"></span></p>
-    <p><strong>Precio Total:</strong> $<span id="precio_total"></span></p>
-    <p><strong>Tipo de Habitación:</strong> <span id="tipo_habitacion"></span></p>
-    <p id="dias_restantes" class="mt-4"></p>
-</div>
+    <div id="resultado_reserva" class="container mt-5" style="display: none;">
+        <div id="contador_dias_restantes" class="container text-center mt-5" style="display: none;">
+            <h2 id="dias_restantes" class="text-light"></h2>
+        </div>
+        <div class="card text-dark">
+            <div class="card-header">
+                <h3>Detalles de la Reserva</h3>
+            </div>
+            <div class="card-body">
+                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <span id="email_cliente"></span></p>
+                <p><i class="fas fa-user"></i> <strong>Nombre:</strong> <span id="nombre_cliente"></span></p>
+                <p><i class="fas fa-phone"></i> <strong>Teléfono:</strong> <span id="telefono_cliente"></span></p>
+                <p><i class="fas fa-calendar-alt"></i> <strong>Entrada:</strong> <span id="fecha_desde"></span></p>
+                <p><i class="fas fa-calendar-alt"></i> <strong>Salida:</strong> <span id="fecha_hasta"></span></p>
+                <p><i class="fas fa-users"></i> <strong>Cantidad de Personas:</strong> <span id="cantidad_personas"></span></p>
+                <p><i class="fas fa-bed"></i> <strong>Cantidad de Habitaciones:</strong> <span id="cantidad_habitaciones"></span></p>
+                <p><i class="fas fa-bed"></i> <strong>Tipo de Habitación:</strong> <span id="tipo_habitacion"></span></p>
+                <p><i class="fas fa-credit-card"></i> <strong>Método de Pago:</strong> <span id="metodo_pago"></span></p>
+                <p><i class="fas fa-info-circle"></i> <strong>Estado:</strong> <span id="estado"></span></p>
+                <p><i class="fas fa-dollar-sign"></i> <strong>Precio Total:</strong> $<span id="precio_total"></span></p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block scripts %}
+    <script src="https://kit.fontawesome.com/ff9470bcef.js" crossorigin="anonymous"></script>
     <script type="module" src="{{ url_for('static', filename='js/estado_reserva.js') }}"></script>
 {% endblock %}

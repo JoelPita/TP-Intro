@@ -1,3 +1,4 @@
+import datetime
 from flask import Blueprint, flash, jsonify, request, render_template, url_for, redirect, current_app
 import requests
 
@@ -39,7 +40,33 @@ def gestion_reservas():
         response = requests.get(api_ruta)
         if response.status_code == 200:
             reservas = response.json().get("reservas", [])
-            return render_template('gestion_reservas.html', reservas=reservas)
+            reservas_proximas = []
+            reservas_activas = []
+            reservas_rechazadas = []
+
+            hoy = datetime.date.today()
+
+            for reserva in reservas:
+                fecha_desde = datetime.datetime.strptime(reserva['fecha_desde'], '%Y-%m-%d').date()
+                fecha_hasta = datetime.datetime.strptime(reserva['fecha_hasta'], '%Y-%m-%d').date()
+                
+                if reserva['estado'] == 'rechazada':
+                    reservas_rechazadas.append(reserva)
+                elif fecha_desde > hoy:
+                    reservas_proximas.append(reserva)
+                elif fecha_desde <= hoy <= fecha_hasta:
+                    reservas_activas.append(reserva)
+                
+            
+            reservas_proximas = sorted(reservas_proximas, key=lambda x: datetime.datetime.strptime(x['fecha_desde'], '%Y-%m-%d').date())
+            reservas_activas = sorted(reservas_activas, key=lambda x: datetime.datetime.strptime(x['fecha_hasta'], '%Y-%m-%d').date(), reverse=True)
+
+            return render_template(
+                'gestion_reservas.html', 
+                reservas_proximas=reservas_proximas, 
+                reservas_activas=reservas_activas, 
+                reservas_rechazadas=reservas_rechazadas
+            )
         else:
             return jsonify({"message": "Error al obtener las reservas"}), 500
     return redirect(url_for('admin'))
