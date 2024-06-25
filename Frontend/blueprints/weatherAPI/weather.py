@@ -29,14 +29,23 @@ def obtener_clima_actual():
     }
     current_response = requests.get(url, params=parametros)
     data = current_response.json()
+
+    temperatura_actual = float(data['main']['temp'])
+    temperatura_minima = float(data['main']['temp_min'])
+    temperatura_maxima = float(data['main']['temp_max'])
+    velocidad_viento = data['wind']['speed']
+    humedad = data['main']['humidity']
+    ciudad = data['name']
+    estado = data['weather'][0]['main']
+
     current_weather = {
-        'temperatura': data['main']['temp'],
-        'temperatura_minima': data['main']['temp_min'],
-        'temperatura_maxima': data['main']['temp_max'],
-        'velocidad_viento': data['wind']['speed'],
-        'humedad': data['main']['humidity'],
-        'ciudad': data['name'],
-        'estado': data['weather'][0]['main']       
+        'temperatura': round(temperatura_actual),
+        'temperatura_minima': round(temperatura_minima),
+        'temperatura_maxima': round(temperatura_maxima),
+        'velocidad_viento': velocidad_viento,
+        'humedad': humedad,
+        'ciudad': ciudad,
+        'estado': estado    
     }
     return jsonify(current_weather)
 
@@ -64,9 +73,11 @@ def obtener_pronostico():
         dias_español = ["Lun", "Mar", "Miér", "Jue", "Vier", "Sáb", "Dom"]
         dia = dias_español[fecha_formateada.weekday()]
 
+        temperatura_minima = float(forecast_data['list'][i]['main']['temp_min'])
+        temperatura_maxima = float(forecast_data['list'][i]['main']['temp_max'])
         forecast_weather[dia] = {
-            'temperatura_minima': forecast_data['list'][i]['main']['temp_min'],
-            'temperatura_maxima': forecast_data['list'][i]['main']['temp_max'],
+            'temperatura_minima': round(temperatura_minima),
+            'temperatura_maxima': round(temperatura_maxima),
             'estado': forecast_data['list'][i]['weather'][0]['main']
         }
     return jsonify(forecast_weather)
