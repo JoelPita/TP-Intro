@@ -69,7 +69,7 @@ def gestion_reservas():
             )
         else:
             return jsonify({"message": "Error al obtener las reservas"}), 500
-    return redirect(url_for('admin'))
+    return redirect(url_for('adminBp.admin'))
 
     
 

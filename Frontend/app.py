@@ -29,48 +29,6 @@ app.register_blueprint(nosotrosBp, url_prefix="/nosotros")
 def panel_admin():
     return render_template('panel_administrador.html')
 
-@app.route('/admin', methods=["GET", "POST"])
-def admin():
-    if request.method == "POST":
-        data = {
-            'email': request.form['email'],
-            'password': request.form['password']
-        }
-        api_ruta = current_app.config['API_ROUTE']
-        api_url = api_ruta + "users/validar_credenciales" # Endpoint de la API para el login de admin
-        headers = {'Content-Type': 'application/json'}
-
-        try:
-            response = requests.post(api_url, json=data, headers=headers)
-            if response.status_code == 200:
-                response_data = response.json()
-                if response_data.get("success"):
-                    rol = response_data.get("rol")
-                    if rol == "admin":
-                        resp = make_response(redirect(url_for('panel_admin')))
-                        resp.set_cookie('rol', 'admin')
-                        return resp
-                    else:
-                        flash("Su usuario no tiene permisos para acceder a la administración.")
-                else:
-                    flash("Credenciales incorrectas. Por favor, inténtelo de nuevo.")
-            elif response.status_code == 401:
-                flash("Credenciales incorrectas. Por favor, inténtelo de nuevo.")
-            elif response.status_code == 404:
-                flash("Usuario no encontrado.")
-            else:
-                flash("Error al iniciar sesión. Intentelo nuevamente")
-
-        except requests.exceptions.RequestException as e:
-            flash("Error del servidor al iniciar sesión. Intentelo nuevamente")
-    
-    # Verificar si el usuario ya está autenticado como admin
-    rol = request.cookies.get('rol')
-    if rol == 'admin':
-        return redirect(url_for('panel_admin'))
-    
-    return render_template('admin.html')
-
 @app.route('/habitaciones')
 def habitaciones():
     return render_template('habitaciones.html')
@@ -82,29 +40,6 @@ def habitaciones_id(id):
 @app.route('/servicios')
 def servicios():
     return render_template('servicios.html')
-
-@app.route('/contacto', methods=["GET", "POST"])
-def contacto():
-    if request.method == "POST":
-        nombre = request.form.get("name")
-        email = request.form.get("email")
-        asunto = request.form.get("subject")
-        mensaje_contenido = request.form.get("message")
-
-        mensaje_completo = (f"NOMBRE: {nombre}\n"
-                            f"MAIL: {email}\n"
-                            f"MENSAJE:\n{mensaje_contenido}")
-
-        mensaje = MIMEText(mensaje_completo)
-        mensaje["Subject"] = asunto
-        mensaje["From"] = "hotel.glaciar.argentina@gmail.com"
-        mensaje["To"] = "hotel.glaciar.argentina@gmail.com"
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
-            smtp_server.login("hotel.glaciar.argentina@gmail.com", "oqvu xdib bmnp ymzy")
-            smtp_server.sendmail("hotel.glaciar.argentina@gmail.com", "hotel.glaciar.argentina@gmail.com", mensaje.as_string())
-
-        return render_template('contacto.html')
-    return render_template('contacto.html')
 
 @app.route('/reviews')
 def reviews():
