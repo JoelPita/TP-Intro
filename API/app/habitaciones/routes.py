@@ -7,7 +7,7 @@ from sqlalchemy.exc import SQLAlchemyError
 habitaciones_bp = Blueprint('habitaciones',__name__)
 @habitaciones_bp.route('/', methods=['GET'])
 def get_habitaciones():
-    query = text("SELECT * FROM Habitaciones")
+    query = text("SELECT id, nombre, descripcion, precio_noche, personas_max, url_imagen FROM Habitaciones")
     try:
         engine = current_app.config['engine']
         with engine.connect() as conn: 

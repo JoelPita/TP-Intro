@@ -6,17 +6,20 @@ gestionPreciosBp = Blueprint("gestionPreciosBp", __name__, template_folder='temp
 
 @gestionPreciosBp.route('/', methods = ['GET'])
 def pedir_precios_habitaciones():
-    api_ruta = current_app.config['API_ROUTE']
-    api_url = api_ruta + "habitaciones/"
-    try:                       
-        response = requests.get(api_url)
-        if response.status_code == 200:
-            datos = response.json()
-            return render_template('gestion_precios.html', datos=datos)
-        else:
+    rol = request.cookies.get('rol')
+    if rol == 'admin':
+        api_ruta = current_app.config['API_ROUTE']
+        api_url = api_ruta + "habitaciones/"
+        try:                       
+            response = requests.get(api_url)
+            if response.status_code == 200:
+                datos = response.json()
+                return render_template('gestion_precios.html', datos=datos)
+            else:
+                return jsonify({"message": "Error al cargar las habitaciones"}), 500
+        except requests.RequestException:
             return jsonify({"message": "Error al cargar las habitaciones"}), 500
-    except requests.RequestException:
-        return jsonify({"message": "Error al cargar las habitaciones"}), 500
+    return redirect(url_for('adminBp.admin'))
     
 
 @gestionPreciosBp.route('/', methods=['POST'])

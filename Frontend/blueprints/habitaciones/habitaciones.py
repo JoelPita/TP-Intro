@@ -21,7 +21,7 @@ def habitaciones_id(id):
 def get_habitaciones():
     try:
         api_ruta = current_app.config['API_ROUTE']
-        api_url = api_ruta + "habitaciones"
+        api_url = api_ruta + "habitaciones/"
         response = requests.get(api_url)
         lista_habitaciones = response.json()
     except requests.exceptions.RequestException as e:
