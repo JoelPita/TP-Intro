@@ -40,9 +40,9 @@
                         <label for="habitacion_id">Tipo de Habitación</label>
                         <select id="habitacion_id" name="habitacion_id" class="form-control form-control-lg" required>
                             <option value="" disabled selected>Seleccione una habitación</option>
-                            <option value="1">Habitación Doble</option>
-                            <option value="2">Habitación Familiar</option>
-                            <option value="3">Suite Deluxe</option>
+                            {% for habitacion in habitaciones %}
+                                <option value="{{ habitacion.id }}">{{ habitacion.nombre }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="col-sm-6 col-md-1 col-xs-12 my-2">

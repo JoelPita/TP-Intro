@@ -6,6 +6,8 @@ reservasBp = Blueprint("reservasBp", __name__, template_folder='templates')
 
 @reservasBp.route('/', methods=["GET", "POST"])
 def reserva():
+    habitaciones = get_habitaciones()
+
     if request.method == "POST":
         habitacion_id = request.form['habitacion_id']
         cantidad_habitaciones = request.form['cantidad_habitaciones']
@@ -27,13 +29,24 @@ def reserva():
         if response.status_code == 200:
             data = response.json()
             if data['success'] and data['disponible']:
-                return render_template("checkout_reserva.html", fecha_desde=fecha_desde, fecha_hasta=fecha_hasta, cantidad_habitaciones=cantidad_habitaciones, cantidad_personas=cantidad_personas, habitacion_id=habitacion_id, precio_total=data['precioTotal'])
+                habitacion_seleccionada = next((hab for hab in habitaciones if hab['id'] == int(habitacion_id)), None)
+                habitacion_nombre = habitacion_seleccionada['nombre'] if habitacion_seleccionada else 'N/A'
+                return render_template(
+                    "checkout_reserva.html", 
+                    fecha_desde=fecha_desde, 
+                    fecha_hasta=fecha_hasta, 
+                    cantidad_habitaciones=cantidad_habitaciones, 
+                    cantidad_personas=cantidad_personas, 
+                    habitacion_id=habitacion_id, 
+                    habitacion_nombre=habitacion_nombre, 
+                    precio_total=data['precioTotal']
+                )
             else:
                 flash(data.get('message', 'No hay disponibilidad para las fechas seleccionadas'))
         else:
             flash("Error al verificar disponibilidad: " + response.json().get("message", ""))
     
-    return render_template("reservas.html")
+    return render_template("reservas.html", habitaciones=habitaciones)
 
 
 @reservasBp.route('/checkout', methods=["GET", "POST"])
@@ -116,3 +129,13 @@ def gestion_reservas():
 @reservasBp.route('/estado_reserva')
 def estado_reserva():
     return render_template('estado_reserva.html')
+
+def get_habitaciones():
+    try:
+        api_ruta = current_app.config['API_ROUTE']
+        api_url = api_ruta + "habitaciones/"
+        response = requests.get(api_url)
+        lista_habitaciones = response.json()
+    except requests.exceptions.RequestException as e:
+        lista_habitaciones = []
+    return lista_habitaciones
