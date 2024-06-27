@@ -10,12 +10,16 @@ from blueprints.index.index import indexBp
 from blueprints.reservas.reserva import reservasBp
 from blueprints.reviews.reviews import reviewsBp
 from blueprints.nosotros.nosotros import nosotrosBp
+from flask_login import LoginManager
 
 app = Flask(__name__)
 # Configurar la ruta de la API
 app.config['API_ROUTE'] = 'http://127.0.0.0:5000/'
 
 app.secret_key = os.urandom(24)
+
+ 
+
 app.register_blueprint(weatherBp)
 app.register_blueprint(contactoBp, url_prefix="/contacto")
 app.register_blueprint(adminBp, url_prefix="/admin")
@@ -52,6 +56,38 @@ def page_not_found(e):
 @app.route('/nosotros')
 def sobre_nosotros():
     return render_template('nosotros.html')
+
+@app.route('/perfil')
+def perfil():
+    return render_template('perfil.html')
+
+@app.route('/registrar_usuario', methods=["GET", "POST"])
+def registrar_usuario():
+    if request.method == "POST":
+
+        data = {
+            'name': request.form['name'],
+            'email': request.form['email'],
+            'password': request.form['password'],
+            'rol': 'user'
+        }
+
+        api_ruta = current_app.config['API_ROUTE']
+        api_url = api_ruta + "users/add"
+        headers = {'Content-Type': 'application/json'}
+
+        try:
+            response = requests.post(api_url, json=data, headers=headers)
+            if response.status_code == 200:
+                response_data = response.json()
+                if response_data.get("success"):
+                    flash("Su usuario fue creado exitosamente.")
+                else:
+                    flash("No se pudo crear el usuario. Por favor, inténtelo de nuevo.")
+        except requests.exceptions.RequestException as e:
+            flash("Error del servidor al iniciar sesión. Intentelo nuevamente")
+        return render_template('registrar_usuario.html')
+    return render_template('registrar_usuario.html')
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5001, debug=True)

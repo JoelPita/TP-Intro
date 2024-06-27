@@ -64,28 +64,34 @@ def validar_credenciales():
 @users_bp.route('/add', methods=['POST'])
 def add_user():
     data = request.json
+
+    name = data.get('name')
     email = data.get('email')
     password = data.get('password')
     rol = data.get('rol')
     
-    if not email or not password or not rol:
-        return jsonify({"message": "Email, contraseña y rol son requeridos"}), 400
+    if not email or not password or not name:
+        return jsonify({"success": False, "message": "Email, contraseña y nombre son requeridos"}), 400
     
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
     
-    query = text("INSERT INTO Users (email, password, rol) VALUES (:email, :password, :rol)")
+    query = text("INSERT INTO Users (name, email, password, rol) VALUES (:name, :email, :password, :rol)")
+
     try:
         engine = current_app.config['engine']
         conn = engine.connect()
+
         conn.execute(query, {
+            'name': name,
             'email': email,
             'password': hashed_password.decode('utf-8'),
             'rol': rol
         })
+
         conn.commit()
         conn.close()
-        return jsonify({"message": "Usuario añadido correctamente"}), 201
+        return jsonify({"success": True, "message": "Usuario añadido correctamente"}), 201
     
     except SQLAlchemyError as e:
         error = str(e.__cause__)
-        return jsonify({"message": error}) , 500
+        return jsonify({"success": False, "message": error}) , 500
