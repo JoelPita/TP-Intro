@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS Habitaciones (
     nombre VARCHAR(80) NOT NULL,
     descripcion VARCHAR(200),
     precio_noche DECIMAL(10, 2),
-    personas_max INT NULL,
-    imagen_archivo VARCHAR(100),
+    url_imagen VARCHAR(150),
+    personas_max INT NULL
     cantidad_disponible INT DEFAULT 1
 );
 
@@ -47,12 +47,12 @@ CREATE TABLE IF NOT EXISTS Reviews (
 );
 
 -- Inserción de datos ficticios en la tabla Habitaciones
-INSERT INTO Habitaciones (nombre, descripcion, precio_noche, personas_max) 
+INSERT INTO Habitaciones (nombre, descripcion, precio_noche, personas_max,url_imagen) 
 VALUES
-    ('Suite Deluxe', 'Suite con vista al lago', 150.00, 4),
-    ('Suite Deluxe', 'Suite con vista al lago', 150.00, 4),
-    ('Habitación Doble', 'Habitación con dos camas individuales', 80.00, 2),
-    ('Habitación Simple', 'Habitación con una cama individual', 50.00, 1);
+    ('Suite Deluxe', 'Suite con vista al lago', 150.00, 4,'habitacion-1.jpg'),
+    ('Suite Deluxe', 'Suite con vista al lago', 150.00, 4,'habitacion-2.jpg'),
+    ('Habitación Doble', 'Habitación con dos camas individuales', 80.00, 2,'habitacion-3.jpg'),
+    ('Habitación Simple', 'Habitación con una cama individual', 50.00, 1,'habitacion-4.jpg');
 
 -- Inserción de datos ficticios en la tabla Reservas
 INSERT INTO Reservas (email_cliente, nombre_cliente, telefono_cliente, fecha_desde, fecha_hasta, 
