@@ -22,6 +22,7 @@ def obtener_habitaciones():
                     'id': row.id,
                     'nombre': row.nombre,
                     'descripcion': row.descripcion,
+                    'personas_max': row.personas_max,
                     'precio_noche': str(row.precio_noche)
                 }
                 data.append(entity)
