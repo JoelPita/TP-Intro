@@ -272,7 +272,7 @@ textarea {
   border-radius: 20px;
   -webkit-box-shadow: 0px 21px 41px -13px rgba(0, 0, 0, 0.18);
   -moz-box-shadow: 0px 21px 41px -13px rgba(0, 0, 0, 0.18);
-  box-shadow: 4px 21px 41px -13px rgb(43, 49, 54);
+  box-shadow: 4px 21px 41px -13px rgb(34, 37, 39);
 }
 
 .contact-wrap {
@@ -2253,10 +2253,10 @@ pre code {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #dee2e6;
-  background-color: #495057;
+  color: black;
+  background-color: #EFE0DF;
   background-clip: padding-box;
-  border: 1px solid #343a40;
+  border: 1px solid #1a2535;
   border-radius: 0.2rem;
   -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
