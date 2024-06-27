@@ -7,7 +7,7 @@ gestionPreciosBp = Blueprint("gestionPreciosBp", __name__, template_folder='temp
 @gestionPreciosBp.route('/', methods = ['GET'])
 def pedir_precios_habitaciones():
     api_ruta = current_app.config['API_ROUTE']
-    api_url = api_ruta + "gestion_precios/obtener-habitaciones"
+    api_url = api_ruta + "habitaciones/"
     try:                       
         response = requests.get(api_url)
         if response.status_code == 200:

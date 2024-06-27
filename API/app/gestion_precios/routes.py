@@ -5,33 +5,6 @@ from sqlalchemy.exc import SQLAlchemyError
 # ---Crear Blueprint para gestion de precios ---
 gestion_precios_bp = Blueprint('gestion_precios', __name__)
 
-# Esta funcion pertenece al modulo de habitaciones. 
-# La creé acá para que mi módulo pueda ser testeado hasta que la verdadera sea agregada al proyecto. 
-@gestion_precios_bp.route('/obtener-habitaciones', methods=['GET']) 
-def obtener_habitaciones():
-    query = text("SELECT * FROM Habitaciones")
-    try:
-        engine = current_app.config['engine']
-        connection = engine.connect()
-        result = connection.execute(query)
-        connection.close()  
-        if result.rowcount != 0:
-            data = []
-            for row in result:
-                entity = {
-                    'id': row.id,
-                    'nombre': row.nombre,
-                    'descripcion': row.descripcion,
-                    'personas_max': row.personas_max,
-                    'precio_noche': str(row.precio_noche)
-                }
-                data.append(entity)
-            return jsonify(data), 200
-        return jsonify({"message": "No existen habitaciones"}), 404
-    except SQLAlchemyError as err:
-        error = str(err.__cause__)
-        return jsonify({"message": error}), 500
-
 # Función que maneja una request PATCH para actualizar el precio 
 # de una habitación en la base de datos. 
 # Ejecuta la query y devuelve respuestas JSON según modificó correctamente
