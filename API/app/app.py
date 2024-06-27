@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify, request, render_template, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
@@ -9,22 +10,19 @@ from .habitaciones.routes import habitaciones_bp
 from .gestion_precios.routes import gestion_precios_bp
 import logging
 
-from flask_cors import CORS
-
 app = Flask(__name__)
-CORS(app)
+database_url = os.getenv('DATABASE_URL', 'mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
 
 #Creacion de engine
 try:
-    engine = create_engine('mysql+mysqlconnector://app_user:appMate123@db/flaskdb')
+    engine = create_engine(database_url)
     app.config['engine'] = engine
 except Exception as e:
     print(f"Error connecting to the database: {e}")
 
-# Define la URL del frontend
-frontend_url = "http://localhost:5001"
-# Configura CORS para permitir conexiones desde el frontend a la ruta '/reviews'
-CORS(app, resources={r"/reviews/*": {"origins": frontend_url}})
+# Configuramos CORS para permitir conexiones solamente desde el frontend
+frontend_url = os.getenv('FRONTEND_URL', 'http://127.0.0.1:5001')
+CORS(app, resources={r"/*": {"origins": frontend_url}}, supports_credentials=True)
 
 logging.basicConfig(level=logging.INFO)
 
@@ -36,4 +34,4 @@ app.register_blueprint(habitaciones_bp, url_prefix='/habitaciones')
 app.register_blueprint(gestion_precios_bp, url_prefix='/gestion_precios')
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.0', port=5000, debug=True) 
+    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 5000)), debug=True)
