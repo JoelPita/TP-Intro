@@ -13,7 +13,7 @@ from blueprints.nosotros.nosotros import nosotrosBp
 
 app = Flask(__name__)
 # Configurar la ruta de la API
-app.config['API_ROUTE'] = 'http://127.0.0.0:5000/'
+app.config['API_ROUTE'] = 'http://127.0.0.1:5000/'
 
 app.secret_key = os.urandom(24)
 app.register_blueprint(weatherBp)
@@ -27,7 +27,11 @@ app.register_blueprint(nosotrosBp, url_prefix="/nosotros")
 
 @app.route('/panel_admin', methods=["GET"])
 def panel_admin():
-    return render_template('panel_administrador.html')
+    rol = request.cookies.get('rol')
+    if rol == 'admin':
+        return render_template('panel_administrador.html')
+    
+    return render_template('admin.html')
 
 @app.route('/habitaciones')
 def habitaciones():

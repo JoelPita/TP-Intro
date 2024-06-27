@@ -2328,27 +2328,27 @@ pre code {
 }
 
 .form-control::-webkit-input-placeholder {
-  color: #ced4da;
+  color: #000;
   opacity: 1;
 }
 
 .form-control::-moz-placeholder {
-  color: #ced4da;
+  color: #000;
   opacity: 1;
 }
 
 .form-control:-ms-input-placeholder {
-  color: #ced4da;
+  color: #000;
   opacity: 1;
 }
 
 .form-control::-ms-input-placeholder {
-  color: #ced4da;
+  color: #000;
   opacity: 1;
 }
 
 .form-control::placeholder {
-  color: #ced4da;
+  color: #000;
   opacity: 1;
 }
 

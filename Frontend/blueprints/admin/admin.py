@@ -1,8 +1,23 @@
-from flask import Blueprint, render_template, current_app, request
+from flask import Blueprint, redirect, render_template, current_app, request, flash, make_response, url_for
 import requests
 
 
 adminBp = Blueprint("adminBp", __name__, template_folder='templates')
+
+
+@adminBp.route('/panel_admin', methods=["GET"])
+def panel_admin():
+    rol = request.cookies.get('rol')
+    if rol == 'admin':
+        return render_template('panel_administrador.html')
+    
+    return render_template('admin.html')
+
+@adminBp.route('/cerrar_sesion')
+def cerrar_sesion():
+    resp = make_response(redirect(url_for('adminBp.admin')))
+    resp.set_cookie('rol', '', expires=0)  # Eliminar la cookie 'rol' que indica que el usuario está autenticado
+    return resp
 
 @adminBp.route('/', methods=["GET", "POST"])
 def admin():
@@ -22,7 +37,7 @@ def admin():
                 if response_data.get("success"):
                     rol = response_data.get("rol")
                     if rol == "admin":
-                        resp = make_response(redirect(url_for('panel_admin')))
+                        resp = make_response(redirect(url_for('adminBp.panel_admin')))
                         resp.set_cookie('rol', 'admin')
                         return resp
                     else:
@@ -42,7 +57,7 @@ def admin():
     # Verificar si el usuario ya está autenticado como admin
     rol = request.cookies.get('rol')
     if rol == 'admin':
-        return redirect(url_for('panel_admin'))
+        return redirect(url_for('adminBp.panel_admin'))
     
     return render_template('admin.html')
 

@@ -68,21 +68,28 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("tipo_habitacion").textContent = reserva.tipo_habitacion;
 
             const diasRestantes = calcularDiasRestantes(reserva.fecha_desde);
-            if (diasRestantes > 0) {
-                diasRestantesElement.textContent = `¡Faltan ${diasRestantes} días para que comience su estadía!`;
-            } else if (diasRestantes === 0) {
-                diasRestantesElement.textContent = '¡Su estadía comienza hoy!';
+            if (reserva.estado === 'rechazada') {
+                diasRestantesElement.textContent = 'Lamentablemente su reserva ha sido rechazada. Por favor, póngase en contacto con nosotros para más información.';
             } else {
-                diasRestantesElement.textContent = 'Su estadía ya ha comenzado.';
+                if (diasRestantes > 0) {
+                    diasRestantesElement.textContent = `¡Faltan ${diasRestantes} días para que comience su estadía!`;
+                } else if (diasRestantes === 0) {
+                    diasRestantesElement.textContent = '¡Su estadía comienza hoy!';
+                } else {
+                    diasRestantesElement.textContent = 'Su estadía ya ha comenzado.';
+                }
             }
+
+
 
             // Scroll al bloque de resultados
             resultadoReservaElement.scrollIntoView({ behavior: 'smooth' });
         }
+    
 
         function formatearFecha(fecha) {
-            const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
-            return new Date(fecha).toLocaleDateString('es-ES', opciones);
+            const [year, month, day] = fecha.split('-');
+            return `${day}/${month}/${year}`;
         }
 
         function calcularDiasRestantes(fecha_desde) {

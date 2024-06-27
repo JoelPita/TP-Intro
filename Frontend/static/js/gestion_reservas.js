@@ -3,11 +3,11 @@ import config from './config.js';
 document.addEventListener("DOMContentLoaded", () => {
     const apiBaseUrl = config.apiBaseUrl;
 
-    // Inicializar DataTables
+    // Inicializar DataTables (usando jquery)
     $('#proximasTable').DataTable({
         "paging": true,
         "searching": true,
-        "ordering": true,
+        "ordering": false,
         "info": true,
         "lengthChange": true,
         "pageLength": 10,
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     $('#rechazadasTable').DataTable({
         "paging": true,
         "searching": true,
-        "ordering": true,
+        "ordering": false,
         "info": true,
         "lengthChange": true,
         "pageLength": 10,
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     $('#activasTable').DataTable({
         "paging": true,
         "searching": true,
-        "ordering": true,
+        "ordering": false,
         "info": true,
         "lengthChange": true,
         "pageLength": 10,
@@ -89,19 +89,18 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.find('#contactoTelefono').text(telefono);
     });
 
-    // Formatear fechas
+    // Ajustamos las fechas para mostrarlas en el formato dd/mm/yyyy
     const formatDate = (dateStr) => {
-        const date = new Date(dateStr);
-        return date.toLocaleDateString('es-ES', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit'
-        });
+        const [year, month, day] = dateStr.split('-');
+        return `${day}/${month}/${year}`;
     };
-
+    
     document.querySelectorAll('.fecha').forEach((cell) => {
         cell.textContent = formatDate(cell.textContent);
     });
+
+    document.getElementById("contenedor-reservas").scrollIntoView({ behavior: "smooth" });
+
 
     const cancelarReservaForm = document.getElementById('cancelarReservaForm');
     cancelarReservaForm.addEventListener('submit', function(event) {

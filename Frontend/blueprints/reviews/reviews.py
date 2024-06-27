@@ -36,7 +36,7 @@ def reviews():
             
             # Convertir la fecha de la reserva a un objeto de fecha
             fecha_hasta_str = reserva_encontrada['fecha_hasta']
-            fecha_hasta = datetime.strptime(fecha_hasta_str, '%a, %d %b %Y %H:%M:%S %Z').date()
+            fecha_hasta = datetime.strptime(fecha_hasta_str, "%Y-%m-%d").date()
 
             # Obtener la fecha actual como un objeto de fecha
             fecha_actual = datetime.now().date()

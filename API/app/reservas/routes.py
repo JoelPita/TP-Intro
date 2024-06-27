@@ -8,8 +8,6 @@ import logging
 import secrets
 import datetime
 
-
-# ---Crer Blueprint para reservas ---
 reservas_bp = Blueprint('reservas', __name__)
 
 def calculo_precio_total(cantidad_habitaciones, cantidad_noches, habitacion_id):
@@ -17,7 +15,6 @@ def calculo_precio_total(cantidad_habitaciones, cantidad_noches, habitacion_id):
         engine = current_app.config['engine']
         conn = engine.connect()
         
-        # Obtener el precio por noche de la habitación
         query = text("SELECT precio_noche FROM Habitaciones WHERE id = :habitacion_id")
         result = conn.execute(query, {'habitacion_id': habitacion_id})
         row = result.fetchone()
@@ -82,9 +79,10 @@ def create_reserva():
     try:
         engine = current_app.config['engine']
         conn = engine.connect()
+
         # Calcular la cantidad de noches
-        fecha_desde = datetime.strptime(data['fecha_desde'], '%Y-%m-%d')
-        fecha_hasta = datetime.strptime(data['fecha_hasta'], '%Y-%m-%d')
+        fecha_desde = datetime.datetime.strptime(data['fecha_desde'], '%Y-%m-%d')
+        fecha_hasta = datetime.datetime.strptime(data['fecha_hasta'], '%Y-%m-%d')
         cantidad_noches = (fecha_hasta - fecha_desde).days
         
         if cantidad_noches <= 0:
@@ -99,7 +97,6 @@ def create_reserva():
         
 
         codigo_reserva = ''.join(secrets.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') for _ in range(6))
-
         
         conn.execute(query, {
             'email_cliente': data['email_cliente'],
@@ -312,3 +309,74 @@ def send_email(to_email, dynamic_template_data, template_id):
         logging.info(f'Response Headers: {response.headers}')
     except Exception as e:
         logging.error(f'Error: {str(e)}')
+
+
+@reservas_bp.route('/check-disponibilidad', methods=['GET'])
+def check_disponibilidad():
+    habitacion_id = request.args.get('habitacionId')
+    cantidad_habitaciones = int(request.args.get('cantidadHabitaciones'))
+    fecha_desde = request.args.get('fechaDesde')
+    fecha_hasta = request.args.get('fechaHasta')
+
+    if not habitacion_id or not cantidad_habitaciones or not fecha_desde or not fecha_hasta:
+        return jsonify({"success": False, "message": "Falta alguno de los parametros obligatorios: habitacionId, cantidadHabitaciones, fechaDesde, fechaHasta"}), 400
+
+    try:
+        fecha_desde = datetime.datetime.strptime(fecha_desde, '%Y-%m-%d')
+        fecha_hasta = datetime.datetime.strptime(fecha_hasta, '%Y-%m-%d')
+    except ValueError:
+        return jsonify({"success": False, "message": "Formato de fecha incorrecto. Use 'YYYY-MM-DD'"}), 400
+
+    if fecha_hasta <= fecha_desde:
+        return jsonify({"success": False, "message": "La fecha 'hasta' debe ser posterior a la fecha 'desde'"}), 400
+
+    try:
+        engine = current_app.config['engine']
+        conn = engine.connect()
+
+        query_habitacion = text("SELECT cantidad_disponible FROM Habitaciones WHERE id = :habitacion_id")
+        result_query_habitacion = conn.execute(query_habitacion, {'habitacion_id': habitacion_id})
+        
+        if result_query_habitacion.rowcount == 0:
+            conn.close()
+            return jsonify({"success": False, "message": "Habitación no encontrada"}), 404
+
+        habitacion_total_disponible = result_query_habitacion.fetchone()[0]
+        
+        query_ocupacion = text("""
+            SELECT SUM(cantidad_habitaciones) 
+            FROM Reservas 
+            WHERE habitacion_id = :habitacion_id 
+            AND (
+                (fecha_desde <= :fecha_desde AND fecha_hasta >= :fecha_desde) OR 
+                (fecha_desde <= :fecha_hasta AND fecha_hasta >= :fecha_hasta) OR
+                (fecha_desde >= :fecha_desde AND fecha_hasta <= :fecha_hasta)
+            )
+            AND estado = 'aceptada'
+        """)
+        result_query_ocupacion = conn.execute(query_ocupacion, {'habitacion_id': habitacion_id, 'fecha_desde': fecha_desde, 'fecha_hasta': fecha_hasta})
+        cantidad_ocupadas = result_query_ocupacion.fetchone()[0] or 0
+        
+        disponibles = habitacion_total_disponible - cantidad_ocupadas
+        
+        if disponibles >= cantidad_habitaciones:
+            # Si hay disponibilidad calcular precio total
+            cantidad_noches = (fecha_hasta - fecha_desde).days
+            exito, precio_total = calculo_precio_total(cantidad_habitaciones, cantidad_noches, habitacion_id)
+            if exito:
+                return jsonify({"success": True, "disponible": True, "precioTotal": precio_total}), 200
+            else:
+                return jsonify({"success": False, "message": "Error al calcular precio total: " + precio_total}), 500
+        else:
+            return jsonify({"success": True, "disponible": False, "message": "No hay disponibilidad para el tipo de habitacion en las fechas solicitadas"}), 200
+
+    except SQLAlchemyError as e:
+        logging.error(f"SQL Error: {str(e)}")
+        conn.close()
+        return jsonify({"success": False, "message": "Error del servidor"}), 500
+    
+    except Exception as e:
+        logging.error(f"General Error: {str(e)}")
+        if conn:
+            conn.close()
+        return jsonify({"success": False, "message": "Error del servidor"}), 500

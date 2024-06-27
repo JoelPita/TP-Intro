@@ -7,6 +7,38 @@ reservasBp = Blueprint("reservasBp", __name__, template_folder='templates')
 @reservasBp.route('/', methods=["GET", "POST"])
 def reserva():
     if request.method == "POST":
+        habitacion_id = request.form['habitacion_id']
+        cantidad_habitaciones = request.form['cantidad_habitaciones']
+        cantidad_personas = request.form['cantidad_personas']
+        fecha_desde = request.form['fecha_desde']
+        fecha_hasta = request.form['fecha_hasta']
+
+        api_ruta = current_app.config['API_ROUTE']
+        api_url = f"{api_ruta}reservas/check-disponibilidad"
+        params = {
+            'habitacionId': habitacion_id,
+            'cantidadHabitaciones': cantidad_habitaciones,
+            'fechaDesde': fecha_desde,
+            'fechaHasta': fecha_hasta
+        }
+        headers = {'Content-Type': 'application/json'}
+
+        response = requests.get(api_url, params=params, headers=headers)
+        if response.status_code == 200:
+            data = response.json()
+            if data['success'] and data['disponible']:
+                return render_template("checkout_reserva.html", fecha_desde=fecha_desde, fecha_hasta=fecha_hasta, cantidad_habitaciones=cantidad_habitaciones, cantidad_personas=cantidad_personas, habitacion_id=habitacion_id, precio_total=data['precioTotal'])
+            else:
+                flash(data.get('message', 'No hay disponibilidad para las fechas seleccionadas'))
+        else:
+            flash("Error al verificar disponibilidad: " + response.json().get("message", ""))
+    
+    return render_template("reservas.html")
+
+
+@reservasBp.route('/checkout', methods=["GET", "POST"])
+def checkout_reserva():
+    if request.method == "POST":
         data = {
             'email_cliente': request.form['email_cliente'],
             'nombre_cliente': request.form['nombre_cliente'],
@@ -16,7 +48,8 @@ def reserva():
             'cantidad_habitaciones': request.form['cantidad_habitaciones'],
             'cantidad_personas': request.form['cantidad_personas'],
             'metodo_pago': request.form['metodo_pago'],
-            'habitacion_id': request.form['habitacion_id']
+            'habitacion_id': request.form['habitacion_id'],
+            'precio_total': request.form['precio_total']
         }
         api_ruta = current_app.config['API_ROUTE']
         api_url = api_ruta + "reservas"
@@ -28,9 +61,16 @@ def reserva():
             return render_template('confirmacion_reserva.html', codigo_reserva=codigo_reserva)
         else:
             flash("Error al crear la reserva: " + response.json().get("message", ""))
-            return render_template('reserva.html')
-    
-    return render_template('reserva.html')
+            return render_template(
+                'checkout_reserva.html', 
+                fecha_desde=data['fecha_desde'], 
+                fecha_hasta=data['fecha_hasta'], 
+                cantidad_habitaciones=data['cantidad_habitaciones'], 
+                cantidad_personas=data['cantidad_personas'], 
+                habitacion_id=data['habitacion_id'], 
+                precio_total=data['precio_total']
+            )    
+    return redirect(url_for('reservasBp.reserva'))
 
 @reservasBp.route('/gestion_reservas')
 def gestion_reservas():
