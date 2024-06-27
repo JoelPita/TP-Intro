@@ -200,32 +200,15 @@
         <br>
     </div>
 
-
     <div class="gallary row">
+        {% for i in range(1, 5) %}
         <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-            <img src="{{ url_for('static',filename='imgs/habitacion-1.jpg') }}" class="gallary-img">
-            <a href="{{ url_for('habitacionesBp.habitaciones_id',id=1)}}" class="gallary-overlay">
+            <img src="{{ url_for('static',filename='imgs/habitacion-' ~ i ~'.jpg') }}" class="gallary-img">
+            <a href="{{ url_for('habitacionesBp.habitaciones_id',id=i)}}" class="gallary-overlay">
                 <i class="gallary-icon ti-plus"></i>
             </a>
         </div>
-        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-            <img src="{{ url_for('static',filename='imgs/habitacion-6.jpg'  ) }}" class="gallary-img">
-            <a href="{{ url_for('habitacionesBp.habitaciones_id',id=2) }}" class="gallary-overlay">
-                <i class="gallary-icon ti-plus"></i>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-            <img src="{{ url_for('static',filename='imgs/habitacion-9.jpg') }}" class="gallary-img">
-            <a href="{{ url_for('habitacionesBp.habitaciones_id', id=3) }}" class="gallary-overlay">
-                <i class="gallary-icon ti-plus"></i>
-            </a>
-        </div>
-        <div class="col-sm-6 col-lg-3 gallary-item wow fadeIn">
-            <img src="{{ url_for('static',filename='imgs/habitacion-10.jpg') }}" class="gallary-img">
-            <a href="{{ url_for('habitacionesBp.habitaciones_id',id=4) }}" class="gallary-overlay">
-                <i class="gallary-icon ti-plus"></i>
-            </a>
-        </div>
+        {% endfor %}
     </div>
 
     <div class="mt-5">
