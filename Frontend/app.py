@@ -57,5 +57,34 @@ def page_not_found(e):
 def sobre_nosotros():
     return render_template('nosotros.html')
 
+@app.route('/registrar_usuario', methods=["GET", "POST"])
+def registrar_usuario():
+    if request.method == "POST":
+
+        data = {
+            'nombre': request.form['name'],
+            'email': request.form['email'],
+            'password': request.form['password'],
+            'rol': 'usuario'
+        }
+
+        api_ruta = current_app.config['API_ROUTE']
+        api_url = api_ruta + "users/add" # Endpoint de la API para el login de admin
+        headers = {'Content-Type': 'application/json'}
+
+        try:
+            response = requests.post(api_url, json=data, headers=headers)
+            if response.status_code == 200:
+                response_data = response.json()
+                if response_data.get("success"):
+                    flash("Su cuenta se creo sin ningun problema!")
+                else:
+                    flash("No pudimos crear su cuenta, vuelva a intentarlo mas tarde.")
+        except requests.exceptions.RequestException as e:
+            flash("Error del servidor al intentar crear su cuenta. Intentelo nuevamente")
+
+        return redirect(url_for("registrar_usuario"))
+    return render_template('registrar_usuario.html')
+
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5001, debug=True)
