@@ -9,7 +9,14 @@ def habitaciones():
 
 @habitacionesBp.route('/<id>', methods = ['GET'])
 def habitaciones_id(id):
-    return render_template('habitacion.html', id=id)
+    lista_habitaciones = get_habitaciones()
+    habitacion = {}
+    id = int(id)
+    for hab in lista_habitaciones:
+        if hab['id'] == id:
+            habitacion = hab
+            break
+    return render_template('habitacion.html', habitacion=habitacion)
 
 def get_habitaciones():
     try:

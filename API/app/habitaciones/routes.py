@@ -22,9 +22,9 @@ def get_habitaciones():
         entrada['id']= h.id
         entrada['nombre']=h.nombre
         entrada['descripcion']=h.descripcion
-        entrada['url_imagen']=h.url_imagen
         entrada['precio_noche']=h.precio_noche
         entrada['personas_max']=h.personas_max
+        entrada['url_imagen']=h.url_imagen 
         habitaciones.append(entrada)
 
     return jsonify(habitaciones),200
