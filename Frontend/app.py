@@ -10,6 +10,7 @@ from blueprints.index.index import indexBp
 from blueprints.reservas.reserva import reservasBp
 from blueprints.reviews.reviews import reviewsBp
 from blueprints.nosotros.nosotros import nosotrosBp
+from blueprints.gestion_precios.gestion_precios import gestionPreciosBp
 
 app = Flask(__name__)
 # Configurar la ruta de la API
@@ -23,6 +24,7 @@ app.register_blueprint(indexBp, url_prefix='/')
 app.register_blueprint(reservasBp, url_prefix="/reserva")
 app.register_blueprint(reviewsBp, url_prefix="/reviews")
 app.register_blueprint(nosotrosBp, url_prefix="/nosotros")
+app.register_blueprint(gestionPreciosBp, url_prefix="/gestion_precios")
 
 
 @app.route('/panel_admin', methods=["GET"])

@@ -5,6 +5,7 @@ from flask_cors import CORS
 from .reviews.routes import reviews_bp
 from .reservas.routes import reservas_bp
 from .users.routes import users_bp
+from .gestion_precios.routes import gestion_precios_bp
 import logging
 from flask_cors import CORS
 
@@ -29,6 +30,7 @@ logging.basicConfig(level=logging.INFO)
 app.register_blueprint(reviews_bp, url_prefix='/reviews')
 app.register_blueprint(reservas_bp, url_prefix='/reservas')
 app.register_blueprint(users_bp, url_prefix='/users')
+app.register_blueprint(gestion_precios_bp, url_prefix='/gestion_precios')
 
 
 if __name__ == "__main__":
