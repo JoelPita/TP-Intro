@@ -40,17 +40,9 @@ def panel_admin():
 def servicios():
     return render_template('servicios.html')
 
-@app.route('/reviews')
-def reviews():
-    return render_template('reviews.html')
-
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'),404
-
-@app.route('/nosotros')
-def sobre_nosotros():
-    return render_template('nosotros.html')
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5001, debug=True)
