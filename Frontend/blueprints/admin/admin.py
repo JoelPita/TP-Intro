@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, current_app, request
+from flask import Blueprint, render_template, current_app, request, flash
 import requests
 
 
@@ -8,8 +8,8 @@ adminBp = Blueprint("adminBp", __name__, template_folder='templates')
 def admin():
     if request.method == "POST":
         data = {
-            'name': request.form['name'],
             'email': request.form['email'],
+            'password': request.form['password']
         }
         api_ruta = current_app.config['API_ROUTE']
         api_url = api_ruta + "users/validar_credenciales" # Endpoint de la API para el login de admin

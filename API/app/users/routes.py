@@ -75,7 +75,7 @@ def add_user():
     
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
     
-    query = text("INSERT INTO Users (name, email, password, rol) VALUES (:name, :email, :password, :rol)")
+    query = text("INSERT INTO Users (rol, password, email, nombre) VALUES (:rol, :password, :email, :name, )")
 
     try:
         engine = current_app.config['engine']

@@ -73,11 +73,12 @@ def registrar_usuario():
         }
 
         api_ruta = current_app.config['API_ROUTE']
-        api_url = api_ruta + "users/add"
+        api_url = api_ruta + "users/add_user"
         headers = {'Content-Type': 'application/json'}
 
         try:
             response = requests.post(api_url, json=data, headers=headers)
+            
             if response.status_code == 200:
                 response_data = response.json()
                 if response_data.get("success"):
@@ -86,7 +87,7 @@ def registrar_usuario():
                     flash("No se pudo crear el usuario. Por favor, inténtelo de nuevo.")
         except requests.exceptions.RequestException as e:
             flash("Error del servidor al iniciar sesión. Intentelo nuevamente")
-        return render_template('registrar_usuario.html')
+        return redirect(url_for('registrar_usuario'))
     return render_template('registrar_usuario.html')
 
 if __name__ == "__main__":
